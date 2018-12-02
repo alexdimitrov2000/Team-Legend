@@ -11,7 +11,9 @@
 
         public string CountryOfBirth { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
+
+        public string ProfilePictureId { get; set; }
 
         public string TeamId { get; set; }
         public virtual Team Team { get; set; }

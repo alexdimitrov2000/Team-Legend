@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Team
     {
@@ -17,9 +19,20 @@
 
         public string Nickname { get; set; }
 
-        public DateTime DateOfFoundation { get; set; }
+        public DateTime? DateOfFoundation { get; set; }
 
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal TeamBudget { get; set; }
+
+        public int GoalsScored { get; set; }
+
+        public int GoalsConceded { get; set; }
+
+        public int GoalDifference => this.GoalsScored - this.GoalsConceded;
+
+        public int TotalPoints { get; set; }
+
+        public string BadgeId { get; set; }
 
         public string StadiumId { get; set; }
         public virtual Stadium Stadium { get; set; }

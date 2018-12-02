@@ -17,6 +17,8 @@
 
         public double Capacity { get; set; }
 
+        public string StadiumPictureId { get; set; }
+
         public virtual ICollection<Team> TenantTeams { get; set; }
     }
 }

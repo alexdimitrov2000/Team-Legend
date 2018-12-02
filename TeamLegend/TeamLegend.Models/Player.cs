@@ -1,6 +1,7 @@
 ﻿namespace TeamLegend.Models
 {
     using System;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Player
     {
@@ -22,6 +23,7 @@
 
         public string PlayingPosition { get; set; }
 
+        [Column(TypeName = "decimal(18, 2)")]
         public decimal? Salary { get; set; }
 
         public DateTime DateOfBirth { get; set; }
@@ -33,6 +35,8 @@
         public int Appearances { get; set; }
 
         public int GoalsScored { get; set; }
+
+        public string PlayerPictureId { get; set; }
 
         public string CurrentTeamId { get; set; }
         public virtual Team CurrentTeam { get; set; }

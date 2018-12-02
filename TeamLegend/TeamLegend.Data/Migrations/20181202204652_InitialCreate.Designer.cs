@@ -10,7 +10,7 @@ using TeamLegend.Data;
 namespace TeamLegend.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181127230709_InitialCreate")]
+    [Migration("20181202204652_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -143,7 +143,7 @@ namespace TeamLegend.Data.Migrations
 
                     b.Property<string>("CountryOfBirth");
 
-                    b.Property<DateTime>("DateOfBirth");
+                    b.Property<DateTime?>("DateOfBirth");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
@@ -169,6 +169,8 @@ namespace TeamLegend.Data.Migrations
                     b.Property<string>("PhoneNumber");
 
                     b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("ProfilePictureId");
 
                     b.Property<string>("SecurityStamp");
 
@@ -269,9 +271,12 @@ namespace TeamLegend.Data.Migrations
 
                     b.Property<string>("Nationality");
 
+                    b.Property<string>("PlayerPictureId");
+
                     b.Property<string>("PlayingPosition");
 
-                    b.Property<decimal?>("Salary");
+                    b.Property<decimal?>("Salary")
+                        .HasColumnType("decimal(18, 2)");
 
                     b.HasKey("Id");
 
@@ -291,6 +296,8 @@ namespace TeamLegend.Data.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<string>("StadiumPictureId");
+
                     b.HasKey("Id");
 
                     b.ToTable("Stadiums");
@@ -301,7 +308,13 @@ namespace TeamLegend.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("DateOfFoundation");
+                    b.Property<string>("BadgeId");
+
+                    b.Property<DateTime?>("DateOfFoundation");
+
+                    b.Property<int>("GoalsConceded");
+
+                    b.Property<int>("GoalsScored");
 
                     b.Property<string>("LeagueId");
 
@@ -311,7 +324,10 @@ namespace TeamLegend.Data.Migrations
 
                     b.Property<string>("StadiumId");
 
-                    b.Property<decimal>("TeamBudget");
+                    b.Property<decimal>("TeamBudget")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<int>("TotalPoints");
 
                     b.HasKey("Id");
 

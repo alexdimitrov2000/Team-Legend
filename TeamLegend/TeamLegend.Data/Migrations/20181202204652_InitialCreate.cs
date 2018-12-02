@@ -54,7 +54,8 @@ namespace TeamLegend.Data.Migrations
                     Id = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Location = table.Column<string>(nullable: true),
-                    Capacity = table.Column<double>(nullable: false)
+                    Capacity = table.Column<double>(nullable: false),
+                    StadiumPictureId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -89,8 +90,12 @@ namespace TeamLegend.Data.Migrations
                     Id = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Nickname = table.Column<string>(nullable: true),
-                    DateOfFoundation = table.Column<DateTime>(nullable: false),
-                    TeamBudget = table.Column<decimal>(nullable: false),
+                    DateOfFoundation = table.Column<DateTime>(nullable: true),
+                    TeamBudget = table.Column<decimal>(type: "decimal(18, 2)", nullable: false),
+                    GoalsScored = table.Column<int>(nullable: false),
+                    GoalsConceded = table.Column<int>(nullable: false),
+                    TotalPoints = table.Column<int>(nullable: false),
+                    BadgeId = table.Column<string>(nullable: true),
                     StadiumId = table.Column<string>(nullable: true),
                     LeagueId = table.Column<string>(nullable: true)
                 },
@@ -133,7 +138,8 @@ namespace TeamLegend.Data.Migrations
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     CountryOfBirth = table.Column<string>(nullable: true),
-                    DateOfBirth = table.Column<DateTime>(nullable: false),
+                    DateOfBirth = table.Column<DateTime>(nullable: true),
+                    ProfilePictureId = table.Column<string>(nullable: true),
                     TeamId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -189,12 +195,13 @@ namespace TeamLegend.Data.Migrations
                     Id = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     PlayingPosition = table.Column<string>(nullable: true),
-                    Salary = table.Column<decimal>(nullable: true),
+                    Salary = table.Column<decimal>(type: "decimal(18, 2)", nullable: true),
                     DateOfBirth = table.Column<DateTime>(nullable: false),
                     Nationality = table.Column<string>(nullable: true),
                     Height = table.Column<double>(nullable: false),
                     Appearances = table.Column<int>(nullable: false),
                     GoalsScored = table.Column<int>(nullable: false),
+                    PlayerPictureId = table.Column<string>(nullable: true),
                     CurrentTeamId = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

@@ -16,4 +16,8 @@
     <ProjectReference Include="..\TeamLegend.Data\TeamLegend.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Identity\Services\" />
+  </ItemGroup>
+
 </Project>

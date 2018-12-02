@@ -1,6 +1,8 @@
 ﻿namespace TeamLegend.Web
 {
-    using TeamLegend.Data;
+    using Data;
+    using TeamLegend.Models;
+    using Infrastructure.Extensions;
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Http;
@@ -10,7 +12,6 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using TeamLegend.Models;
 
     public class Startup
     {
@@ -38,7 +39,9 @@
 
             services.Configure<IdentityOptions>(options =>
             {
+                options.User.RequireUniqueEmail = true;
                 options.SignIn.RequireConfirmedEmail = false;
+                options.SignIn.RequireConfirmedPhoneNumber = false;
             });
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -77,9 +80,8 @@
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-
-            // TODO: SeedRolesMiddleware
-            //app.SeedRoles();
+            
+            app.SeedRoles();
 
             app.UseMvc(routes =>
             {

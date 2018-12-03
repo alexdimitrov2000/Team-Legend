@@ -1,16 +1,19 @@
-@using TeamLegend.Models;
-@using Microsoft.AspNetCore.Identity
-
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
-
-@if (SignInManager.IsSignedIn(User))
+@if (this.User.Identity.IsAuthenticated)
 {
     <div class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-            </li>
+            @if (this.ViewData["Resource"] != null)
+            {
+                <li>
+                    <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><img src="@ViewData["ProfilePicture"]" style="border-radius: 50%" /></a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @this.User.Identity.Name!</a>
+                </li>
+            }
             <li>
                 <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" title="Logout">Logout</a>
             </li>

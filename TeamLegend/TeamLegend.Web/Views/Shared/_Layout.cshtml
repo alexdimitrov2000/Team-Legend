@@ -1,9 +1,18 @@
-﻿<!DOCTYPE html>
+﻿@{
+    Cloudinary cloudinary = new Cloudinary(new CloudinaryDotNet.Account("dux8m4bux", "134699845585285", "SxeFab_0_1OA-IJp0yVFKxW8hIw"));
+    string path = "/ProfilePictures/" + string.Format(GlobalConstants.ProfilePicture, this.User.Identity.Name);
+    string profilePicture = cloudinary.Api.UrlImgUp.Transform(new Transformation().Gravity("face").Width(30).Height(30).Zoom(0.7).Crop("thumb"))
+        .BuildUrl(path);
+    ViewData["ProfilePicture"] = profilePicture;
+    ViewData["Resource"] = cloudinary.GetResource(path).Derived;
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - TeamLegend</title>
+    <title>TeamLegend</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />

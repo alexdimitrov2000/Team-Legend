@@ -1,6 +1,8 @@
 ﻿namespace TeamLegend.Web
 {
     using Data;
+    using Services;
+    using Services.Contracts;
     using TeamLegend.Models;
     using Infrastructure.Extensions;
 
@@ -57,6 +59,8 @@
                 .AddDefaultTokenProviders()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddScoped<ICloudinaryService, CloudinaryService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CloudinaryDotNet" Version="1.5.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="2.1.4" />
@@ -13,7 +14,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TeamLegend.Common\TeamLegend.Common.csproj" />
     <ProjectReference Include="..\TeamLegend.Data\TeamLegend.Data.csproj" />
+    <ProjectReference Include="..\TeamLegend.Services\TeamLegend.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

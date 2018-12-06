@@ -10,6 +10,9 @@
         public void Configure(EntityTypeBuilder<Stadium> builder)
         {
             builder.HasKey(s => s.Id);
+
+            builder.HasIndex(s => s.Name)
+                .IsUnique();
         }
     }
 }

@@ -25,6 +25,9 @@
                 .WithOne(m => m.Team)
                 .HasForeignKey<ApplicationUser>(m => m.TeamId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+
+            builder.HasIndex(t => t.Name)
+                .IsUnique();
         }
     }
 }

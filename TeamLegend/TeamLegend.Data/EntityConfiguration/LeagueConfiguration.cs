@@ -10,6 +10,8 @@
         public void Configure(EntityTypeBuilder<League> builder)
         {
             builder.HasKey(l => l.Id);
+
+            builder.HasIndex(l => l.Name).IsUnique();
         }
     }
 }

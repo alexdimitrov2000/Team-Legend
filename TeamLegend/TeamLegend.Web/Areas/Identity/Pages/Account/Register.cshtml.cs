@@ -43,14 +43,14 @@ namespace TeamLegend.Web.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [Display(Name = "Username")]
+            [Display(Name = "Username*")]
             [StringLength(100, MinimumLength = 4)]
             [RegularExpression("[0-9a-zA-Z-_.*~]+")]
             public string Username { get; set; }
 
             [Required]
             [EmailAddress]
-            [Display(Name = "Email")]
+            [Display(Name = "Email*")]
             public string Email { get; set; }
 
             [Phone]
@@ -58,12 +58,12 @@ namespace TeamLegend.Web.Areas.Identity.Pages.Account
             public string PhoneNumber { get; set; }
 
             [Required]
-            [Display(Name = "First Name")]
+            [Display(Name = "First Name*")]
             [StringLength(100, MinimumLength = 2)]
             public string FirstName { get; set; }
 
             [Required]
-            [Display(Name = "Last Name")]
+            [Display(Name = "Last Name*")]
             [StringLength(100, MinimumLength = 2)]
             public string LastName { get; set; }
 
@@ -71,13 +71,13 @@ namespace TeamLegend.Web.Areas.Identity.Pages.Account
             public string CountryOfBirth { get; set; }
 
             [DataType(DataType.Date)]
-            [Display(Name = "Date of Birth")]
+            [Display(Name = "Date of Birth*")]
             public DateTime DateOfBirth { get; set; }
 
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Password*")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]

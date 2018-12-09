@@ -1,0 +1,104 @@
+.app {
+    width: 100%;
+    height: 100%;
+}
+
+nav a {
+    color: #000000; 
+}
+
+.dropdown a {
+    font-weight: normal;
+}
+
+li .dropdown button {
+    padding-top: 7px;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.side-margin {
+    margin-left: 65px;
+    margin-right: 65px;
+}
+
+.half-width {
+    width: 50%;
+}
+
+.quarter-width {
+    width: 25%;
+}
+
+textarea {
+    resize: none;
+}
+
+.eventures-bg-color {
+    background-color: #AFEEEE;
+    color: #000000;
+}
+
+.btn:hover {
+    background-color: #15c4c4;
+    color: #000000;
+}
+
+a:hover {
+    color: #076b6b;
+}
+
+.nav-link-dark {
+    color: #04a1db
+}
+
+.dropdown {
+    margin-right: 2px;
+}
+
+.hr-2 {
+    height: 2px;
+}
+
+.hr-1 {
+    height: 1px;
+}
+
+.form-line {
+    background-color: #AFEEEE;
+    height: 2px;
+}
+
+.form-error {
+    color: red;
+    font-size: small;
+}
+
+.table-form label, input {
+    margin-right: 10px;
+}
+
+.pale-line {
+    background-color: #c4c4c4;
+    height: 3px;
+}
+
+.black-line {
+    background-color: black;
+    height: 3px;
+}
+
+.text-index {
+    color: #c4c4c4;
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: #AFEEEE;
+    color: #000000;
+}
+
+footer {
+    margin-top: 10px;
+}

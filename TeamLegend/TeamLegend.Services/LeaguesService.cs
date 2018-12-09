@@ -41,7 +41,7 @@
             {
                 return null;
             }
-            return await this.context.Leagues.FirstOrDefaultAsync(l => l.Id == id);
+            return await this.context.Leagues.SingleOrDefault(l => l.Id == id);
         }
     }
 }

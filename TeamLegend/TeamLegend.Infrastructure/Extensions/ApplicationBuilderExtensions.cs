@@ -1,4 +1,4 @@
-﻿namespace TeamLegend.Web.Infrastructure.Extensions
+﻿namespace TeamLegend.Infrastructure.Extensions
 {
     using CustomMiddlewares;
 

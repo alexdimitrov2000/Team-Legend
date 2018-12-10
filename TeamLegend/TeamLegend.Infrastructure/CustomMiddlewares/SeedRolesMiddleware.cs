@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace TeamLegend.Web.Infrastructure.CustomMiddlewares
+namespace TeamLegend.Infrastructure.CustomMiddlewares
 {
     public class SeedRolesMiddleware
     {

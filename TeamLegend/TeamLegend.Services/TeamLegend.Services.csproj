@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TeamLegend.Common\TeamLegend.Common.csproj" />
     <ProjectReference Include="..\TeamLegend.Data\TeamLegend.Data.csproj" />
+    <ProjectReference Include="..\TeamLegend.Infrastructure\TeamLegend.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

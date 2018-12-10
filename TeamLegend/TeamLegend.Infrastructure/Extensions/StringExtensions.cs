@@ -1,4 +1,4 @@
-﻿namespace TeamLegend.Web.Infrastructure.Extensions
+﻿namespace TeamLegend.Infrastructure.Extensions
 {
     using System;
 
@@ -20,6 +20,19 @@
                 {
                     return text.Substring(0, charLocation);
                 }
+            }
+
+            return string.Empty;
+        }
+
+        public static string RemoveCloudinaryUrlImageVersion(this string text, string startAt = "/v")
+        {
+            if (!string.IsNullOrWhiteSpace(text))
+            {
+                int startIndexOfVersion = text.IndexOf(startAt);
+                int length = text.SubstringBefore("/Profile").Length - startIndexOfVersion;
+
+                return text.Remove(startIndexOfVersion, length);
             }
 
             return string.Empty;

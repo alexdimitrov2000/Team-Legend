@@ -47,7 +47,7 @@ namespace TeamLegend.Web.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
 
-            [Display(Name = "Profile picture")]
+            //[Display(Name = "Profile picture")]
             public IFormFile ProfilePicture { get; set; }
         }
 
@@ -88,13 +88,13 @@ namespace TeamLegend.Web.Areas.Identity.Pages.Account.Manage
             {
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
-            user.ProfilePictureId = null;
+
             var file = Input.ProfilePicture;
             if (file != null)
             {
                 var fileStream = file.OpenReadStream();
                 var profilePictureId = string.Format(GlobalConstants.ProfilePicture, user.UserName);
-                this.cloudinaryService.Upload(profilePictureId, fileStream);
+                this.cloudinaryService.UploadProfilePicture(profilePictureId, fileStream);
                 user.ProfilePictureId = profilePictureId;
             }
 

@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamLegend.Models", "TeamLe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamLegend.Services", "TeamLegend.Services\TeamLegend.Services.csproj", "{F1FA06D1-7DA9-41C4-A1DB-8C325497EF2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamLegend.Common", "TeamLegend.Common\TeamLegend.Common.csproj", "{FDFC23BC-F0B2-4FA5-819A-E4BACAE14EF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamLegend.Common", "TeamLegend.Common\TeamLegend.Common.csproj", "{FDFC23BC-F0B2-4FA5-819A-E4BACAE14EF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamLegend.Infrastructure", "TeamLegend.Infrastructure\TeamLegend.Infrastructure.csproj", "{F100A2B3-63B9-46B7-BD13-2FDC18C4B7AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{FDFC23BC-F0B2-4FA5-819A-E4BACAE14EF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDFC23BC-F0B2-4FA5-819A-E4BACAE14EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDFC23BC-F0B2-4FA5-819A-E4BACAE14EF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F100A2B3-63B9-46B7-BD13-2FDC18C4B7AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F100A2B3-63B9-46B7-BD13-2FDC18C4B7AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F100A2B3-63B9-46B7-BD13-2FDC18C4B7AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F100A2B3-63B9-46B7-BD13-2FDC18C4B7AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

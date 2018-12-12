@@ -16,15 +16,18 @@ namespace TeamLegend.Web.Areas.Identity.Pages.Account.Manage
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ICloudinaryService cloudinaryService;
+        private readonly IUsersService usersService;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            ICloudinaryService cloudinaryService)
+            ICloudinaryService cloudinaryService,
+            IUsersService usersService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             this.cloudinaryService = cloudinaryService;
+            this.usersService = usersService;
         }
 
         public string Username { get; set; }
@@ -47,7 +50,7 @@ namespace TeamLegend.Web.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
 
-            //[Display(Name = "Profile picture")]
+            [Display(Name = "Profile picture")]
             public IFormFile ProfilePicture { get; set; }
         }
 
@@ -94,8 +97,8 @@ namespace TeamLegend.Web.Areas.Identity.Pages.Account.Manage
             {
                 var fileStream = file.OpenReadStream();
                 var profilePictureId = string.Format(GlobalConstants.ProfilePicture, user.UserName);
-                this.cloudinaryService.UploadProfilePicture(profilePictureId, fileStream);
-                user.ProfilePictureId = profilePictureId;
+                var imageUploadResult = this.cloudinaryService.UploadProfilePicture(profilePictureId, fileStream);
+                await this.usersService.SetProfilePictureVersionAsync(user, imageUploadResult.Version);
             }
 
             var email = await _userManager.GetEmailAsync(user);

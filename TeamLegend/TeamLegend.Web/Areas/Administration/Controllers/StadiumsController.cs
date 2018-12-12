@@ -42,11 +42,12 @@
                 return this.View(model);
             }
 
+            Stadium stadium;
             try
             {
                 var file = model.StadiumPicture;
 
-                var stadium = this.mapper.Map<Stadium>(model);
+                stadium = this.mapper.Map<Stadium>(model);
                 if (file != null)
                 {
                     var stadiumPictureId = string.Format(GlobalConstants.StadiumPicture, model.Name);
@@ -63,7 +64,7 @@
                 return this.View(model);
             }
 
-            return this.RedirectToAction("Index", "Home", new { area = "" });
+            return this.RedirectToAction("Details", "Stadiums", new { area = "", id = stadium.Id });
         }
     }
 }

@@ -1,7 +1,9 @@
 ﻿namespace TeamLegend.Services
 {
+    using System.Linq;
     using System.Threading.Tasks;
     using Contracts;
+    using Microsoft.EntityFrameworkCore;
     using TeamLegend.Data;
     using TeamLegend.Models;
 
@@ -18,6 +20,16 @@
         {
             await this.context.Stadiums.AddAsync(stadium);
             await this.context.SaveChangesAsync();
+        }
+
+        public async Task<Stadium> GetByIdAsync(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return null;
+            }
+
+            return await this.context.Stadiums.SingleOrDefaultAsync(s => s.Id == id);
         }
     }
 }

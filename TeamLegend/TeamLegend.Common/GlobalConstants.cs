@@ -2,7 +2,7 @@
 {
     public static class GlobalConstants
     {
-        public static string ProfilePicture = "{0}_profilePicture.jpg";
+        public static string ProfilePicture = "{0}_profilePicture";
 
         public static string PlayerPicture = "{0}_playerPicture";
 

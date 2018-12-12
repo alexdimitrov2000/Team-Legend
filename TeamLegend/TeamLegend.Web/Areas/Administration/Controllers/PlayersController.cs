@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
+using TeamLegend.Common;
 using TeamLegend.Models;
 using TeamLegend.Services.Contracts;
 using TeamLegend.Web.Areas.Administration.Models.Players;
@@ -18,12 +19,14 @@ namespace TeamLegend.Web.Areas.Administration.Controllers
         private readonly ILogger<PlayersController> logger;
         private readonly IPlayersService playersService;
         private readonly IMapper mapper;
+        private readonly ICloudinaryService cloudinaryService;
 
-        public PlayersController(ILogger<PlayersController> logger, IPlayersService playersService, IMapper mapper)
+        public PlayersController(ILogger<PlayersController> logger, IPlayersService playersService, IMapper mapper, ICloudinaryService cloudinaryService)
         {
             this.logger = logger;
             this.playersService = playersService;
             this.mapper = mapper;
+            this.cloudinaryService = cloudinaryService;
         }
 
         public IActionResult Create()
@@ -40,9 +43,20 @@ namespace TeamLegend.Web.Areas.Administration.Controllers
                 return this.View(model);
             }
 
+            Player player;
             try
             {
-                var player = this.mapper.Map<Player>(model);
+                player = this.mapper.Map<Player>(model);
+
+                var file = model.PlayerPicture;
+                if (file != null)
+                {
+                    var playerPictureId = string.Format(GlobalConstants.PlayerPicture, model.Name);
+                    var fileStream = file.OpenReadStream();
+
+                    var imageUploadResult = this.cloudinaryService.UploadPlayerPicture(playerPictureId, fileStream);
+                    player.PlayerPictureVersion = imageUploadResult.Version;
+                }
                 await this.playersService.CreateAsync(player);
             }
             catch (DbUpdateException e)
@@ -51,7 +65,7 @@ namespace TeamLegend.Web.Areas.Administration.Controllers
                 return this.View(model);
             }
 
-            return this.RedirectToAction("Index", "Home", new { area = "" });
+            return this.RedirectToAction("Details", "Players", new { area = "", id = player.Id });
         }
     }
 }

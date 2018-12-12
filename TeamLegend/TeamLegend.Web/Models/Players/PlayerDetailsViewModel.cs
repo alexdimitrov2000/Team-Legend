@@ -21,5 +21,7 @@ namespace TeamLegend.Web.Models.Players
         public Team CurrentTeam { get; set; }
 
         public decimal Salary { get; set; }
+
+        public string PlayerPictureUrl { get; set; }
     }
 }

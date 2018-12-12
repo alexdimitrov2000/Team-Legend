@@ -28,6 +28,16 @@ li .dropdown button {
     width: 50%;
 }
 
+.profile-picture {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px
+}
+
+.required-field {
+    color: red;
+}
+
 .quarter-width {
     width: 25%;
 }

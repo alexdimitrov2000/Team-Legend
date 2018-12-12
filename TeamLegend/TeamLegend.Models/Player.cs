@@ -14,7 +14,7 @@
             get
             {
                 var age = DateTime.UtcNow.Year - this.DateOfBirth.Year;
-                if (this.DateOfBirth > DateTime.UtcNow.AddYears(-age))
+                if (this.DateOfBirth > DateTime.UtcNow.AddYears(-age) && (age - 1 > 0))
                     age--;
 
                 return age;

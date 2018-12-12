@@ -36,7 +36,7 @@
 
         public int GoalsScored { get; set; }
 
-        public string PlayerPictureId { get; set; }
+        public string PlayerPictureVersion { get; set; }
 
         public string CurrentTeamId { get; set; }
         public virtual Team CurrentTeam { get; set; }

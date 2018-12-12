@@ -32,7 +32,7 @@
 
         public int TotalPoints { get; set; }
 
-        public string BadgeId { get; set; }
+        public string BadgeVersion { get; set; }
 
         public string StadiumId { get; set; }
         public virtual Stadium Stadium { get; set; }

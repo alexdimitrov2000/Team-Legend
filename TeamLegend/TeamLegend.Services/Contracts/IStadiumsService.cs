@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using TeamLegend.Models;
 
 namespace TeamLegend.Services.Contracts
 {
     public interface IStadiumsService
     {
-        Task CreateAsync(string name, string location, double capacity, string imageVersion);
+        Task CreateAsync(Stadium stadium);
     }
 }

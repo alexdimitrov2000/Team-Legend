@@ -1,22 +1,29 @@
 ﻿namespace TeamLegend.Web.Areas.Administration.Controllers
 {
+    using AutoMapper;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Logging;
     using Models.Stadiums;
     using Services.Contracts;
-
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Authorization;
     using System.Threading.Tasks;
     using TeamLegend.Common;
+    using TeamLegend.Models;
 
     [Area("Administration")]
     [Authorize(Roles = "Admin")]
     public class StadiumsController : Controller
     {
+        private readonly IMapper mapper;
+        private readonly ILogger<StadiumsController> logger;
         private readonly IStadiumsService stadiumsService;
         private readonly ICloudinaryService cloudinaryService;
 
-        public StadiumsController(IStadiumsService stadiumsService, ICloudinaryService cloudinaryService)
+        public StadiumsController(IMapper mapper, ILogger<StadiumsController> logger, IStadiumsService stadiumsService, ICloudinaryService cloudinaryService)
         {
+            this.mapper = mapper;
+            this.logger = logger;
             this.stadiumsService = stadiumsService;
             this.cloudinaryService = cloudinaryService;
         }
@@ -30,15 +37,33 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(StadiumCreateInputModel model)
         {
-            var file = model.StadiumPicture;
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
 
-            var stadiumPictureId = string.Format(GlobalConstants.StadiumPicture, model.Name);
-            var fileStream = file.OpenReadStream();
+            try
+            {
+                var file = model.StadiumPicture;
 
-            var imageUploadResult = this.cloudinaryService.UploadStadiumPicture(stadiumPictureId, fileStream);
-            await this.stadiumsService.CreateAsync(model.Name, model.Location, model.Capacity, imageUploadResult.Version);
+                var stadium = this.mapper.Map<Stadium>(model);
+                if (file != null)
+                {
+                    var stadiumPictureId = string.Format(GlobalConstants.StadiumPicture, model.Name);
+                    var fileStream = file.OpenReadStream();
 
-            return this.View();
+                    var imageUploadResult = this.cloudinaryService.UploadStadiumPicture(stadiumPictureId, fileStream);
+                    stadium.StadiumPictureVersion = imageUploadResult.Version;
+                }
+                await this.stadiumsService.CreateAsync(stadium);
+            }
+            catch (DbUpdateException e)
+            {
+                this.logger.LogError(e.Message);
+                return this.View(model);
+            }
+
+            return this.RedirectToAction("Index", "Home", new { area = "" });
         }
     }
 }

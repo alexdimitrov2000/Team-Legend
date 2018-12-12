@@ -23,14 +23,14 @@
             this.leaguesService = leaguesService;
         }
 
-        public IActionResult Craete()
+        public IActionResult Create()
         {
             return this.View();
         }
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public IActionResult Craete(LeagueCreateInputModel model)
+        public IActionResult Create(LeagueCreateInputModel model)
         {
             if (!this.ModelState.IsValid)
             {

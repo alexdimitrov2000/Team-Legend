@@ -26,14 +26,14 @@ namespace TeamLegend.Web.Areas.Administration.Controllers
             this.mapper = mapper;
         }
 
-        public IActionResult Craete()
+        public IActionResult Create()
         {
             return this.View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Craete(PlayerCreateInputModel model)
+        public async Task<IActionResult> Create(PlayerCreateInputModel model)
         {
             if (!this.ModelState.IsValid)
             {

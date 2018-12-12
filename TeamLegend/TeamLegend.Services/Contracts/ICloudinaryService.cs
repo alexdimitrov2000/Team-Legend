@@ -1,11 +1,16 @@
-﻿using System.IO;
+﻿using CloudinaryDotNet.Actions;
+using System.IO;
 
 namespace TeamLegend.Services.Contracts
 {
     public interface ICloudinaryService
     {
-        void Upload(string profilePictureId, Stream fileStream);
+        ImageUploadResult UploadProfilePicture(string profilePictureId, Stream fileStream);
 
-        string BuildProfilePictureUrl(string username);
+        ImageUploadResult UploadStadiumPicture(string stadiumPictureId, Stream fileStream);
+
+        string BuildProfilePictureUrl(string username, string imageVersion);
+
+        string BuildStadiumPictureUrl(string stadiumName, string imageVersion);
     }
 }

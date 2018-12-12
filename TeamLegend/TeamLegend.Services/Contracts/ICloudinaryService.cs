@@ -9,8 +9,12 @@ namespace TeamLegend.Services.Contracts
 
         ImageUploadResult UploadStadiumPicture(string stadiumPictureId, Stream fileStream);
 
+        ImageUploadResult UploadPlayerPicture(string playerPictureId, Stream fileStream);
+
         string BuildProfilePictureUrl(string username, string imageVersion);
 
         string BuildStadiumPictureUrl(string stadiumName, string imageVersion);
+
+        string BuildPlayerPictureUrl(string playerName, string imageVersion);
     }
 }

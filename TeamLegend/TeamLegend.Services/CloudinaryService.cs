@@ -33,13 +33,25 @@
             return result;
         }
 
-        public ImageUploadResult UploadStadiumPicture(string stadiumName, Stream fileStream)
+        public ImageUploadResult UploadStadiumPicture(string stadiumPictureId, Stream fileStream)
         {
             ImageUploadParams imageUploadParams = new ImageUploadParams
             {
-                File = new FileDescription(stadiumName, fileStream),
+                File = new FileDescription(stadiumPictureId, fileStream),
                 Folder = "StadiumPictures",
-                PublicId = stadiumName
+                PublicId = stadiumPictureId
+            };
+
+            return this.cloudinary.Upload(imageUploadParams);
+        }
+
+        public ImageUploadResult UploadPlayerPicture(string playerPictureId, Stream fileStream)
+        {
+            ImageUploadParams imageUploadParams = new ImageUploadParams
+            {
+                File = new FileDescription(playerPictureId, fileStream),
+                Folder = "PlayerPictures",
+                PublicId = playerPictureId
             };
 
             return this.cloudinary.Upload(imageUploadParams);
@@ -56,6 +68,13 @@
         public string BuildStadiumPictureUrl(string stadiumName, string imageVersion)
         {
             string path = "/StadiumPictures/" + string.Format(GlobalConstants.StadiumPicture, stadiumName);
+            var pictureUrl = cloudinary.Api.UrlImgUp.Version(imageVersion).BuildUrl(path);
+            return pictureUrl;
+        }
+
+        public string BuildPlayerPictureUrl(string playerName, string imageVersion)
+        {
+            string path = "/PlayerPictures/" + string.Format(GlobalConstants.PlayerPicture, playerName);
             var pictureUrl = cloudinary.Api.UrlImgUp.Version(imageVersion).BuildUrl(path);
             return pictureUrl;
         }

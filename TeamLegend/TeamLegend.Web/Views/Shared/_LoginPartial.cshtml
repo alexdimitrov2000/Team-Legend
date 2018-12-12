@@ -2,10 +2,10 @@
 {
     <div class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
-            @if (this.ViewData["Resource"] != null)
+            @*@if (this.ViewData["ProfilePicture"] != null)
             {
                 <li>
-                    <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><img src="@ViewData["ProfilePicture"]" style="border-radius: 50%" /></a>
+                    <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage"><img src="@ViewData["ProfilePicture"]" /></a>
                 </li>
             }
             else
@@ -16,6 +16,24 @@
             }
             <li>
                 <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" title="Logout">Logout</a>
+            </li>*@
+            <li class="nav-item">
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle text-bold" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                        @if (this.ViewData["ProfilePicture"] != null)
+                        {
+                            <img src="@ViewData["ProfilePicture"]" style="border-radius: 50%" />
+                        }
+                        else
+                        {
+                            <div>Profile</div>
+                        }
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage account</a>
+                        <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" title="Logout">Logout</a>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>

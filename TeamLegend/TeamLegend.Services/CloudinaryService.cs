@@ -47,18 +47,10 @@
 
         public string BuildProfilePictureUrl(string username, string imageVersion)
         {
-            //string profilePicture = cloudinary.Api.UrlImgUp.Transform(new Transformation().Gravity("face").Width(30).Height(30).Zoom(0.7).Crop("thumb"))
-            //                        .BuildUrl("/ProfilePictures/" + string.Format(GlobalConstants.ProfilePicture, username));
-
             string path = "/ProfilePictures/" + string.Format(GlobalConstants.ProfilePicture, username);
-            //var profilePicture = cloudinary.Api.UrlImgUp.BuildUrl(path).RemoveCloudinaryUrlImageVersion();
-            //var profilePicture2 = cloudinary.Api.UrlImgUp.BuildUrl(path);
-            //var profilePicture3 = cloudinary.Api.Url.BuildUrl(path);
-            //var tag = cloudinary.Api.UrlImgUp.Transform(new Transformation().Gravity("face").Width(30).Height(30).Zoom(0.7).Crop("thumb"))
-            //                        .BuildImageTag("/ProfilePictures/" + string.Format(GlobalConstants.ProfilePicture, username));
-            var tag2 = cloudinary.Api.UrlImgUp.Transform(new Transformation().Gravity("face").Width(30).Height(30).Zoom(0.7).Crop("thumb"))
+            var pictureUrl = cloudinary.Api.UrlImgUp.Transform(new Transformation().Gravity("face").Width(30).Height(30).Zoom(0.7).Crop("thumb"))
                                     .Version(imageVersion).BuildUrl(path);
-            return tag2;
+            return pictureUrl;
         }
 
         public string BuildStadiumPictureUrl(string stadiumName, string imageVersion)

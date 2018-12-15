@@ -1,4 +1,5 @@
 ﻿@model TeamLegend.Web.Areas.Administration.Models.Players.PlayerCreateInputModel
+@using TeamLegend.Models.Enums;
 
 @{
     ViewData["Title"] = "Create";
@@ -35,7 +36,9 @@
             </div>
             <div class="form-group">
                 <label asp-for="PlayingPosition" class="control-label"></label> <span class="required-field">&#42;</span>
-                <input asp-for="PlayingPosition" class="form-control" />
+                @Html.DropDownList(nameof(Model.PlayingPosition),
+                    Html.GetEnumSelectList<PlayingPosition>(),
+                    "Select position", new { @class = "form-control" })
                 <span asp-validation-for="PlayingPosition" class="text-danger"></span>
             </div>
             <div class="form-group">

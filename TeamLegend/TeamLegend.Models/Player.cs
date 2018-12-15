@@ -1,7 +1,9 @@
 ﻿namespace TeamLegend.Models
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using TeamLegend.Models.Enums;
 
     public class Player
     {
@@ -21,7 +23,8 @@
             }
         }
 
-        public string PlayingPosition { get; set; }
+        [EnumDataType(typeof(PlayingPosition))]
+        public PlayingPosition PlayingPosition { get; set; }
 
         [Column(TypeName = "decimal(18, 2)")]
         public decimal? Salary { get; set; }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.ComponentModel.DataAnnotations;
+using TeamLegend.Models.Enums;
 
 namespace TeamLegend.Web.Areas.Administration.Models.Players
 {
@@ -27,8 +28,8 @@ namespace TeamLegend.Web.Areas.Administration.Models.Players
 
         [Required(ErrorMessage = "The Playing Position field is required.")]
         [Display(Name = "Playing Position")]
-        [StringLength(100, MinimumLength = 2, ErrorMessage = "The length of the Playing Position field must be between {2} and {1} letters long.")]
-        public string PlayingPosition { get; set; }
+        [EnumDataType(typeof(PlayingPosition), ErrorMessage = "Please select one of the given positions.")]
+        public PlayingPosition PlayingPosition { get; set; }
 
         public IFormFile PlayerPicture { get; set; }
     }

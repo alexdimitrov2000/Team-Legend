@@ -9,6 +9,8 @@
     using Microsoft.AspNetCore.Authorization;
     using System;
     using Microsoft.Extensions.Logging;
+    using TeamLegend.Models;
+    using AutoMapper;
 
     [Area("Administration")]
     [Authorize(Roles = "Admin")]
@@ -16,11 +18,13 @@
     {
         private readonly ILogger<LeaguesController> logger;
         private readonly ILeaguesService leaguesService;
+        private readonly IMapper mapper;
 
-        public LeaguesController(ILogger<LeaguesController> logger, ILeaguesService leaguesService)
+        public LeaguesController(ILogger<LeaguesController> logger, ILeaguesService leaguesService, IMapper mapper)
         {
             this.logger = logger;
             this.leaguesService = leaguesService;
+            this.mapper = mapper;
         }
 
         public IActionResult Create()
@@ -37,9 +41,11 @@
                 return this.View(model);
             }
 
+            League league;
             try
             {
-                this.leaguesService.CreateAsync(model.Name, model.Country);
+                league = this.mapper.Map<League>(model);
+                this.leaguesService.CreateAsync(league);
             }
             catch (DbUpdateException e)
             {
@@ -47,7 +53,7 @@
                 return this.View(model);
             }
             
-            return this.RedirectToAction("Index", "Home", new { area = "" });
+            return this.RedirectToAction("Details", "Leagues", new { area = "", id = league.Id });
         }
     }
 }

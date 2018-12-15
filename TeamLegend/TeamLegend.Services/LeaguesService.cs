@@ -18,14 +18,8 @@
             this.context = context;
         }
 
-        public async Task<League> CreateAsync(string name, string countryName)
+        public async Task<League> CreateAsync(League league)
         {
-            var league = new League
-            {
-                Name = name,
-                Country = countryName
-            };
-
             await this.context.Leagues.AddAsync(league);
             await this.context.SaveChangesAsync();
 

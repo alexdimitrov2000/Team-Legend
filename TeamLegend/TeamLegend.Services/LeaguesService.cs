@@ -18,7 +18,7 @@
             this.context = context;
         }
 
-        public async Task CreateAsync(string name, string countryName)
+        public async Task<League> CreateAsync(string name, string countryName)
         {
             var league = new League
             {
@@ -28,6 +28,8 @@
 
             await this.context.Leagues.AddAsync(league);
             await this.context.SaveChangesAsync();
+
+            return league;
         }
 
         public async Task<ICollection<League>> GetAllAsync()

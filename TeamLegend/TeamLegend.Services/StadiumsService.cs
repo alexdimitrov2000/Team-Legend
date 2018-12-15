@@ -16,10 +16,12 @@
             this.context = context;
         }
 
-        public async Task CreateAsync(Stadium stadium)
+        public async Task<Stadium> CreateAsync(Stadium stadium)
         {
             await this.context.Stadiums.AddAsync(stadium);
             await this.context.SaveChangesAsync();
+
+            return stadium;
         }
 
         public async Task<Stadium> GetByIdAsync(string id)

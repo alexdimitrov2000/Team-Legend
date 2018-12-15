@@ -6,7 +6,7 @@ namespace TeamLegend.Services.Contracts
 {
     public interface ILeaguesService
     {
-        Task CreateAsync(string name, string countryName);
+        Task<League> CreateAsync(string name, string countryName);
 
         Task<League> GetByIdAsync(string id);
 

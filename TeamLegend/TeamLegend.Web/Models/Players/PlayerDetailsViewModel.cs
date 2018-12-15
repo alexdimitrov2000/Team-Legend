@@ -1,4 +1,5 @@
 ﻿using TeamLegend.Models;
+using TeamLegend.Models.Enums;
 
 namespace TeamLegend.Web.Models.Players
 {
@@ -14,7 +15,7 @@ namespace TeamLegend.Web.Models.Players
 
         public string DateOfBirth { get; set; }
 
-        public string PlayingPosition { get; set; }
+        public PlayingPosition PlayingPosition { get; set; }
 
         public int GoalsScored { get; set; }
 

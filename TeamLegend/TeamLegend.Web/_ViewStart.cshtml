@@ -5,6 +5,6 @@
 @{
     var user = this.UserManager.GetUserAsync(this.User).GetAwaiter().GetResult();
 
-    ViewData["ProfilePicture"] = CloudinaryService.BuildProfilePictureUrl(user.UserName, user.ProfilePictureVersion);
+    ViewData["ProfilePicture"] = CloudinaryService.BuildProfilePictureUrl(user?.UserName, user?.ProfilePictureVersion);
     Layout = "_Layout";
 }

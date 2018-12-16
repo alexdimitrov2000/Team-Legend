@@ -11,10 +11,14 @@ namespace TeamLegend.Services.Contracts
 
         ImageUploadResult UploadPlayerPicture(string playerPictureId, Stream fileStream);
 
+        ImageUploadResult UploadTeamBadgePicture(string badgeId, Stream fileStream);
+
         string BuildProfilePictureUrl(string username, string imageVersion);
 
         string BuildStadiumPictureUrl(string stadiumName, string imageVersion);
 
         string BuildPlayerPictureUrl(string playerName, string imageVersion);
+
+        string BuildTeamBadgePictureUrl(string teamName, string imageVersion);
     }
 }

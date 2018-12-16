@@ -52,7 +52,7 @@
                     var managerPictureId = string.Format(GlobalConstants.ManagerPicture, model.Name);
                     var fileStream = file.OpenReadStream();
 
-                    var imageUploadResult = this.cloudinaryService.UploadManagerPicture(managerPictureId, fileStream);
+                    var imageUploadResult = this.cloudinaryService.UploadPicture(manager.GetType(), managerPictureId, fileStream);
                     manager.ManagerPictureVersion = imageUploadResult.Version;
                 }
                 await this.managersService.CreateAsync(manager);

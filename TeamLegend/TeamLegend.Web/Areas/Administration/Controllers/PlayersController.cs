@@ -52,7 +52,7 @@
                     var playerPictureId = string.Format(GlobalConstants.PlayerPicture, model.Name);
                     var fileStream = file.OpenReadStream();
 
-                    var imageUploadResult = this.cloudinaryService.UploadPlayerPicture(playerPictureId, fileStream);
+                    var imageUploadResult = this.cloudinaryService.UploadPicture(player.GetType(), playerPictureId, fileStream);
                     player.PlayerPictureVersion = imageUploadResult.Version;
                 }
                 await this.playersService.CreateAsync(player);

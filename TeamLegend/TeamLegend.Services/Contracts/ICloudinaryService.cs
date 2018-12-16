@@ -2,19 +2,12 @@
 {
     using CloudinaryDotNet.Actions;
 
+    using System;
     using System.IO;
 
     public interface ICloudinaryService
     {
-        ImageUploadResult UploadProfilePicture(string profilePictureId, Stream fileStream);
-
-        ImageUploadResult UploadStadiumPicture(string stadiumPictureId, Stream fileStream);
-
-        ImageUploadResult UploadPlayerPicture(string playerPictureId, Stream fileStream);
-
-        ImageUploadResult UploadTeamBadgePicture(string badgeId, Stream fileStream);
-
-        ImageUploadResult UploadManagerPicture(string managerPictureId, Stream fileStream);
+        ImageUploadResult UploadPicture(Type entityType, string pictureId, Stream fileStream);
 
         string BuildProfilePictureUrl(string username, string imageVersion);
 

@@ -52,7 +52,7 @@
                     var badgeId = string.Format(GlobalConstants.BadgePicture, model.Name);
                     var fileStream = file.OpenReadStream();
 
-                    var imageUploadResult = this.cloudinaryService.UploadTeamBadgePicture(badgeId, fileStream);
+                    var imageUploadResult = this.cloudinaryService.UploadPicture(team.GetType(), badgeId, fileStream);
                     team.BadgeVersion = imageUploadResult.Version;
                 }
                 await this.teamsService.CreateAsync(team);

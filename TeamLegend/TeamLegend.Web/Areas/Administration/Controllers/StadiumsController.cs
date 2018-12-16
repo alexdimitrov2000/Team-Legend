@@ -52,7 +52,7 @@
                     var stadiumPictureId = string.Format(GlobalConstants.StadiumPicture, model.Name);
                     var fileStream = file.OpenReadStream();
 
-                    var imageUploadResult = this.cloudinaryService.UploadStadiumPicture(stadiumPictureId, fileStream);
+                    var imageUploadResult = this.cloudinaryService.UploadPicture(stadium.GetType(), stadiumPictureId, fileStream);
                     stadium.StadiumPictureVersion = imageUploadResult.Version;
                 }
                 await this.stadiumsService.CreateAsync(stadium);

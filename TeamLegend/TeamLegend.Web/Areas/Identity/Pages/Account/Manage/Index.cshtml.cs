@@ -97,7 +97,7 @@ namespace TeamLegend.Web.Areas.Identity.Pages.Account.Manage
             {
                 var fileStream = file.OpenReadStream();
                 var profilePictureId = string.Format(GlobalConstants.ProfilePicture, user.UserName);
-                var imageUploadResult = this.cloudinaryService.UploadProfilePicture(profilePictureId, fileStream);
+                var imageUploadResult = this.cloudinaryService.UploadPicture(user.GetType(), profilePictureId, fileStream);
                 await this.usersService.SetProfilePictureVersionAsync(user, imageUploadResult.Version);
             }
 

@@ -65,5 +65,41 @@
 
             return this.RedirectToAction("Details", "Stadiums", new { area = "", id = stadium.Id });
         }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            var stadium = await this.stadiumsService.GetByIdAsync(id);
+
+            if (stadium == null)
+                return this.NotFound();
+
+            var stadiumDeleteViewModel = this.mapper.Map<StadiumDeleteViewModel>(stadium);
+            stadiumDeleteViewModel.StadiumPictureUrl = this.cloudinaryService.BuildStadiumPictureUrl(stadium.Name, stadium.StadiumPictureVersion);
+
+            return this.View(stadiumDeleteViewModel);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            var stadium = await this.stadiumsService.GetByIdAsync(id);
+
+            if (stadium == null)
+                return this.NotFound();
+
+            try
+            {
+                await this.stadiumsService.DeleteAsync(stadium);
+            }
+            catch (DbUpdateException e)
+            {
+                this.logger.LogError(e.Message);
+                this.ModelState.AddModelError("Error", "Could not delete stadium.");
+                return this.BadRequest(this.ModelState);
+            }
+
+            return this.RedirectToAction("Index", "Home", new { area = "" });
+        }
     }
 }

@@ -13,6 +13,8 @@
             CreateMap<StadiumCreateInputModel, Stadium>();
 
             CreateMap<Stadium, StadiumDetailsViewModel>();
+
+            CreateMap<Stadium, StadiumDeleteViewModel>();
         }
     }
 }

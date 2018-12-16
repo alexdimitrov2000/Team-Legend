@@ -34,5 +34,12 @@
 
             return await this.context.Managers.FirstOrDefaultAsync(p => p.Id == id);
         }
+
+        public async Task<bool> DeleteAsync(Manager manager)
+        {
+            this.context.Managers.Remove(manager);
+            await this.context.SaveChangesAsync();
+            return true;
+        }
     }
 }

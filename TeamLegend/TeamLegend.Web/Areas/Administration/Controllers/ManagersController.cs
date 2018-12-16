@@ -65,5 +65,41 @@
 
             return this.RedirectToAction("Details", "Managers", new { area = "", id = manager.Id });
         }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            var manager = await this.managersService.GetByIdAsync(id);
+
+            if (manager == null)
+                return this.NotFound();
+
+            var managerDeleteViewModel = this.mapper.Map<ManagerDeleteViewModel>(manager);
+            managerDeleteViewModel.ManagerPictureUrl = this.cloudinaryService.BuildManagerPictureUrl(manager.Name, manager.ManagerPictureVersion);
+
+            return this.View(managerDeleteViewModel);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            var league = await this.managersService.GetByIdAsync(id);
+
+            if (league == null)
+                return this.NotFound();
+
+            try
+            {
+                await this.managersService.DeleteAsync(league);
+            }
+            catch (DbUpdateException e)
+            {
+                this.logger.LogError(e.Message);
+                this.ModelState.AddModelError("Error", "Could not delete manager.");
+                return this.BadRequest(this.ModelState);
+            }
+
+            return this.RedirectToAction("Index", "Home", new { area = "" });
+        }
     }
 }

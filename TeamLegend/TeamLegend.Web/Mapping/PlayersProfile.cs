@@ -13,6 +13,8 @@
             CreateMap<PlayerCreateInputModel, Player>();
 
             CreateMap<Player, PlayerDetailsViewModel>();
+
+            CreateMap<Player, PlayerDeleteViewModel>();
         }
     }
 }

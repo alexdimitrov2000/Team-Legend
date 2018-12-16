@@ -3,11 +3,14 @@
     using Models.League;
     using TeamLegend.Models;
     using Services.Contracts;
+    using Areas.Administration.Models.Leagues;
 
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
+
+    using System.Threading.Tasks;
 
     public class LeaguesController : AdministrationController
     {
@@ -29,7 +32,7 @@
 
         [HttpPost]
         [AutoValidateAntiforgeryToken]
-        public IActionResult Create(LeagueCreateInputModel model)
+        public async Task<IActionResult> Create(LeagueCreateInputModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -40,7 +43,7 @@
             try
             {
                 league = this.mapper.Map<League>(model);
-                this.leaguesService.CreateAsync(league);
+                await this.leaguesService.CreateAsync(league);
             }
             catch (DbUpdateException e)
             {
@@ -49,6 +52,41 @@
             }
             
             return this.RedirectToAction("Details", "Leagues", new { area = "", id = league.Id });
+        }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            var league = await this.leaguesService.GetByIdAsync(id);
+
+            if (league == null)
+                return this.NotFound();
+
+            var leagueDeleteViewModel = this.mapper.Map<LeagueDeleteViewModel>(league);
+
+            return this.View(leagueDeleteViewModel);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            var league = await this.leaguesService.GetByIdAsync(id);
+
+            if (league == null)
+                return this.NotFound();
+
+            try
+            {
+                await this.leaguesService.DeleteAsync(league);
+            }
+            catch (DbUpdateException e)
+            {
+                this.logger.LogError(e.Message);
+                this.ModelState.AddModelError("Error", "Could not delete league.");
+                return this.BadRequest(this.ModelState);
+            }
+
+            return this.RedirectToAction("Index", "Home", new { area = "" });
         }
     }
 }

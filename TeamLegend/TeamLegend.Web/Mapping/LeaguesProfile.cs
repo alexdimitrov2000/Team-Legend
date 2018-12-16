@@ -3,6 +3,7 @@
     using Models.Leagues;
     using TeamLegend.Models;
     using Areas.Administration.Models.League;
+    using Areas.Administration.Models.Leagues;
 
     using AutoMapper;
 
@@ -21,6 +22,8 @@
             CreateMap<League, LeagueIndexViewModel>()
                 .ForMember(l => l.NumberOfTeams,
                         opt => opt.MapFrom(src => src.Teams.Count()));
+
+            CreateMap<League, LeagueDeleteViewModel>();
         }
     }
 }

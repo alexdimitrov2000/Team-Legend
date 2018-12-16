@@ -10,9 +10,9 @@
 
         public string BadgeUrl { get; set; }
 
-        public string ManagerName { get; set; } = "No current manager.";
+        public string ManagerName { get; set; }
 
-        public string StadiumName { get; set; } = "No current stadium.";
+        public string StadiumName { get; set; }
 
         public int YearOfFoundation { get; set; }
     }

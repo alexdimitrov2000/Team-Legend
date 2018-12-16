@@ -9,5 +9,7 @@
         Task<Stadium> CreateAsync(Stadium stadium);
 
         Task<Stadium> GetByIdAsync(string id);
+
+        Task<bool> DeleteAsync(Stadium stadium);
     }
 }

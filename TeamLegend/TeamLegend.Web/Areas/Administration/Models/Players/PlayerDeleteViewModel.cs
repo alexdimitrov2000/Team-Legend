@@ -1,9 +1,6 @@
-﻿namespace TeamLegend.Web.Models.Players
+﻿namespace TeamLegend.Web.Areas.Administration.Models.Players
 {
-    using TeamLegend.Models;
-    using TeamLegend.Models.Enums;
-
-    public class PlayerDetailsViewModel
+    public class PlayerDeleteViewModel
     {
         public string Id { get; set; }
 
@@ -17,11 +14,11 @@
 
         public string DateOfBirth { get; set; }
 
-        public PlayingPosition PlayingPosition { get; set; }
+        public string PlayingPosition { get; set; }
 
         public int GoalsScored { get; set; }
 
-        public Team CurrentTeam { get; set; }
+        public string CurrentTeamName { get; set; }
 
         public decimal Salary { get; set; }
 

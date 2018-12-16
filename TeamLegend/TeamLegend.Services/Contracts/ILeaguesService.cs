@@ -12,5 +12,7 @@
         Task<League> GetByIdAsync(string id);
 
         Task<ICollection<League>> GetAllAsync();
+
+        Task<bool> DeleteAsync(League league);
     }
 }

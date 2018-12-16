@@ -13,6 +13,8 @@
             CreateMap<ManagerCreateInputModel, Manager>();
 
             CreateMap<Manager, ManagerDetailsViewModel>();
+
+            CreateMap<Manager, ManagerDeleteViewModel>();
         }
     }
 }

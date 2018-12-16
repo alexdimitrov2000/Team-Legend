@@ -1,6 +1,6 @@
-﻿namespace TeamLegend.Web.Models.Stadiums
+﻿namespace TeamLegend.Web.Areas.Administration.Models.Stadiums
 {
-    public class StadiumDetailsViewModel
+    public class StadiumDeleteViewModel
     {
         public string Id { get; set; }
 

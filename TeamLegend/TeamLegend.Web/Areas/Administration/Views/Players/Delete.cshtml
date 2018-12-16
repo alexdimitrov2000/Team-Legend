@@ -1,14 +1,15 @@
-﻿@model TeamLegend.Web.Models.Players.PlayerDetailsViewModel
+﻿@model TeamLegend.Web.Areas.Administration.Models.Players.PlayerDeleteViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Delete</h2>
 
+<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>PlayerDetailsViewModel</h4>
+    <h4>PlayerDeleteViewModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -54,6 +55,12 @@
             @Html.DisplayFor(model => model.GoalsScored)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.CurrentTeamName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CurrentTeamName)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Salary)
         </dt>
         <dd>
@@ -66,9 +73,9 @@
             <img src="@Model.PlayerPictureUrl" />
         </dd>
     </dl>
-    <a asp-area="Administration" asp-controller="Players" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    
+    <form asp-action="Delete" asp-route-id="@Model.Id">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
 </div>

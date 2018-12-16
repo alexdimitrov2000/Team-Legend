@@ -39,5 +39,13 @@
             }
             return await this.context.Leagues.SingleOrDefaultAsync(l => l.Id == id);
         }
+
+        public async Task<bool> DeleteAsync(League league)
+        {
+            this.context.Leagues.Remove(league);
+            await this.context.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

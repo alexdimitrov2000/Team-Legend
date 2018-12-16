@@ -34,5 +34,13 @@
 
             return await this.context.Players.FirstOrDefaultAsync(p => p.Id == id);
         }
+
+        public async Task<bool> DeleteAsync(Player player)
+        {
+            this.context.Players.Remove(player);
+            await this.context.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

@@ -34,5 +34,12 @@
 
             return await this.context.Stadiums.SingleOrDefaultAsync(s => s.Id == id);
         }
+
+        public async Task<bool> DeleteAsync(Stadium stadium)
+        {
+            this.context.Stadiums.Remove(stadium);
+            await this.context.SaveChangesAsync();
+            return true;
+        }
     }
 }

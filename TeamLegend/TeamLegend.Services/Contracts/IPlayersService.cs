@@ -9,5 +9,7 @@
         Task<Player> CreateAsync(Player player);
 
         Task<Player> GetByIdAsync(string id);
+
+        Task<bool> DeleteAsync(Player player);
     }
 }

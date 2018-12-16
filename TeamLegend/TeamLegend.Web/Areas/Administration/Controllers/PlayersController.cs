@@ -65,5 +65,41 @@
 
             return this.RedirectToAction("Details", "Players", new { area = "", id = player.Id });
         }
+
+        public async Task<IActionResult> Delete(string id)
+        {
+            var player = await this.playersService.GetByIdAsync(id);
+
+            if (player == null)
+                return this.NotFound();
+
+            var playerDeleteViewModel = this.mapper.Map<PlayerDeleteViewModel>(player);
+            playerDeleteViewModel.PlayerPictureUrl = this.cloudinaryService.BuildPlayerPictureUrl(player.Name, player.PlayerPictureVersion);
+
+            return this.View(playerDeleteViewModel);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            var player = await this.playersService.GetByIdAsync(id);
+
+            if (player == null)
+                return this.NotFound();
+
+            try
+            {
+                await this.playersService.DeleteAsync(player);
+            }
+            catch (DbUpdateException e)
+            {
+                this.logger.LogError(e.Message);
+                this.ModelState.AddModelError("Error", "Could not delete player.");
+                return this.BadRequest(this.ModelState);
+            }
+
+            return this.RedirectToAction("Index", "Home", new { area = "" });
+        }
     }
 }

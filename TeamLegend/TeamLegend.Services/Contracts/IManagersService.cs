@@ -9,5 +9,7 @@
         Task<Manager> CreateAsync(Manager manager);
 
         Task<Manager> GetByIdAsync(string id);
+
+        Task<bool> DeleteAsync(Manager manager);
     }
 }

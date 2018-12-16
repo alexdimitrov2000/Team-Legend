@@ -30,6 +30,7 @@
             @Html.DisplayFor(model => model.NumberOfTeams)
         </dd>
     </dl>
+    <a asp-area="Administration" asp-controller="Leagues" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |

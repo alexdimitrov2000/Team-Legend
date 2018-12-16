@@ -1,20 +1,18 @@
-﻿using AutoMapper;
-using Castle.Core.Logging;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
-using TeamLegend.Common;
-using TeamLegend.Models;
-using TeamLegend.Services.Contracts;
-using TeamLegend.Web.Areas.Administration.Models.Players;
-
-namespace TeamLegend.Web.Areas.Administration.Controllers
+﻿namespace TeamLegend.Web.Areas.Administration.Controllers
 {
-    [Area("Administration")]
-    [Authorize(Roles = "Admin")]
-    public class PlayersController : Controller
+    using Common;
+    using Models.Players;
+    using TeamLegend.Models;
+    using Services.Contracts;
+
+    using AutoMapper;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Logging;
+
+    using System.Threading.Tasks;
+
+    public class PlayersController : AdministrationController
     {
         private readonly ILogger<PlayersController> logger;
         private readonly IPlayersService playersService;

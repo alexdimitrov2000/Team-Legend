@@ -1,19 +1,18 @@
 ﻿namespace TeamLegend.Web.Areas.Administration.Controllers
 {
+    using Common;
+    using Models.Stadiums;
+    using TeamLegend.Models;
+    using Services.Contracts;
+
     using AutoMapper;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
-    using Models.Stadiums;
-    using Services.Contracts;
-    using System.Threading.Tasks;
-    using TeamLegend.Common;
-    using TeamLegend.Models;
 
-    [Area("Administration")]
-    [Authorize(Roles = "Admin")]
-    public class StadiumsController : Controller
+    using System.Threading.Tasks;
+
+    public class StadiumsController : AdministrationController
     {
         private readonly IMapper mapper;
         private readonly ILogger<StadiumsController> logger;

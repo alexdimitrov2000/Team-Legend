@@ -1,20 +1,15 @@
 ﻿namespace TeamLegend.Web.Areas.Administration.Controllers
 {
     using Models.League;
+    using TeamLegend.Models;
+    using Services.Contracts;
 
+    using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
-    using Castle.Core.Logging;
-    using TeamLegend.Services.Contracts;
-    using Microsoft.AspNetCore.Authorization;
-    using System;
     using Microsoft.Extensions.Logging;
-    using TeamLegend.Models;
-    using AutoMapper;
 
-    [Area("Administration")]
-    [Authorize(Roles = "Admin")]
-    public class LeaguesController : Controller
+    public class LeaguesController : AdministrationController
     {
         private readonly ILogger<LeaguesController> logger;
         private readonly ILeaguesService leaguesService;

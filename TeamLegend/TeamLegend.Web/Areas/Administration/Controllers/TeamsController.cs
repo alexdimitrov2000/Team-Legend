@@ -11,11 +11,8 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.AspNetCore.Authorization;
 
-    [Area("Administration")]
-    [Authorize(Roles = "Admin")]
-    public class TeamsController : Controller
+    public class TeamsController : AdministrationController
     {
         private readonly ILogger<TeamsController> logger;
         private readonly IMapper mapper;

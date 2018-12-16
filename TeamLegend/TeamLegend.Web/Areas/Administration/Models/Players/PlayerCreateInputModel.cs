@@ -31,6 +31,7 @@ namespace TeamLegend.Web.Areas.Administration.Models.Players
         [EnumDataType(typeof(PlayingPosition), ErrorMessage = "Please select one of the given positions.")]
         public PlayingPosition PlayingPosition { get; set; }
 
+        [Display(Name = "Player Picture")]
         public IFormFile PlayerPicture { get; set; }
     }
 }

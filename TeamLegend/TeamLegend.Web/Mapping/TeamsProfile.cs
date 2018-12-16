@@ -14,7 +14,23 @@
 
             CreateMap<Team, TeamDetailsViewModel>()
                 .ForMember(m => m.YearOfFoundation,
-                        opt => opt.MapFrom(src => src.DateOfFoundation.GetValueOrDefault().Year));
+                        opt => opt.MapFrom(src => src.DateOfFoundation.GetValueOrDefault().Year))
+                .ForMember(m => m.StadiumName,
+                        opt => opt.MapFrom(src => src.Stadium == null ? "Does not have a stadium." : src.Stadium.Name))
+                .ForMember(m => m.ManagerName,
+                        opt => opt.MapFrom(src => src.Manager == null ? "Does not have a manager." : src.Manager.Name));
+
+            CreateMap<Team, TeamEditViewModel>();
+
+            CreateMap<TeamEditViewModel, Team>();
+
+            CreateMap<Team, TeamDeleteViewModel>()
+                .ForMember(m => m.StadiumName,
+                        opt => opt.MapFrom(src => src.Stadium == null ? "Does not have a stadium." : src.Stadium.Name))
+                .ForMember(m => m.ManagerName,
+                        opt => opt.MapFrom(src => src.Manager == null ? "Does not have a manager." : src.Manager.Name))
+                .ForMember(m => m.LeagueName,
+                        opt => opt.MapFrom(src => src.League == null ? "Does not participate in any league." : src.League.Name));
         }
     }
 }

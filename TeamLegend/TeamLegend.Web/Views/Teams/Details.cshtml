@@ -48,6 +48,8 @@
             @Html.DisplayFor(model => model.YearOfFoundation)
         </dd>
     </dl>
+    <a asp-area="Administration" asp-controller="Teams" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+    <a asp-area="Administration" asp-controller="Teams" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |

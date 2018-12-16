@@ -1,0 +1,63 @@
+﻿@model TeamLegend.Web.Areas.Administration.Models.Teams.TeamDeleteViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TeamDeleteViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nickname)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nickname)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfFoundation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateOfFoundation)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BadgeUrl)
+        </dt>
+        <dd>
+            <img src="@Model.BadgeUrl" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StadiumName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StadiumName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LeagueName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LeagueName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ManagerName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ManagerName)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete" asp-route-id="@Model.Id">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

@@ -23,7 +23,7 @@
 
             builder.HasOne(t => t.Manager)
                 .WithOne(m => m.Team)
-                .HasForeignKey<ApplicationUser>(m => m.TeamId)
+                .HasForeignKey<Manager>(m => m.TeamId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
 
             builder.HasIndex(t => t.Name)

@@ -20,6 +20,7 @@
         public DbSet<Player> Players { get; set; }
         public DbSet<Fixture> Fixtures { get; set; }
         public DbSet<Match> Matches { get; set; }
+        public DbSet<Manager> Managers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

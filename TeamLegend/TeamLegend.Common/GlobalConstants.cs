@@ -9,5 +9,7 @@
         public static string StadiumPicture = "{0}_stadiumPicture";
 
         public static string BadgePicture = "{0}_badge";
+
+        public static string FilePath = "/{0}/{1}";
     }
 }

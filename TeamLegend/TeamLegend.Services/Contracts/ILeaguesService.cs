@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using TeamLegend.Models;
-
-namespace TeamLegend.Services.Contracts
+﻿namespace TeamLegend.Services.Contracts
 {
+    using Models;
+
+    using System.Threading.Tasks;
+    using System.Collections.Generic;
+
     public interface ILeaguesService
     {
         Task<League> CreateAsync(League league);

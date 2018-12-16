@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace TeamLegend.Infrastructure.CustomMiddlewares
+﻿namespace TeamLegend.Infrastructure.CustomMiddlewares
 {
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Identity;
+
+    using System.Linq;
+    using System.Threading.Tasks;
+
     public class SeedRolesMiddleware
     {
         private readonly RequestDelegate next;

@@ -1,8 +1,9 @@
-﻿using CloudinaryDotNet.Actions;
-using System.IO;
-
-namespace TeamLegend.Services.Contracts
+﻿namespace TeamLegend.Services.Contracts
 {
+    using CloudinaryDotNet.Actions;
+
+    using System.IO;
+
     public interface ICloudinaryService
     {
         ImageUploadResult UploadProfilePicture(string profilePictureId, Stream fileStream);

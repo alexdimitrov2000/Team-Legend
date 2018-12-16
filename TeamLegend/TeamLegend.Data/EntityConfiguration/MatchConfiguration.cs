@@ -15,11 +15,6 @@
                 .WithMany(t => t.Matches)
                 .HasForeignKey(m => m.HomeTeamId);
 
-            // Unnecessary relationship configuration
-            // builder.HasOne(m => m.AwayTeam)
-            //     .WithMany(t => t.Matches)
-            //     .HasForeignKey(m => m.AwayTeamId);
-
             builder.HasOne(m => m.Fixture)
                 .WithMany(f => f.Matches)
                 .HasForeignKey(m => m.FixtureId);

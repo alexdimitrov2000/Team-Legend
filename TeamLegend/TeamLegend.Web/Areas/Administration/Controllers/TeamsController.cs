@@ -5,12 +5,12 @@
     using TeamLegend.Models;
     using Services.Contracts;
 
-    using System.Threading.Tasks;
-
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
     using Microsoft.EntityFrameworkCore;
+
+    using System.Threading.Tasks;
 
     public class TeamsController : AdministrationController
     {

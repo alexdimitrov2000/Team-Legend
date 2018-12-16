@@ -2,10 +2,11 @@
 {
     using Data;
     using Services;
-    using Services.Contracts;
     using TeamLegend.Models;
+    using Services.Contracts;
     using Infrastructure.Extensions;
 
+    using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Hosting;
@@ -14,7 +15,6 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using AutoMapper;
 
     public class Startup
     {

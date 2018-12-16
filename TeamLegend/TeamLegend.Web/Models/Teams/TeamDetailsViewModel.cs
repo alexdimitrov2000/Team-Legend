@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TeamLegend.Web.Models.Teams
+﻿namespace TeamLegend.Web.Models.Teams
 {
     public class TeamDetailsViewModel
     {

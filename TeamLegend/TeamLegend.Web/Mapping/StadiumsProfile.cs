@@ -1,10 +1,11 @@
-﻿using AutoMapper;
-using TeamLegend.Models;
-using TeamLegend.Web.Areas.Administration.Models.Stadiums;
-using TeamLegend.Web.Models.Stadiums;
-
-namespace TeamLegend.Web.Mapping
+﻿namespace TeamLegend.Web.Mapping
 {
+    using Models.Stadiums;
+    using TeamLegend.Models;
+    using Areas.Administration.Models.Stadiums;
+
+    using AutoMapper;
+
     public class StadiumsProfile : Profile
     {
         public StadiumsProfile()

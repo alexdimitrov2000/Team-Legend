@@ -4,10 +4,10 @@
     using Models;
     using Contracts;
 
-    using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
-    using System.Linq;
+
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     public class LeaguesService : ILeaguesService
     {

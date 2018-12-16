@@ -1,8 +1,9 @@
-﻿using System.Threading.Tasks;
-using TeamLegend.Models;
-
-namespace TeamLegend.Services.Contracts
+﻿namespace TeamLegend.Services.Contracts
 {
+    using Models;
+
+    using System.Threading.Tasks;
+
     public interface IStadiumsService
     {
         Task<Stadium> CreateAsync(Stadium stadium);

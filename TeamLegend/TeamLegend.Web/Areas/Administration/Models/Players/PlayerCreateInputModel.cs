@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.ComponentModel.DataAnnotations;
-using TeamLegend.Models.Enums;
-
 namespace TeamLegend.Web.Areas.Administration.Models.Players
 {
+    using TeamLegend.Models.Enums;
+
     public class PlayerCreateInputModel
     {
         [Required(ErrorMessage = "The Name field is required.")]

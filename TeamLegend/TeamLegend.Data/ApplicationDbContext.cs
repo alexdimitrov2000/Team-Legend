@@ -1,11 +1,11 @@
 ﻿namespace TeamLegend.Data
 {
     using Models;
+    using EntityConfiguration;
 
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-    using TeamLegend.Data.EntityConfiguration;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
     {

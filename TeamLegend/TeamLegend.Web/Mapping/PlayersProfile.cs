@@ -1,10 +1,11 @@
-﻿using AutoMapper;
-using TeamLegend.Models;
-using TeamLegend.Web.Areas.Administration.Models.Players;
-using TeamLegend.Web.Models.Players;
-
-namespace TeamLegend.Web.Mapping
+﻿namespace TeamLegend.Web.Mapping
 {
+    using Models.Players;
+    using TeamLegend.Models;
+    using Areas.Administration.Models.Players;
+
+    using AutoMapper;
+
     public class PlayersProfile : Profile
     {
         public PlayersProfile()

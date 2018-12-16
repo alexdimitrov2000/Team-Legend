@@ -1,9 +1,10 @@
 ﻿namespace TeamLegend.Web.Controllers
 {
-    using TeamLegend.Web.Models;
+    using Models;
+
+    using Microsoft.AspNetCore.Mvc;
 
     using System.Diagnostics;
-    using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : Controller
     {

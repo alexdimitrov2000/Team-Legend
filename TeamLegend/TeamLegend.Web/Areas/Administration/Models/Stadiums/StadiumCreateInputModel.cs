@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.ComponentModel.DataAnnotations;
-
-namespace TeamLegend.Web.Areas.Administration.Models.Stadiums
+﻿namespace TeamLegend.Web.Areas.Administration.Models.Stadiums
 {
+    using Microsoft.AspNetCore.Http;
+
+    using System.ComponentModel.DataAnnotations;
+
     public class StadiumCreateInputModel
     {
         [Required]

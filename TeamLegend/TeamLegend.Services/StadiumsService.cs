@@ -1,11 +1,12 @@
 ﻿namespace TeamLegend.Services
 {
-    using System.Linq;
-    using System.Threading.Tasks;
+    using Data;
+    using Models;
     using Contracts;
+    
     using Microsoft.EntityFrameworkCore;
-    using TeamLegend.Data;
-    using TeamLegend.Models;
+
+    using System.Threading.Tasks;
 
     public class StadiumsService : IStadiumsService
     {

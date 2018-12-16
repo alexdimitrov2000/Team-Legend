@@ -1,14 +1,13 @@
-﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TeamLegend.Models;
-using TeamLegend.Web.Areas.Administration.Models.League;
-using TeamLegend.Web.Models.Leagues;
-
-namespace TeamLegend.Web.Mapping
+﻿namespace TeamLegend.Web.Mapping
 {
+    using Models.Leagues;
+    using TeamLegend.Models;
+    using Areas.Administration.Models.League;
+
+    using AutoMapper;
+
+    using System.Linq;
+
     public class LeaguesProfile : Profile
     {
         public LeaguesProfile()

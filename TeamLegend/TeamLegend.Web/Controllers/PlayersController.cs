@@ -1,14 +1,13 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using TeamLegend.Services.Contracts;
-using TeamLegend.Web.Models.Players;
-
-namespace TeamLegend.Web.Controllers
+﻿namespace TeamLegend.Web.Controllers
 {
+    using Models.Players;
+    using Services.Contracts;
+
+    using AutoMapper;
+    using Microsoft.AspNetCore.Mvc;
+
+    using System.Threading.Tasks;
+
     public class PlayersController : Controller
     {
         private readonly IPlayersService playersService;

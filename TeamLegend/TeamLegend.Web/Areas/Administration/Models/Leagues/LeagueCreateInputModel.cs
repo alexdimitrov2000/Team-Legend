@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace TeamLegend.Web.Areas.Administration.Models.League
+﻿namespace TeamLegend.Web.Areas.Administration.Models.League
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class LeagueCreateInputModel
     {
         [Required]

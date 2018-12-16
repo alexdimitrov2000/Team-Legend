@@ -1,12 +1,12 @@
 ﻿namespace TeamLegend.Web.Controllers
 {
+    using Models.Stadiums;
     using Services.Contracts;
 
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
 
     using System.Threading.Tasks;
-    using TeamLegend.Web.Models.Stadiums;
 
     public class StadiumsController : Controller
     {

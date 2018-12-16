@@ -1,8 +1,8 @@
-﻿using TeamLegend.Models;
-using TeamLegend.Models.Enums;
-
-namespace TeamLegend.Web.Models.Players
+﻿namespace TeamLegend.Web.Models.Players
 {
+    using TeamLegend.Models;
+    using TeamLegend.Models.Enums;
+
     public class PlayerDetailsViewModel
     {
         public string Name { get; set; }

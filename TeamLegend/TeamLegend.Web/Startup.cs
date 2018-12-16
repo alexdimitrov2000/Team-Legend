@@ -68,6 +68,7 @@
             services.AddScoped<IPlayersService, PlayersService>();
             services.AddScoped<IStadiumsService, StadiumsService>();
             services.AddScoped<IUsersService, UsersService>();
+            services.AddScoped<ITeamsService, TeamsService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

@@ -1,0 +1,49 @@
+﻿@model TeamLegend.Web.Areas.Administration.Models.Teams.TeamCreateInputModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+<h4>TeamCreateInputModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label> <span class="required-field">&#42;</span>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nickname" class="control-label"></label>
+                <input asp-for="Nickname" class="form-control" />
+                <span asp-validation-for="Nickname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfFoundation" class="control-label"></label>
+                <input asp-for="DateOfFoundation" class="form-control" />
+                <span asp-validation-for="DateOfFoundation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Badge" class="control-label"></label>
+                <input asp-for="Badge" class="form-control" />
+                <span asp-validation-for="Badge" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

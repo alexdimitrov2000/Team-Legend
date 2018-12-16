@@ -1,0 +1,55 @@
+﻿@model TeamLegend.Web.Models.Teams.TeamDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TeamDetailsViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nickname)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nickname)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BadgeUrl)
+        </dt>
+        <dd>
+            <img src="@Model.BadgeUrl" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ManagerName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ManagerName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.StadiumName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.StadiumName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.YearOfFoundation)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.YearOfFoundation)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -34,5 +34,20 @@
 
             return await this.context.Teams.FirstOrDefaultAsync(p => p.Id == id);
         }
+
+        public async Task<Team> UpdateAsync(Team team)
+        {
+            this.context.Teams.Update(team);
+            await this.context.SaveChangesAsync();
+            return team;
+        }
+
+        public async Task<bool> DeleteAsync(Team team)
+        {
+            this.context.Teams.Remove(team);
+            await this.context.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

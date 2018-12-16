@@ -14,6 +14,7 @@
         private const string PlayerPicturesFolder = "PlayerPictures";
         private const string ProfilePicturesFolder = "ProfilePictures";
         private const string StadiumPicturesFolder = "StadiumPictures";
+        private const string ManagerPicturesFolder = "ManagerPictures";
 
         private readonly Cloudinary cloudinary;
 
@@ -75,6 +76,18 @@
             return this.cloudinary.Upload(imageUploadParams);
         }
 
+        public ImageUploadResult UploadManagerPicture(string managerPictureId, Stream fileStream)
+        {
+            ImageUploadParams imageUploadParams = new ImageUploadParams
+            {
+                File = new FileDescription(managerPictureId, fileStream),
+                Folder = ManagerPicturesFolder,
+                PublicId = managerPictureId
+            };
+
+            return this.cloudinary.Upload(imageUploadParams);
+        }
+
         public string BuildProfilePictureUrl(string username, string imageVersion)
         {
             if (username == null || imageVersion == null)
@@ -110,6 +123,15 @@
                 return null;
 
             string path = string.Format(GlobalConstants.FilePath, TeamBadgesFolder, string.Format(GlobalConstants.BadgePicture, teamName));
+            return this.BuildPictureUrl(imageVersion, path);
+        }
+
+        public string BuildManagerPictureUrl(string managerName, string imageVersion)
+        {
+            if (managerName == null || imageVersion == null)
+                return null;
+
+            string path = string.Format(GlobalConstants.FilePath, ManagerPicturesFolder, string.Format(GlobalConstants.ManagerPicture, managerName));
             return this.BuildPictureUrl(imageVersion, path);
         }
 

@@ -10,6 +10,8 @@
 
         public static string BadgePicture = "{0}_badge";
 
+        public static string ManagerPicture = "{0}_managerPicture";
+
         public static string FilePath = "/{0}/{1}";
     }
 }

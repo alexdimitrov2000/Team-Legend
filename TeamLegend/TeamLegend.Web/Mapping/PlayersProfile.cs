@@ -15,6 +15,8 @@
             CreateMap<Player, PlayerDetailsViewModel>();
 
             CreateMap<Player, PlayerDeleteViewModel>();
+
+            CreateMap<Player, PlayerViewModel>();
         }
     }
 }

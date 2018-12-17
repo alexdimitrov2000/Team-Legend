@@ -7,6 +7,8 @@
     using Microsoft.EntityFrameworkCore;
 
     using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class TeamsService : ITeamsService
     {
@@ -35,6 +37,16 @@
             return await this.context.Teams.FirstOrDefaultAsync(p => p.Id == id);
         }
 
+        public async Task<Team> GetByNameAsync(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                return null;
+            }
+
+            return await this.context.Teams.FirstOrDefaultAsync(p => p.Name == name);
+        }
+
         public async Task<Team> UpdateAsync(Team team)
         {
             this.context.Teams.Update(team);
@@ -54,6 +66,16 @@
         {
             team.Stadium = stadium;
             this.context.Teams.Update(team);
+            await this.context.SaveChangesAsync();
+
+            return team;
+        }
+
+        public async Task<Team> AddNewPlayersAsync(Team team, List<Player> playersToAdd)
+        {
+            playersToAdd.ForEach(p => team.Players.Add(p));
+            this.context.Teams.Update(team);
+
             await this.context.SaveChangesAsync();
 
             return team;

@@ -1,16 +1,21 @@
 ﻿namespace TeamLegend.Web.Areas.Administration.Controllers
 {
-    using AutoMapper;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.Extensions.Logging;
     using Models.Teams;
-    using Services.Contracts;
-    using System.Linq;
-    using System.Threading.Tasks;
+    using Web.Models.Teams;
     using TeamLegend.Common;
     using TeamLegend.Models;
-    using TeamLegend.Web.Areas.Administration.Models.Stadiums;
+    using Services.Contracts;
+    using Areas.Administration.Models.Players;
+    using Areas.Administration.Models.Stadiums;
+
+    using AutoMapper;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.EntityFrameworkCore;
+
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class TeamsController : AdministrationController
     {
@@ -19,17 +24,20 @@
         private readonly ITeamsService teamsService;
         private readonly ICloudinaryService cloudinaryService;
         private readonly IStadiumsService stadiumsService;
+        private readonly IPlayersService playersService;
 
         public TeamsController(ILogger<TeamsController> logger,
                                IMapper mapper, ITeamsService teamsService,
                                ICloudinaryService cloudinaryService,
-                               IStadiumsService stadiumsService)
+                               IStadiumsService stadiumsService,
+                               IPlayersService playersService)
         {
             this.logger = logger;
             this.mapper = mapper;
             this.teamsService = teamsService;
             this.cloudinaryService = cloudinaryService;
             this.stadiumsService = stadiumsService;
+            this.playersService = playersService;
         }
 
         public IActionResult Create()
@@ -118,7 +126,7 @@
 
         //    return this.RedirectToAction("Details", "Teams", new { area = "", id = team.Id });
         //}
-        
+
         public async Task<IActionResult> Delete(string id)
         {
             var team = await this.teamsService.GetByIdAsync(id);
@@ -160,7 +168,7 @@
             var stadiums = this.stadiumsService.GetAll().Select(s => this.mapper.Map<StadiumViewModel>(s)).ToList();
             stadiums.ForEach(s => s.StadiumPictureUrl = this.cloudinaryService.BuildStadiumPictureUrl(s.Name, s.StadiumPictureVersion));
 
-            var stadiumCollection = new StadiumCollectionViewModel { Stadiums = stadiums };
+            var stadiumCollection = new StadiumsCollectionViewModel { Stadiums = stadiums };
             this.ViewData["TeamId"] = teamId;
 
             return this.View(stadiumCollection);
@@ -180,10 +188,67 @@
             catch (DbUpdateException e)
             {
                 this.logger.LogError(e.Message);
-                this.ViewData["Error"] =  $"Could not set stadium {stadium.Name} to {team.Name}.";
+                this.ViewData["Error"] = $"Could not set stadium {stadium.Name} to {team.Name}.";
             }
 
             return this.RedirectToAction("Details", "Teams", new { area = "", id = teamId });
+        }
+
+        public async Task<IActionResult> SquadList(string teamId)
+        {
+            var team = await this.teamsService.GetByIdAsync(teamId);
+
+            var squad = this.playersService.GetAllAsync().GetAwaiter().GetResult()
+                .Where(p => p.CurrentTeamId == teamId)
+                .Select(p => this.mapper.Map<PlayerViewModel>(p))
+                .ToList();
+
+            var unemployed = this.playersService.GetAllWithoutTeamAsync().GetAwaiter().GetResult()
+                            .Select(p => this.mapper.Map<PlayerViewModel>(p))
+                            .ToList();
+
+            var teamModel = this.mapper.Map<TeamViewModel>(team);
+            squad.ForEach(p => p.PlayerPictureUrl = this.cloudinaryService.BuildPlayerPictureUrl(p.Name, p.PlayerPictureVersion));
+            unemployed.ForEach(p => p.PlayerPictureUrl = this.cloudinaryService.BuildPlayerPictureUrl(p.Name, p.PlayerPictureVersion));
+
+            var teamPlayersCollection = new TeamPlayersCollectionViewModel
+            {
+                Team = teamModel,
+                Squad = new PlayersCollectionViewModel { Players = squad },
+                Unemployed = new PlayersCollectionViewModel { Players = unemployed }
+            };
+
+            return this.View(teamPlayersCollection);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddPlayer(TeamPlayersCollectionViewModel model)
+        {
+            var playersIds = model.NewPlayers;
+            var teamId = this.TempData["TeamId"].ToString();
+
+            var team = await this.teamsService.GetByIdAsync(teamId);
+            var playersToAdd = playersIds.Select(p => this.playersService.GetByIdAsync(p).GetAwaiter().GetResult()).ToList();
+
+            try
+            {
+                if (playersToAdd.Any(p => p == null))
+                    throw new ArgumentException("Not all players exist.");
+
+                await this.teamsService.AddNewPlayersAsync(team, playersToAdd);
+            }
+            catch (ArgumentException e)
+            {
+                this.logger.LogError(e.Message);
+                this.ViewData["Error"] = e.Message;
+            }
+            catch (DbUpdateException e)
+            {
+                this.logger.LogError(e.Message);
+                this.ViewData["Error"] = $"Could not add all players to {team.Name}. Please try again.";
+            }
+
+            return this.RedirectToAction("Details", "Teams", new { area = "", id = team.Id });
         }
     }
 }

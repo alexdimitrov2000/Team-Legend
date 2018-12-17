@@ -5,8 +5,10 @@
     using Contracts;
 
     using Microsoft.EntityFrameworkCore;
-    
+
     using System.Threading.Tasks;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class PlayersService : IPlayersService
     {
@@ -35,12 +37,41 @@
             return await this.context.Players.FirstOrDefaultAsync(p => p.Id == id);
         }
 
+        public async Task<Player> GetByNameAsync(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                return null;
+            }
+
+            return await this.context.Players.FirstOrDefaultAsync(p => p.Name == name);
+        }
+
         public async Task<bool> DeleteAsync(Player player)
         {
             this.context.Players.Remove(player);
             await this.context.SaveChangesAsync();
 
             return true;
+        }
+
+        public async Task<ICollection<Player>> GetAllAsync()
+        {
+            return await this.context.Players.ToListAsync();
+        }
+
+        public async Task<ICollection<Player>> GetAllWithoutTeamAsync()
+        {
+            return await this.context.Players.Where(p => p.CurrentTeam == null).ToListAsync();
+        }
+
+        public async Task<Player> AddPlayerToTeamAsync(Player player, Team team)
+        {
+            player.CurrentTeam = team;
+            this.context.Players.Update(player);
+            await this.context.SaveChangesAsync();
+
+            return player;
         }
     }
 }

@@ -27,6 +27,8 @@
                         opt => opt.MapFrom(src => src.Manager == null ? "Does not have a manager." : src.Manager.Name))
                 .ForMember(m => m.LeagueName,
                         opt => opt.MapFrom(src => src.League == null ? "Does not participate in any league." : src.League.Name));
+
+            CreateMap<Team, TeamViewModel>();
         }
     }
 }

@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class StadiumCollectionViewModel
+    public class StadiumsCollectionViewModel
     {
         public ICollection<StadiumViewModel> Stadiums { get; set; }
 

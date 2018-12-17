@@ -6,9 +6,11 @@
     using Microsoft.Extensions.Logging;
     using Models.Teams;
     using Services.Contracts;
+    using System.Linq;
     using System.Threading.Tasks;
     using TeamLegend.Common;
     using TeamLegend.Models;
+    using TeamLegend.Web.Areas.Administration.Models.Stadiums;
 
     public class TeamsController : AdministrationController
     {
@@ -16,13 +18,18 @@
         private readonly IMapper mapper;
         private readonly ITeamsService teamsService;
         private readonly ICloudinaryService cloudinaryService;
+        private readonly IStadiumsService stadiumsService;
 
-        public TeamsController(ILogger<TeamsController> logger, IMapper mapper, ITeamsService teamsService, ICloudinaryService cloudinaryService)
+        public TeamsController(ILogger<TeamsController> logger,
+                               IMapper mapper, ITeamsService teamsService,
+                               ICloudinaryService cloudinaryService,
+                               IStadiumsService stadiumsService)
         {
             this.logger = logger;
             this.mapper = mapper;
             this.teamsService = teamsService;
             this.cloudinaryService = cloudinaryService;
+            this.stadiumsService = stadiumsService;
         }
 
         public IActionResult Create()
@@ -146,6 +153,37 @@
             }
 
             return this.RedirectToAction("Index", "Home", new { area = "" });
+        }
+
+        public IActionResult SetStadium(string teamId)
+        {
+            var stadiums = this.stadiumsService.GetAll().Select(s => this.mapper.Map<StadiumViewModel>(s)).ToList();
+            stadiums.ForEach(s => s.StadiumPictureUrl = this.cloudinaryService.BuildStadiumPictureUrl(s.Name, s.StadiumPictureVersion));
+
+            var stadiumCollection = new StadiumCollectionViewModel { Stadiums = stadiums };
+            this.ViewData["TeamId"] = teamId;
+
+            return this.View(stadiumCollection);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SetStadium(string teamId, string stadiumId)
+        {
+            var team = await this.teamsService.GetByIdAsync(teamId);
+            var stadium = await this.stadiumsService.GetByIdAsync(stadiumId);
+
+            try
+            {
+                await this.teamsService.SetStadiumAsync(team, stadium);
+            }
+            catch (DbUpdateException e)
+            {
+                this.logger.LogError(e.Message);
+                this.ViewData["Error"] =  $"Could not set stadium {stadium.Name} to {team.Name}.";
+            }
+
+            return this.RedirectToAction("Details", "Teams", new { area = "", id = teamId });
         }
     }
 }

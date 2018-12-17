@@ -10,6 +10,10 @@
 <div>
     <h4>TeamDetailsViewModel</h4>
     <hr />
+    @if (this.ViewData["Error"] != null)
+    {
+        <h4 class="text-danger">@this.ViewData["Error"]</h4>
+    }
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -30,17 +34,31 @@
             <img src="@Model.BadgeUrl" />
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ManagerName)
+            @Html.DisplayNameFor(model => model.Manager)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ManagerName)
+            @if (Model.Manager != null)
+            {
+                <a asp-controller="Managers" asp-action="Details" asp-route-id="@Model.Manager.Id">@Model.Manager.Name</a>
+            }
+            else
+            {
+                <h4>Does not have a manager.</h4>
+            }
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.StadiumName)
+            @Html.DisplayNameFor(model => model.Stadium)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.StadiumName)
-        </dd>
+            @if (Model.Stadium != null)
+            {
+                <a asp-controller="Stadiums" asp-action="Details" asp-route-id="@Model.Stadium.Id">@Model.Stadium.Name</a>
+            }
+            else
+            {
+                <h4>Does not have a stadium.</h4>
+            }
+            </dd>
         <dt>
             @Html.DisplayNameFor(model => model.YearOfFoundation)
         </dt>
@@ -48,8 +66,12 @@
             @Html.DisplayFor(model => model.YearOfFoundation)
         </dd>
     </dl>
-    <a asp-area="Administration" asp-controller="Teams" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-    <a asp-area="Administration" asp-controller="Teams" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+    @if (this.User.IsInRole("Admin"))
+    {
+        <a asp-area="Administration" asp-controller="Teams" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+        <a asp-area="Administration" asp-controller="Teams" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+        <a asp-area="Administration" asp-controller="Teams" asp-action="SetStadium" asp-route-teamId="@Model.Id">Set a Stadium</a>
+    }
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |

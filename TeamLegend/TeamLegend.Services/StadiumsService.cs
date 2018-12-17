@@ -3,9 +3,10 @@
     using Data;
     using Models;
     using Contracts;
-    
+
     using Microsoft.EntityFrameworkCore;
 
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class StadiumsService : IStadiumsService
@@ -40,6 +41,11 @@
             this.context.Stadiums.Remove(stadium);
             await this.context.SaveChangesAsync();
             return true;
+        }
+
+        public IQueryable<Stadium> GetAll()
+        {
+            return this.context.Stadiums.AsQueryable();
         }
     }
 }

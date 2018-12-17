@@ -15,6 +15,8 @@
             CreateMap<Stadium, StadiumDetailsViewModel>();
 
             CreateMap<Stadium, StadiumDeleteViewModel>();
+
+            CreateMap<Stadium, StadiumViewModel>();
         }
     }
 }

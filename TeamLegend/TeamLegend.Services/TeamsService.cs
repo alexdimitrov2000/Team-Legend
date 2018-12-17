@@ -49,5 +49,14 @@
 
             return true;
         }
+
+        public async Task<Team> SetStadiumAsync(Team team, Stadium stadium)
+        {
+            team.Stadium = stadium;
+            this.context.Teams.Update(team);
+            await this.context.SaveChangesAsync();
+
+            return team;
+        }
     }
 }

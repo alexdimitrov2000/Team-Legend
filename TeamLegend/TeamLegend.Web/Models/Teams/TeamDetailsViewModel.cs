@@ -1,5 +1,7 @@
 ﻿namespace TeamLegend.Web.Models.Teams
 {
+    using TeamLegend.Models;
+
     public class TeamDetailsViewModel
     {
         public string Id { get; set; }
@@ -10,9 +12,9 @@
 
         public string BadgeUrl { get; set; }
 
-        public string ManagerName { get; set; }
+        public Manager Manager { get; set; }
 
-        public string StadiumName { get; set; }
+        public Stadium Stadium { get; set; }
 
         public int YearOfFoundation { get; set; }
     }

@@ -1,0 +1,20 @@
+﻿@model TeamLegend.Web.Areas.Administration.Models.Stadiums.StadiumCollectionViewModel
+@{
+    ViewData["Title"] = "Set Stadium";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SetStadium</h2>
+
+@foreach (var stadium in Model.Stadiums)
+{
+    <div>
+        <card>
+            <img src="@stadium.StadiumPictureUrl" />
+            <h5>@stadium.Name</h5>
+            <form asp-action="SetStadium" method="post" asp-route-stadiumId="@stadium.Id" asp-route-teamId="@this.ViewData["TeamId"]">
+                <button type="submit" class="btn-primary">Set Stadium</button>
+            </form>
+        </card>
+    </div>
+}

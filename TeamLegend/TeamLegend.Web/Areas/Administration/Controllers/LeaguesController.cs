@@ -11,18 +11,24 @@
     using Microsoft.Extensions.Logging;
 
     using System.Threading.Tasks;
+    using System.Linq;
 
     public class LeaguesController : AdministrationController
     {
         private readonly ILogger<LeaguesController> logger;
         private readonly ILeaguesService leaguesService;
         private readonly IMapper mapper;
+        private readonly ITeamsService teamsService;
 
-        public LeaguesController(ILogger<LeaguesController> logger, ILeaguesService leaguesService, IMapper mapper)
+        public LeaguesController(ILogger<LeaguesController> logger, 
+                                 ILeaguesService leaguesService, 
+                                 IMapper mapper,
+                                 ITeamsService teamsService)
         {
             this.logger = logger;
             this.leaguesService = leaguesService;
             this.mapper = mapper;
+            this.teamsService = teamsService;
         }
 
         public IActionResult Create()
@@ -44,6 +50,14 @@
             {
                 league = this.mapper.Map<League>(model);
                 await this.leaguesService.CreateAsync(league);
+
+                if (model.ParticipatingTeams.Count > 0)
+                {
+                    var teamIds = model.ParticipatingTeams;
+                    var teamsToAdd = teamIds.Select(t => this.teamsService.GetByIdAsync(t).GetAwaiter().GetResult()).ToList();
+
+                    await this.leaguesService.AddTeamsAsync(league, teamsToAdd);
+                }
             }
             catch (DbUpdateException e)
             {

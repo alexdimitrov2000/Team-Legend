@@ -7,6 +7,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     using System.Threading.Tasks;
+    using System.Linq;
 
     public class TeamsController : Controller
     {
@@ -35,6 +36,18 @@
             teamDetailsViewModel.BadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(team.Name, team.BadgeVersion);
 
             return this.View(teamDetailsViewModel);
+        }
+
+        public async Task<IActionResult> All()
+        {
+            var teams = await this.teamsService.GetAllAsync();
+
+            var teamsModels = teams.Select(t => this.mapper.Map<TeamViewModel>(t)).ToList();
+            teamsModels.ForEach(t => t.BadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(t.Name, t.BadgeVersion));
+
+            var teamCollectionViewModel = new TeamsCollectionViewModel { Teams = teamsModels };
+
+            return this.View(teamCollectionViewModel);
         }
     }
 }

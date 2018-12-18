@@ -10,7 +10,7 @@
 <div>
     <h4>LeagueAllViewModel</h4>
     <hr />
-    <dl class="dl-horizontal">
+    <div>
         @foreach (var league in Model.Leagues)
         {
             <a asp-controller="Leagues" asp-action="Details" asp-route-id="@league.Id">
@@ -19,7 +19,7 @@
                 <h2>@league.NumberOfTeams</h2>
             </a>
         }
-    </dl>
+    </div>
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |

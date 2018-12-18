@@ -23,5 +23,7 @@
         Task<Team> SetStadiumAsync(Team team, Stadium stadium);
 
         Task<Team> AddNewPlayersAsync(Team team, List<Player> playersToAdd);
+
+        Task<Team> AddManagerAsync(Team team, Manager manager);
     }
 }

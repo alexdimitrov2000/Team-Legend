@@ -90,5 +90,15 @@
 
             return team;
         }
+
+        public async Task<Team> AddManagerAsync(Team team, Manager manager)
+        {
+            team.Manager = manager;
+            this.context.Teams.Update(team);
+
+            await this.context.SaveChangesAsync();
+
+            return team;
+        }
     }
 }

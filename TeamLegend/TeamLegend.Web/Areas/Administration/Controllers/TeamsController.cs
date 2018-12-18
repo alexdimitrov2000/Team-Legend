@@ -222,7 +222,7 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddPlayer(TeamPlayersCollectionViewModel model)
+        public async Task<IActionResult> AddPlayers(TeamPlayersCollectionViewModel model)
         {
             var playersIds = model.NewPlayers;
             var teamId = this.TempData["TeamId"].ToString();

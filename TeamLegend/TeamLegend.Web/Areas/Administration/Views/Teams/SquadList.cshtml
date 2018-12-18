@@ -33,7 +33,7 @@
                 }
             </select>
 
-            <button type="submit" class="btn"  id="AddPlayersForm">Add players</button>
+            <button type="submit" class="btn" id="AddPlayersForm">Add players</button>
 
         </form>
     </div>
@@ -41,32 +41,32 @@
 
 @section Scripts{
     <script>
-        //$("#AddToSquad").click(function () {
-        //    var teamName = $("#teamName").val();
-        //    var playerName = $("#player a").val();
-        //    $.ajax({
-        //        type: "POST",
-        //        url: "/Administration/Teams/AddPlayers",
-        //        data: { teamName: teamName, playerName: playerName },
-        //        success: function (data) {
-        //            $("#player").appendTo("#squad");
-        //        }
-        //    });
-        //});
         $('select').selectpicker();
     </script>
     @*<script>
-        $('#addPlayersForm').click(function () {
-            var players = $('#selectedPlayers :selected').text();
-            alert(players);
-            //$.ajax({
-            //    type: "POST",
-            //    url: "/Administration/Teams/AddPlayers",
-            //    data: { players: players }
-            //})
-            //    .done(function () {
-            //        location.reload();
-            //    });
-        })
-    </script>*@
+            $('#addPlayersForm').click(function () {
+                var players = $('#selectedPlayers :selected').text();
+                alert(players);
+                $.ajax({
+                    type: "POST",
+                    url: "/Administration/Teams/AddPlayers",
+                    data: { players: players }
+                })
+                    .done(function () {
+                        location.reload();
+                    });
+            $("#AddToSquad").click(function () {
+                var teamName = $("#teamName").val();
+                var playerName = $("#player a").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/Administration/Teams/AddPlayers",
+                    data: { teamName: teamName, playerName: playerName },
+                    success: function (data) {
+                        $("#player").appendTo("#squad");
+                    }
+                });
+            });
+            })
+        </script>*@
 }

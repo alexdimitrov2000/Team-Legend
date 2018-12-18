@@ -11,7 +11,7 @@
     <div>
         <card>
             <img src="@stadium.StadiumPictureUrl" />
-            <h5>@stadium.Name</h5>
+            <h5><a asp-area="" asp-controller="Stadiums" asp-action="Details" asp-route-id="@stadium.Id">@stadium.Name</a></h5>
             <form asp-action="SetStadium" method="post" asp-route-stadiumId="@stadium.Id" asp-route-teamId="@this.ViewData["TeamId"]">
                 <button type="submit" class="btn-primary">Set Stadium</button>
             </form>

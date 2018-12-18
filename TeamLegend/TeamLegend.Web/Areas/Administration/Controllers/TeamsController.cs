@@ -69,6 +69,14 @@
                     team.BadgeVersion = imageUploadResult.Version;
                 }
                 await this.teamsService.CreateAsync(team);
+
+                if (model.SquadPlayers.Count > 0)
+                {
+                    var playersIds = model.SquadPlayers;
+                    var playersToAdd = playersIds.Select(p => this.playersService.GetByIdAsync(p).GetAwaiter().GetResult()).ToList();
+
+                    await this.teamsService.AddNewPlayersAsync(team, playersToAdd);
+                }
             }
             catch (DbUpdateException e)
             {

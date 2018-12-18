@@ -1,6 +1,10 @@
 ﻿@model TeamLegend.Web.Areas.Administration.Models.Teams.TeamCreateInputModel
 
+@inject TeamLegend.Services.Contracts.IPlayersService playersService;
+@inject TeamLegend.Services.Contracts.ICloudinaryService cloudinaryService;
 @{
+    var players = await this.playersService.GetAllAsync();
+    players = players.Where(p => p.CurrentTeam == null).ToList();
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -34,6 +38,17 @@
                 <span asp-validation-for="Badge" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="SquadPlayers" class="control-label"></label>
+                <select multiple class="dropdown form-control" searchable="Search..." asp-for="SquadPlayers" id="selectedPlayers">
+                    <option disabled>Select Players</option>
+                    @foreach (var player in players)
+                    {
+                        <option value="@player.Id" data-content="<img src='@this.cloudinaryService.BuildPlayerPictureUrl(player.Name, player.PlayerPictureVersion)' style='height: 30px' /> @player.Name"></option>
+                    }
+                </select>
+                <span asp-validation-for="SquadPlayers" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>
@@ -46,4 +61,7 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $('select').selectpicker();
+    </script>
 }

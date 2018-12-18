@@ -3,6 +3,7 @@
     using Microsoft.AspNetCore.Http;
 
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
     public class TeamCreateInputModel
@@ -21,5 +22,8 @@
         public DateTime? DateOfFoundation { get; set; }
 
         public IFormFile Badge { get; set; }
+
+        [Display(Name = "Players")]
+        public ICollection<string> SquadPlayers { get; set; }
     }
 }

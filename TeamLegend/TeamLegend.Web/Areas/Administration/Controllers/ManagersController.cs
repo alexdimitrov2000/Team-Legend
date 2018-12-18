@@ -83,14 +83,14 @@
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
         {
-            var league = await this.managersService.GetByIdAsync(id);
+            var manager = await this.managersService.GetByIdAsync(id);
 
-            if (league == null)
+            if (manager == null)
                 return this.NotFound();
 
             try
             {
-                await this.managersService.DeleteAsync(league);
+                await this.managersService.DeleteAsync(manager);
             }
             catch (DbUpdateException e)
             {

@@ -21,6 +21,8 @@
 
         public int GoalsScored { get; set; }
 
+        public int Appearances { get; set; }
+
         public Team CurrentTeam { get; set; }
 
         public string PlayerPictureUrl { get; set; }

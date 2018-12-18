@@ -54,6 +54,12 @@
             @Html.DisplayFor(model => model.GoalsScored)
         </dd>
         <dt>
+            @Html.DisplayNameFor(model => model.Appearances)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Appearances)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.CurrentTeam)
         </dt>
         <dd>
@@ -65,7 +71,7 @@
             {
                 <h4>Does not have a team.</h4>
             }
-            </dd>
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.PlayerPictureUrl)
         </dt>

@@ -12,6 +12,9 @@
 
     using System.Threading.Tasks;
     using System.Linq;
+    using TeamLegend.Web.Models.Teams;
+    using TeamLegend.Web.Models.Leagues;
+    using System;
 
     public class LeaguesController : AdministrationController
     {
@@ -19,16 +22,19 @@
         private readonly ILeaguesService leaguesService;
         private readonly IMapper mapper;
         private readonly ITeamsService teamsService;
+        private readonly ICloudinaryService cloudinaryService;
 
         public LeaguesController(ILogger<LeaguesController> logger, 
                                  ILeaguesService leaguesService, 
                                  IMapper mapper,
-                                 ITeamsService teamsService)
+                                 ITeamsService teamsService,
+                                 ICloudinaryService cloudinaryService)
         {
             this.logger = logger;
             this.leaguesService = leaguesService;
             this.mapper = mapper;
             this.teamsService = teamsService;
+            this.cloudinaryService = cloudinaryService;
         }
 
         public IActionResult Create()
@@ -101,6 +107,63 @@
             }
 
             return this.RedirectToAction("Index", "Home", new { area = "" });
+        }
+
+        public async Task<IActionResult> TeamsList(string id)
+        {
+            var league = await this.leaguesService.GetByIdAsync(id);
+
+            var participatingTeams = this.teamsService.GetAllAsync().GetAwaiter().GetResult()
+                .Where(t => t.LeagueId == id)
+                .Select(t => this.mapper.Map<TeamViewModel>(t))
+                .ToList();
+
+            var teamsWithNoLeague = this.teamsService.GetAllWithoutLeagueAsync().GetAwaiter().GetResult()
+                            .Select(t => this.mapper.Map<TeamViewModel>(t))
+                            .ToList();
+
+            var leagueModel = this.mapper.Map<LeagueIndexViewModel>(league);
+            participatingTeams.ForEach(t => t.BadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(t.Name, t.BadgeVersion));
+            teamsWithNoLeague.ForEach(t => t.BadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(t.Name, t.BadgeVersion));
+
+            var leagueTeamsCollection = new LeagueTeamsCollectionViewModel
+            {
+                League = leagueModel,
+                ParticipatingTeams = new TeamsCollectionViewModel { Teams = participatingTeams },
+                TeamsWithNoLeague = new TeamsCollectionViewModel { Teams = teamsWithNoLeague }
+            };
+
+            return this.View(leagueTeamsCollection);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddTeams(LeagueTeamsCollectionViewModel model)
+        {
+            var teamsIds = model.NewTeamsToLeague;
+            var leagueId = this.TempData["LeagueId"].ToString();
+
+            var league = await this.leaguesService.GetByIdAsync(leagueId);
+            var teamsToAdd = teamsIds.Select(t => this.teamsService.GetByIdAsync(t).GetAwaiter().GetResult()).ToList();
+
+            try
+            {
+                if (teamsToAdd.Any(t => t == null))
+                    throw new ArgumentException("Not all teams exist.");
+
+                await this.leaguesService.AddTeamsAsync(league, teamsToAdd);
+            }
+            catch (ArgumentException e)
+            {
+                this.logger.LogError(e.Message);
+                this.ViewData["Error"] = e.Message;
+            }
+            catch (DbUpdateException e)
+            {
+                this.logger.LogError(e.Message);
+                this.ViewData["Error"] = $"Could not add all teams to {league.Name}. Please try again.";
+            }
+
+            return this.RedirectToAction("Details", "Leagues", new { area = "", id = league.Id });
         }
     }
 }

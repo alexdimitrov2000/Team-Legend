@@ -14,6 +14,8 @@
 
         Task<List<Team>> GetAllAsync();
 
+        Task<List<Team>> GetAllWithoutLeagueAsync();
+
         Task<Team> UpdateAsync(Team team);
 
         Task<bool> DeleteAsync(Team team);

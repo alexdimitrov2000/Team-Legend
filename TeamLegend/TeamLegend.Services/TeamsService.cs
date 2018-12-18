@@ -52,6 +52,11 @@
             return await this.context.Teams.ToListAsync();
         }
 
+        public async Task<List<Team>> GetAllWithoutLeagueAsync()
+        {
+            return await this.context.Teams.Where(t => t.LeagueId == null).ToListAsync();
+        }
+
         public async Task<Team> UpdateAsync(Team team)
         {
             this.context.Teams.Update(team);

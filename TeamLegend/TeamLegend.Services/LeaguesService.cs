@@ -47,5 +47,15 @@
 
             return true;
         }
+
+        public async Task<League> AddTeamsAsync(League league, List<Team> teams)
+        {
+            teams.ForEach(t => league.Teams.Add(t));
+            this.context.Leagues.Update(league);
+
+            await this.context.SaveChangesAsync();
+
+            return league;
+        }
     }
 }

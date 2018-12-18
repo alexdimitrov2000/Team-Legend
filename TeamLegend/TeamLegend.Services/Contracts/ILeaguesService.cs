@@ -9,6 +9,8 @@
     {
         Task<League> CreateAsync(League league);
 
+        Task<League> AddTeamsAsync(League league, List<Team> teams);
+
         Task<League> GetByIdAsync(string id);
 
         Task<ICollection<League>> GetAllAsync();

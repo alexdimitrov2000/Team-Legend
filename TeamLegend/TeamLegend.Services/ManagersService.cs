@@ -7,6 +7,7 @@
     using Microsoft.EntityFrameworkCore;
 
     using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     public class ManagersService : IManagersService
     {
@@ -33,6 +34,11 @@
             }
 
             return await this.context.Managers.FirstOrDefaultAsync(p => p.Id == id);
+        }
+
+        public async Task<List<Manager>> GetAllAsync()
+        {
+            return await this.context.Managers.ToListAsync();
         }
 
         public async Task<bool> DeleteAsync(Manager manager)

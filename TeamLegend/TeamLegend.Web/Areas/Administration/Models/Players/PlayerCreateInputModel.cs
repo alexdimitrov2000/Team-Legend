@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 namespace TeamLegend.Web.Areas.Administration.Models.Players
 {
+    using TeamLegend.Models;
     using TeamLegend.Models.Enums;
 
     public class PlayerCreateInputModel
@@ -30,6 +31,8 @@ namespace TeamLegend.Web.Areas.Administration.Models.Players
         [Display(Name = "Playing Position")]
         [EnumDataType(typeof(PlayingPosition), ErrorMessage = "Please select one of the given positions.")]
         public PlayingPosition PlayingPosition { get; set; }
+
+        public string TeamId { get; set; }
 
         [Display(Name = "Player Picture")]
         public IFormFile PlayerPicture { get; set; }

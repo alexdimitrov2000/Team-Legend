@@ -1,7 +1,10 @@
 ﻿@model TeamLegend.Web.Areas.Administration.Models.Players.PlayerCreateInputModel
 @using TeamLegend.Models.Enums;
 
+@inject TeamLegend.Services.Contracts.ITeamsService teamsService;
+@inject TeamLegend.Services.Contracts.ICloudinaryService cloudinaryService;
 @{
+    var teams = await this.teamsService.GetAllAsync();
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -36,10 +39,25 @@
             </div>
             <div class="form-group">
                 <label asp-for="PlayingPosition" class="control-label"></label> <span class="required-field">&#42;</span>
-                @Html.DropDownList(nameof(Model.PlayingPosition),
-                    Html.GetEnumSelectList<PlayingPosition>(),
-                    "Select position", new { @class = "form-control" })
+                <select class="dropdown form-control" asp-for="PlayingPosition">
+                    <option disabled selected>Select a Position</option>
+                    @foreach (var position in Html.GetEnumSelectList<PlayingPosition>())
+                    {
+                        <option value="@position.Value" data-content="@position.Text"></option>
+                    }
+                </select>
                 <span asp-validation-for="PlayingPosition" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TeamId" class="control-label">Team</label>
+                <select class="dropdown form-control" asp-for="TeamId">
+                    <option disabled selected="selected">Select a Team</option>
+                    @foreach (var team in teams)
+                    {
+                        <option value="@team.Id" data-content="<img src='@this.cloudinaryService.BuildTeamBadgePictureUrl(team.Name, team.BadgeVersion)' style='height: 25px' /> @team.Name"></option>
+                    }
+                </select>
+                <span asp-validation-for="TeamId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PlayerPicture" class="control-label"></label>
@@ -59,4 +77,7 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $('select').selectpicker();
+    </script>
 }

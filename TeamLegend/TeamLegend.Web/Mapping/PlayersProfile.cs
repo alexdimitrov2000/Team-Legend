@@ -10,7 +10,9 @@
     {
         public PlayersProfile()
         {
-            CreateMap<PlayerCreateInputModel, Player>();
+            CreateMap<PlayerCreateInputModel, Player>()
+                .ForMember(m => m.CurrentTeamId,
+                        opt => opt.MapFrom(src => src.TeamId));
 
             CreateMap<Player, PlayerDetailsViewModel>();
 

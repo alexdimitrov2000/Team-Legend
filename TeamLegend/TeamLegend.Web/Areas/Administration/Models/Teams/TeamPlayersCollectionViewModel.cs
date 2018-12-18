@@ -4,6 +4,7 @@
     using TeamLegend.Web.Models.Teams;
 
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     public class TeamPlayersCollectionViewModel
     {
@@ -14,5 +15,8 @@
         public PlayersCollectionViewModel Unemployed { get; set; }
 
         public List<string> NewPlayers { get; set; }
+
+        [Display(Name = "Manager")]
+        public string ManagerId { get; set; }
     }
 }

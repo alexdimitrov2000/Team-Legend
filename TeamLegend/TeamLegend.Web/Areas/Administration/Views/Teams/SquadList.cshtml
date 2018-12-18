@@ -1,5 +1,10 @@
 ﻿@model TeamLegend.Web.Areas.Administration.Models.Teams.TeamPlayersCollectionViewModel
+
+@inject TeamLegend.Services.Contracts.IManagersService managersService;
+@inject TeamLegend.Services.Contracts.ICloudinaryService cloudinaryService;
 @{
+    var managers = await this.managersService.GetAllAsync();
+    managers = managers.Where(m => m.TeamId == null).ToList();
     ViewData["Title"] = "SquadList";
     Layout = "~/Views/Shared/_Layout.cshtml";
     TempData["TeamId"] = Model.Team.Id;
@@ -23,9 +28,9 @@
     </div>
     <div class="col-md-6">
         <h3>Unemployed Players</h3>
-        <form asp-area="Administration" asp-controller="Teams" asp-action="AddPlayers">
+        <form asp-area="Administration" asp-controller="Teams" asp-action="AddStaff">
 
-            <select multiple class="dropdown" searchable="Search..." asp-for="NewPlayers" id="selectedPlayers">
+            <select multiple class="dropdown form-control" asp-for="NewPlayers" id="selectedPlayers">
                 <option disabled>Select Players</option>
                 @foreach (var player in Model.Unemployed.Players)
                 {
@@ -33,7 +38,17 @@
                 }
             </select>
 
-            <button type="submit" class="btn" id="AddPlayersForm">Add players</button>
+            <label asp-for="ManagerId" class="control-label"></label>
+            <select class="dropdown form-control" asp-for="ManagerId">
+                <option disabled selected>Select a Manager</option>
+                @foreach (var manager in managers)
+                {
+                    <option value="@manager.Id" data-content="<img src='@this.cloudinaryService.BuildManagerPictureUrl(manager.Name, manager.ManagerPictureVersion)' style='height: 25px;width:25px' /> @manager.Name"></option>
+                }
+            </select>
+            <span asp-validation-for="ManagerId" class="text-danger"></span>
+
+            <button type="submit" class="btn" id="AddPlayersForm">Add Staff</button>
 
         </form>
     </div>
@@ -49,7 +64,7 @@
                 alert(players);
                 $.ajax({
                     type: "POST",
-                    url: "/Administration/Teams/AddPlayers",
+                    url: "/Administration/Teams/AddStaff",
                     data: { players: players }
                 })
                     .done(function () {
@@ -60,7 +75,7 @@
                 var playerName = $("#player a").val();
                 $.ajax({
                     type: "POST",
-                    url: "/Administration/Teams/AddPlayers",
+                    url: "/Administration/Teams/AddStaff",
                     data: { teamName: teamName, playerName: playerName },
                     success: function (data) {
                         $("#player").appendTo("#squad");

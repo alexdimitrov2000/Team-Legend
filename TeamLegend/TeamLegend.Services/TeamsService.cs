@@ -47,6 +47,11 @@
             return await this.context.Teams.FirstOrDefaultAsync(p => p.Name == name);
         }
 
+        public async Task<List<Team>> GetAllAsync()
+        {
+            return await this.context.Teams.ToListAsync();
+        }
+
         public async Task<Team> UpdateAsync(Team team)
         {
             this.context.Teams.Update(team);

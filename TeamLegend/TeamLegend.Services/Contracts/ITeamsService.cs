@@ -12,6 +12,8 @@
 
         Task<Team> GetByNameAsync(string name);
 
+        Task<List<Team>> GetAllAsync();
+
         Task<Team> UpdateAsync(Team team);
 
         Task<bool> DeleteAsync(Team team);

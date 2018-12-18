@@ -54,11 +54,18 @@
             @Html.DisplayFor(model => model.GoalsScored)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Salary)
+            @Html.DisplayNameFor(model => model.CurrentTeam)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Salary)
-        </dd>
+            @if (Model.CurrentTeam != null)
+            {
+                <a asp-controller="Teams" asp-action="Details" asp-route-id="@Model.CurrentTeam.Id">@Model.CurrentTeam.Name</a>
+            }
+            else
+            {
+                <h4>Does not have a team.</h4>
+            }
+            </dd>
         <dt>
             @Html.DisplayNameFor(model => model.PlayerPictureUrl)
         </dt>

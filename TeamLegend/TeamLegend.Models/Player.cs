@@ -27,9 +27,6 @@
         [EnumDataType(typeof(PlayingPosition))]
         public PlayingPosition PlayingPosition { get; set; }
 
-        [Column(TypeName = "decimal(18, 2)")]
-        public decimal? Salary { get; set; }
-
         public DateTime DateOfBirth { get; set; }
 
         public string Nationality { get; set; }

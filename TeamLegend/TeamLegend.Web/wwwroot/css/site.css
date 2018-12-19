@@ -50,6 +50,33 @@ header a:hover {
     width: 33px;
 }
 
+.teamLegend-line {
+    height: 1px;
+    background-color: #075eff;
+}
+
+.required-field {
+    color: red;
+}
+
+.btn-teamLegend {
+    background-color: #075eff;
+    color: #ffffff;
+    margin-top: 17px;
+}
+
+#registerButton {
+    width: 330px;
+    height: 50px;
+    font-size: 17px;
+}
+
+.jumbotron {
+    background-color: #dde6ff;
+    padding-top: 45px;
+    padding-bottom: 40px;
+}
+
 .content {
     margin-top: 1%;
     margin-bottom: 3%;

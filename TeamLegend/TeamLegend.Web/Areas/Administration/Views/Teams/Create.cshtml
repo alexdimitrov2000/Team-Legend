@@ -1,7 +1,7 @@
 ﻿@model TeamLegend.Web.Areas.Administration.Models.Teams.TeamCreateInputModel
 
-@inject TeamLegend.Services.Contracts.IPlayersService playersService;
-@inject TeamLegend.Services.Contracts.ICloudinaryService cloudinaryService;
+@inject IPlayersService playersService;
+@inject ICloudinaryService cloudinaryService;
 @{
     var players = await this.playersService.GetAllAsync();
     players = players.Where(p => p.CurrentTeam == null).ToList();

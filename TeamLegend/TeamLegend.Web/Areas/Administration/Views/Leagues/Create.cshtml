@@ -1,7 +1,7 @@
 ﻿@model TeamLegend.Web.Areas.Administration.Models.League.LeagueCreateInputModel
 
-@inject TeamLegend.Services.Contracts.ITeamsService teamsService;
-@inject TeamLegend.Services.Contracts.ICloudinaryService cloudinaryService;
+@inject ITeamsService teamsService;
+@inject ICloudinaryService cloudinaryService;
 @{
     var teams = await this.teamsService.GetAllAsync();
     teams = teams.Where(t => t.League == null).ToList();

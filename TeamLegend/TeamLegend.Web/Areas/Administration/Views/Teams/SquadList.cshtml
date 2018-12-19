@@ -1,7 +1,7 @@
 ﻿@model TeamLegend.Web.Areas.Administration.Models.Teams.TeamPlayersCollectionViewModel
 
-@inject TeamLegend.Services.Contracts.IManagersService managersService;
-@inject TeamLegend.Services.Contracts.ICloudinaryService cloudinaryService;
+@inject IManagersService managersService;
+@inject ICloudinaryService cloudinaryService;
 @{
     var managers = await this.managersService.GetAllAsync();
     managers = managers.Where(m => m.TeamId == null).ToList();

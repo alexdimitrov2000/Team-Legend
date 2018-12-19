@@ -1,8 +1,8 @@
 ﻿@model TeamLegend.Web.Areas.Administration.Models.Players.PlayerCreateInputModel
 @using TeamLegend.Models.Enums;
 
-@inject TeamLegend.Services.Contracts.ITeamsService teamsService;
-@inject TeamLegend.Services.Contracts.ICloudinaryService cloudinaryService;
+@inject ITeamsService teamsService;
+@inject ICloudinaryService cloudinaryService;
 @{
     var teams = await this.teamsService.GetAllAsync();
     ViewData["Title"] = "Create";

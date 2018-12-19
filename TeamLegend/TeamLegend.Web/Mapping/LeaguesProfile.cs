@@ -15,9 +15,7 @@
         {
             CreateMap<LeagueCreateInputModel, League>();
 
-            CreateMap<League, LeagueDetailsViewModel>()
-                .ForMember(l => l.NumberOfTeams,
-                        opt => opt.MapFrom(src => src.Teams.Count()));
+            CreateMap<League, LeagueDetailsViewModel>();
 
             CreateMap<League, LeagueIndexViewModel>()
                 .ForMember(l => l.NumberOfTeams,

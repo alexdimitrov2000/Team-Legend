@@ -28,7 +28,9 @@
                 .ForMember(m => m.LeagueName,
                         opt => opt.MapFrom(src => src.League == null ? "Does not participate in any league." : src.League.Name));
 
-            CreateMap<Team, TeamViewModel>();
+            CreateMap<Team, TeamViewModel>()
+                .ForMember(m => m.MatchesPlayed,
+                        opt => opt.MapFrom(src => src.Matches.Count));
         }
     }
 }

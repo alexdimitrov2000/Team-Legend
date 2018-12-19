@@ -8,16 +8,21 @@
 
     using System.Linq;
     using System.Threading.Tasks;
+    using TeamLegend.Web.Models.Teams;
 
     public class LeaguesController : Controller
     {
         private readonly ILeaguesService leagueService;
         private readonly IMapper mapper;
+        private readonly ITeamsService teamsService;
+        private readonly ICloudinaryService cloudinaryService;
 
-        public LeaguesController(ILeaguesService leagueService, IMapper mapper)
+        public LeaguesController(ILeaguesService leagueService, IMapper mapper, ITeamsService teamsService, ICloudinaryService cloudinaryService)
         {
             this.leagueService = leagueService;
             this.mapper = mapper;
+            this.teamsService = teamsService;
+            this.cloudinaryService = cloudinaryService;
         }
 
         public async Task<IActionResult> All()
@@ -38,7 +43,15 @@
                 this.ModelState.AddModelError("Error", "Invalid league id. League was not found.");
                 return this.BadRequest(this.ModelState);
             }
+
+            var participatingTeams = this.teamsService.GetAllAsync().GetAwaiter().GetResult()
+                .Where(t => t.LeagueId == id)
+                .Select(t => this.mapper.Map<TeamViewModel>(t))
+                .ToList();
+            participatingTeams.ForEach(t => t.BadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(t.Name, t.BadgeVersion));
+
             var leagueDetailsViewModel = this.mapper.Map<LeagueDetailsViewModel>(league);
+            leagueDetailsViewModel.Teams = participatingTeams;
 
             return this.View(leagueDetailsViewModel);
         }

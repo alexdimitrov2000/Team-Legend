@@ -1,5 +1,9 @@
 ﻿namespace TeamLegend.Web.Models.Leagues
 {
+    using Teams;
+
+    using System.Collections.Generic;
+
     public class LeagueDetailsViewModel
     {
         public string Id { get; set; }
@@ -8,6 +12,6 @@
 
         public string Country { get; set; }
 
-        public int NumberOfTeams { get; set; }
+        public List<TeamViewModel> Teams { get; set; }
     }
 }

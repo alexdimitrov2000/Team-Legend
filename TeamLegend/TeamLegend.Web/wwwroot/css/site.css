@@ -1,0 +1,44 @@
+header a {
+    color: #ffffff;
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+header a:hover {
+    color: #f2efef;
+}
+
+.teamLegend-bg-color {
+    background-color: #075eff;
+    color: #ffffff;
+}
+
+.side-margin {
+    margin-left: 65px;
+    margin-right: 65px;
+}
+
+.log-links a{
+    margin-left: 10px;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+#brand:hover {
+    background-color: #075eff;
+}
+
+.content {
+    margin-top: 1%;
+    margin-bottom: 3%;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

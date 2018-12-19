@@ -71,6 +71,22 @@ header a:hover {
     font-size: 17px;
 }
 
+#loginButton {
+    height: 40px;
+    font-size: 19px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    margin-bottom: 1px;
+}
+
+#rememberMe {
+    font-size: 17px;
+}
+
+.form-group a:hover {
+    color: #ffffff;
+}
+
 .jumbotron {
     background-color: #dde6ff;
     padding-top: 45px;

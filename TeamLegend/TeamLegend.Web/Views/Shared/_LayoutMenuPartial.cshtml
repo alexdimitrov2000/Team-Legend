@@ -1,14 +1,14 @@
-﻿<ul class="navbar-nav right-side">
+﻿<ul class="navbar-nav mr-auto right-side">
     <li class="nav-item">
-        <a class="nav-link nav-link-white" asp-area="" asp-controller="" asp-action="">Home</a>
+        <a class="nav-link nav-link-white" asp-area="" asp-controller="" asp-action=""><i class="fas fa-home"></i> Home</a>
     </li>
     @if (this.User.Identity.IsAuthenticated)
     {
         <li class="nav-item">
-            <a class="nav-link nav-link-white" asp-area="" asp-controller="Leagues" asp-action="All">Leagues</a>
+            <a class="nav-link" asp-area="" asp-controller="Leagues" asp-action="All">Leagues</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link nav-link-white" asp-area="" asp-controller="Teams" asp-action="All">Teams</a>
+            <a class="nav-link" asp-area="" asp-controller="Teams" asp-action="All">Teams</a>
         </li>
     }
 </ul>

@@ -32,6 +32,24 @@ header a:hover {
     background-color: #075eff;
 }
 
+#dropdown-menu-btn {
+    background-color: #075eff;
+    color: #ffffff;
+}
+
+#dropdown-menu-content {
+    background-color: #075eff;
+    color: #ffffff;
+    padding-left: 7px;
+    padding-right: 7px;
+    width: 180px;
+}
+
+.profile-picture {
+    border-radius: 50%;
+    width: 33px;
+}
+
 .content {
     margin-top: 1%;
     margin-bottom: 3%;

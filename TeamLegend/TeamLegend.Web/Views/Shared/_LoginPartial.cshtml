@@ -1,21 +1,21 @@
 @if (this.User.Identity.IsAuthenticated)
 {
     <div class="navbar-right">
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav mr-auto navbar-right">
             <li class="nav-item">
                 <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                    <button type="button" class="btn dropdown-toggle" id="dropdown-menu-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         @if (this.ViewData["ProfilePicture"] != null)
                         {
-                            <img src="@ViewData["ProfilePicture"]" style="border-radius: 50%" />
+                            <img src="@ViewData["ProfilePicture"]" class="profile-picture" />
                         }
                         else
                         {
                             <div>Profile</div>
                         }
                     </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdown-menu">
-                        <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Manage account</a>
+                    <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu-content">
+                        <a asp-area="Identity" asp-page="/Account/Manage/Index"><i class="fas fa-cog"></i> Manage account</a>
                         <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </div>
                 </div>

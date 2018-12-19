@@ -1,25 +1,4 @@
-﻿@*@using Microsoft.AspNetCore.Identity
-@using TeamLegend.Models;
-@{
-    @inject UserManager<ApplicationUser> UserManager
-    var user = this.UserManager.GetUserAsync(this.User).GetAwaiter().GetResult();
-    Cloudinary cloudinary = new Cloudinary(new CloudinaryDotNet.Account("dux8m4bux", "134699845585285", "SxeFab_0_1OA-IJp0yVFKxW8hIw"));
-    string path = "/ProfilePictures/" + string.Format(GlobalConstants.ProfilePicture, this.User.Identity.Name);
-    @inject TeamLegend.Services.Contracts.ICloudinaryService CloudinaryService
-    //string profilePicture = cloudinary.Api.UrlImgUp.Transform(new Transformation().Gravity("face").Width(30).Height(30).Zoom(0.7).Crop("thumb"))
-    //    .BuildUrl(path).RemoveCloudinaryUrlImageVersion();
-    var picture = cloudinary.Api.UrlImgUp.BuildUrl(path);// <-----------------------
-                                                         //var picture2 = cloudinary.Api.UrlImgUp.BuildUrl(path).RemoveCloudinaryUrlImageVersion();
-                                                         //string profilePicturee = cloudinary.Api.UrlImgUp.Transform(new Transformation().Gravity("face").Width(30).Height(30).Zoom(0.7).Crop("thumb"))
-                                                         //    .BuildUrl(picture);
-                                                         //string pic = cloudinary.Api.UrlImgUp.BuildUrl(path);
-                                                         //string s = cloudinary.Api.UrlImgFetch.BuildUrl(path);
-
-    ViewData["ProfilePicture"] = CloudinaryService.BuildProfilePictureUrl(user.UserName);
-    ViewData["Resource"] = cloudinary.GetResource(path).Derived;
-}*@
-
-@*<!DOCTYPE html>
+﻿@*<!DOCTYPE html>
     <html>
     <head>
         <meta charset="utf-8" />
@@ -103,44 +82,39 @@
     <title>Team Legend</title>
     <link rel="stylesheet" type="text/css" href="~/css/reset-css.css">
     <link rel="stylesheet" type="text/css" href="~/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="~/css/style.css">
+    <link rel="stylesheet" type="text/css" href="~/css/site.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
-    @*<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.16/css/mdb.min.css" rel="stylesheet">*@
     <script src="~/js/jquery-3.3.1.min.js"></script>
     <script src="~/js/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-    @*<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.16/js/mdb.min.js"></script>*@
-    @*<script src="~/js/bootstrap.min.js"></script>*@
 </head>
 <body>
-    <div class="container-fluid">
-        <header>
-            <div class="teamLegend-bg-color">
-                <nav class="navbar side-margin navbar-expand-lg text-bold">
-                    <a class="navbar-brand nav-link-white" href="/">Eventures</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
-                        <partial name="_LayoutMenuPartial" />
-                        <partial name="_LoginPartial" />
-                    </div>
-                </nav>
-            </div>
-        </header>
-        <div class="side-margin">
-            @RenderBody()
-        </div>
-        <footer class="side-margin">
-            <div class="container-fluid teamLegend-bg-color">
-                <div class="text-black p-2 text-center">
-                    &copy; CopyRight Eventures Inc. 2018-2018. All rights reserved.
+    <header id="header">
+        <div class="teamLegend-bg-color">
+            <nav class="navbar side-margin navbar-expand-lg text-bold">
+                <a class="navbar-brand nav-link-white" href="/" id="brand">Team Legend</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
+                    <partial name="_LayoutMenuPartial" />
+                    <partial name="_LoginPartial" />
                 </div>
-            </div>
-        </footer>
+            </nav>
+        </div>
+    </header>
+    <div class="content side-margin">
+        @RenderBody()
     </div>
+    <footer>
+        <div class="container-fluid teamLegend-bg-color">
+            <div class="p-2 text-center">
+                &copy; CopyRight Team Legend Inc. 2019. All rights reserved.
+            </div>
+        </div>
+    </footer>
     @RenderSection("Scripts", required: false)
 </body>
 </html>     

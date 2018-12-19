@@ -1,0 +1,14 @@
+﻿<ul class="navbar-nav right-side">
+    <li class="nav-item">
+        <a class="nav-link nav-link-white" asp-area="" asp-controller="" asp-action="">Home</a>
+    </li>
+    @if (this.User.Identity.IsAuthenticated)
+    {
+        <li class="nav-item">
+            <a class="nav-link nav-link-white" asp-area="" asp-controller="Leagues" asp-action="All">Leagues</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link nav-link-white" asp-area="" asp-controller="Teams" asp-action="All">Teams</a>
+        </li>
+    }
+</ul>

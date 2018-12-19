@@ -117,18 +117,14 @@
 <body>
     <div class="container-fluid">
         <header>
-            <div class="eventures-bg-color">
+            <div class="teamLegend-bg-color">
                 <nav class="navbar side-margin navbar-expand-lg text-bold">
                     <a class="navbar-brand nav-link-white" href="/">Eventures</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
-                        <ul class="navbar-nav right-side">
-                            <li class="nav-item">
-                                <a class="nav-link nav-link-white" asp-area="" asp-controller="" asp-action="">Home</a>
-                            </li>
-                        </ul>
+                        <partial name="_LayoutMenuPartial" />
                         <partial name="_LoginPartial" />
                     </div>
                 </nav>
@@ -138,7 +134,7 @@
             @RenderBody()
         </div>
         <footer class="side-margin">
-            <div class="container-fluid eventures-bg-color">
+            <div class="container-fluid teamLegend-bg-color">
                 <div class="text-black p-2 text-center">
                     &copy; CopyRight Eventures Inc. 2018-2018. All rights reserved.
                 </div>

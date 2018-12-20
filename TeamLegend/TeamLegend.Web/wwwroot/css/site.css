@@ -61,6 +61,10 @@ header a:hover {
     /*width: 180px;*/
 }
 
+#teamImg{
+    width: 150px;
+}
+
 .profile-picture {
     border-radius: 50%;
     width: 33px;
@@ -118,6 +122,14 @@ header a:hover {
 
 #rememberMe {
     font-size: 17px;
+}
+
+.team {
+    border: solid;
+    background: url("../images/lightWoodBackground.png");
+    border-color: #075eff;
+    border-radius: 25px;
+    padding-top: 4px;
 }
 
 .league {

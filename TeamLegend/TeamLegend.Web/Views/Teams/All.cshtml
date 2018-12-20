@@ -1,28 +1,27 @@
 ﻿@model TeamLegend.Web.Models.Teams.TeamsCollectionViewModel
 
 @{
-    ViewData["Title"] = "All";
+    ViewData["Title"] = "All Teams";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>All</h2>
-
-<div>
-    <h4>TeamsCollectionViewModel</h4>
-    <hr />
-    <div>
-        @foreach (var team in Model.Teams)
-        {
-            <card>
-                <img src="@team.BadgeUrl" />
-                <a asp-controller="Teams" asp-action="Details" asp-route-id="@team.Id">
-                    <h2>@team.Name</h2>
-                </a>
-            </card>
-        }
+<main>
+    <h1 class="text-center">@ViewData["Title"]</h1>
+    <hr class="teamLegend-line" />
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-between">
+            @foreach (var team in Model.Teams)
+            {
+                <div class="team m-3 col-md-2 col-sm-5 col-xs-12 text-center">
+                    <img src="@team.BadgeUrl" class="card-img-top" id="teamImg" />
+                    <hr class="teamLegend-line" />
+                    <div>
+                        <a asp-controller="Teams" asp-action="Details" asp-route-id="@team.Id">
+                            <h3>@team.Name</h3>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+</main>

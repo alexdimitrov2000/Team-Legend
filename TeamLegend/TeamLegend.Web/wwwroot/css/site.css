@@ -91,12 +91,17 @@ header a:hover {
     margin-top: 17px;
 }
 
+.btn-Microsoft {
+    background-color: #7cbb00;
+    color: #ffffff;
+}
+
 #socialButton {
     height: 40px;
     font-size: 19px;
     padding-top: 3px;
     padding-bottom: 3px;
-    margin-bottom: 1px;
+    margin-bottom: 30px;
 }
 
 #registerButton {

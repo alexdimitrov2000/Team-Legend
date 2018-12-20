@@ -37,12 +37,28 @@ header a:hover {
     color: #ffffff;
 }
 
+#dropdown-create-btn {
+    background-color: #075eff;
+    color: #ffffff;
+    padding-top: 7px;
+    font-weight: bold;
+}
+
+.dropdown-item {
+    color: #ffffff;
+}
+
+.dropdown-item:hover {
+    color: #ffffff;
+    background-color: #003eb2;
+}
+
 #dropdown-menu-content {
     background-color: #075eff;
     color: #ffffff;
-    padding-left: 7px;
-    padding-right: 7px;
-    width: 180px;
+    /*padding-left: 7px;*/
+    /*padding-right: 7px;*/
+    /*width: 180px;*/
 }
 
 .profile-picture {

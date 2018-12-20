@@ -1,27 +1,26 @@
 ﻿@model TeamLegend.Web.Models.Leagues.LeagueAllViewModel
 
 @{
-    ViewData["Title"] = "All";
+    ViewData["Title"] = "All Leagues";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>All</h2>
-
-<div>
-    <h4>LeagueAllViewModel</h4>
-    <hr />
-    <div>
-        @foreach (var league in Model.Leagues)
-        {
-            <a asp-controller="Leagues" asp-action="Details" asp-route-id="@league.Id">
-                <h2>@league.Name</h2>
-                <h2>@league.Country</h2>
-                <h2>@league.NumberOfTeams</h2>
-            </a>
-        }
+<main>
+    <h1 class="text-center">@ViewData["Title"]</h1>
+    <hr class="teamLegend-line" />
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-between">
+            @foreach (var league in Model.Leagues)
+            {
+                <div class="league m-3 col-md-3 col-sm-6">
+                    <a class="text-center" id="leagueNameLink" asp-controller="Leagues" asp-action="Details" asp-route-id="@league.Id">
+                        <h3>@league.Name</h3>
+                    </a>
+                    <hr class="teamLegend-line" />
+                    <h5>Country: @league.Country</h5>
+                    <h5>Teams: @league.NumberOfTeams</h5>
+                </div>
+            }
+        </div>
     </div>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+</main>

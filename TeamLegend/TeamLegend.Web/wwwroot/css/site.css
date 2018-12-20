@@ -2,7 +2,7 @@ header a {
     color: #ffffff;
 }
 
-a:hover{
+a:hover {
     text-decoration: none;
 }
 
@@ -20,7 +20,7 @@ header a:hover {
     margin-right: 65px;
 }
 
-.log-links a{
+.log-links a {
     margin-left: 10px;
 }
 
@@ -102,6 +102,22 @@ header a:hover {
 
 #rememberMe {
     font-size: 17px;
+}
+
+.league {
+    border: solid;
+    background: url("../images/lightWoodBackground.png");
+    border-color: #075eff;
+    border-radius: 25px;
+    padding-top: 4px;
+}
+
+#leagueNameLink {
+    color: #0452e2;
+}
+
+#leagueNameLink:hover {
+    color: #003eb2;
 }
 
 .form-group a:hover {

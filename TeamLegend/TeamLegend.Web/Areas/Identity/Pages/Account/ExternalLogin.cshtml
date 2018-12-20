@@ -4,29 +4,43 @@
     ViewData["Title"] = "Register";
 }
 
-<h2>@ViewData["Title"]</h2>
-<h4>Associate your @Model.LoginProvider account.</h4>
-<hr />
+<main>
+    <h1 class="text-center">@ViewData["Title"]</h1>
+    <h3 class="text-center">Associate your @Model.LoginProvider account.</h3>
+    <hr class="teamLegend-line" />
 
-<p class="text-info">
-    You've successfully authenticated with <strong>@Model.LoginProvider</strong>.
-    Please enter an email address for this site below and click the Register button to finish
-    logging in.
-</p>
+    <div class="jumbotron">
+        <p class="text-info text-center" style="font-size: large">
+            You've successfully authenticated with <strong>@Model.LoginProvider</strong>.
+            Please enter an username and your birth date for this site below and click the Register button to finish
+            logging in.
+        </p>
 
-<div class="row">
-    <div class="col-md-4">
-        <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Input.Email"></label>
-                <input asp-for="Input.Email" class="form-control" />
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
+        <div class="row justify-content-center">
+            <div class="col-md-5 text-center">
+                <form asp-page-handler="Confirmation" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Input.Username" style="font-size: large"></label> <span class="required-field">&#42;</span>
+                        <input asp-for="Input.Username" class="form-control" />
+                        <span asp-validation-for="Input.Username" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.DateOfBirth" style="font-size: large"></label> <span class="required-field">&#42;</span>
+                        <input asp-for="Input.DateOfBirth" class="form-control" />
+                        <span asp-validation-for="Input.DateOfBirth" class="text-danger"></span>
+                    </div>
+                    <input type="hidden" asp-for="Input.Email" />
+                    <input type="hidden" asp-for="Input.FirstName" />
+                    <input type="hidden" asp-for="Input.LastName" />
+                    <div class="button-holder d-flex">
+                        <button type="submit" class="btn btn-teamLegend col-md-12" id="registerButton">Register</button>
+                    </div>
+                </form>
             </div>
-            <button type="submit" class="btn btn-default">Register</button>
-        </form>
+        </div>
     </div>
-</div>
+</main>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

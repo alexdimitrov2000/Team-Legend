@@ -1,20 +1,19 @@
 ﻿namespace TeamLegend.Web
 {
-    using Data;
-    using Services;
-    using TeamLegend.Models;
-    using Services.Contracts;
-    using Infrastructure.Extensions;
-
     using AutoMapper;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Hosting;
+    using Data;
+    using Infrastructure.Extensions;
     using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Services;
+    using Services.Contracts;
+    using TeamLegend.Models;
 
     public class Startup
     {
@@ -63,6 +62,13 @@
 
             services.AddAutoMapper();
 
+            services.AddAuthentication()
+                .AddFacebook(facebookOptions =>
+                {
+                    facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                    facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                });
+
             services.AddScoped<ICloudinaryService, CloudinaryService>();
             services.AddScoped<ILeaguesService, LeaguesService>();
             services.AddScoped<IPlayersService, PlayersService>();
@@ -93,7 +99,7 @@
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-            
+
             app.SeedRoles();
 
             app.UseMvc(routes =>

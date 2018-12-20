@@ -57,7 +57,7 @@
                 league = this.mapper.Map<League>(model);
                 await this.leaguesService.CreateAsync(league);
 
-                if (model.ParticipatingTeams.Count > 0)
+                if (model.ParticipatingTeams != null && model.ParticipatingTeams.Count > 0)
                 {
                     var teamIds = model.ParticipatingTeams;
                     var teamsToAdd = teamIds.Select(t => this.teamsService.GetByIdAsync(t).GetAwaiter().GetResult()).ToList();

@@ -149,6 +149,7 @@ header a:hover {
 .content {
     margin-top: 1%;
     margin-bottom: 3%;
+    padding-bottom: 55px;
 }
 
 footer {

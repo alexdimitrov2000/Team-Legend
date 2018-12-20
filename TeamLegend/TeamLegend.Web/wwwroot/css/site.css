@@ -80,9 +80,16 @@ header a:hover {
 }
 
 #registerButton {
-    width: 330px;
     height: 50px;
     font-size: 17px;
+}
+
+#deleteButton {
+    height: 50px;
+    font-size: 17px;
+    border: solid;
+    border-color: red;
+    border-width: 3px;
 }
 
 #loginButton {

@@ -5,11 +5,84 @@
 @inject ICloudinaryService cloudinaryService;
 @{
     var teams = await this.teamsService.GetAllAsync();
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create a Player";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<main>
+    <h1 class="text-center">@ViewData["Title"]</h1>
+    <hr class="teamLegend-line" />
+
+    <div class="jumbotron">
+        <form asp-area="Administration" asp-controller="Players" asp-action="Create" method="post" enctype="multipart/form-data">
+            <div class="row justify-content-around">
+                <div class="col-md-6">
+                    <div class="col-md-10">
+                        <h4 class="text-center">Required fields</h4>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label"></label> <span class="required-field">&#42;</span>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DateOfBirth" class="control-label"></label> <span class="required-field">&#42;</span>
+                            <input asp-for="DateOfBirth" class="form-control" />
+                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Nationality" class="control-label"></label> <span class="required-field">&#42;</span>
+                            <input asp-for="Nationality" class="form-control" />
+                            <span asp-validation-for="Nationality" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Height" class="control-label"></label> <span class="required-field">&#42;</span>
+                            <input asp-for="Height" type="number" min="0.0" step="0.1" class="form-control" />
+                            <span asp-validation-for="Height" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PlayingPosition" class="control-label"></label> <span class="required-field">&#42;</span>
+                            <select class="dropdown-select form-control" asp-for="PlayingPosition">
+                                <option disabled selected class="dropdown-select">Select a Position</option>
+                                @foreach (var position in Html.GetEnumSelectList<PlayingPosition>())
+                                {
+                                    <option value="@position.Value" class="dropdown-select" data-content="@position.Text"></option>
+                                }
+                            </select>
+                            <span asp-validation-for="PlayingPosition" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-10">
+                        <h4 class="text-center">Optional fields</h4>
+                        <div class="form-group">
+                            <label asp-for="TeamId" class="control-label">Team</label>
+                            <select class="dropdown-select form-control" asp-for="TeamId">
+                                <option disabled selected="selected" class="dropdown-select">Select a Team</option>
+                                @foreach (var team in teams)
+                                {
+                                    <option value="@team.Id" class="dropdown-select" data-content="<img src='@this.cloudinaryService.BuildTeamBadgePictureUrl(team.Name, team.BadgeVersion)' style='height: 25px' /> @team.Name"></option>
+                                }
+                            </select>
+                            <span asp-validation-for="TeamId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="PlayerPicture" class="control-label">Player Picture: </label>
+                            <input asp-for="PlayerPicture" />
+                            <span asp-validation-for="PlayerPicture" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button-holder d-flex justify-content-center">
+                <button type="submit" class="btn btn-teamLegend text-center col-md-3 col-sm-12" id="createButton">Create</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+@*<h2>Create</h2>
 
 <h4>PlayerCreateInputModel</h4>
 <hr />
@@ -73,7 +146,7 @@
 
 <div>
     <a asp-action="Index">Back to List</a>
-</div>
+</div>*@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

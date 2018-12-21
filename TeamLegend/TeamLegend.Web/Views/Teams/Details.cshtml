@@ -1,80 +1,76 @@
 ﻿@model TeamLegend.Web.Models.Teams.TeamDetailsViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Team Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>TeamDetailsViewModel</h4>
-    <hr />
+<main class="mt-3">
+    <h1 class="text-center">@this.ViewData["Title"]</h1>
+    <hr class="teamLegend-line" />
     @if (this.ViewData["Error"] != null)
     {
         <h4 class="text-danger">@this.ViewData["Error"]</h4>
     }
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Nickname)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nickname)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.BadgeUrl)
-        </dt>
-        <dd>
-            <img src="@Model.BadgeUrl" />
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Manager)
-        </dt>
-        <dd>
-            @if (Model.Manager != null)
-            {
-                <a asp-controller="Managers" asp-action="Details" asp-route-id="@Model.Manager.Id">@Model.Manager.Name</a>
-            }
-            else
-            {
-                <h4>Does not have a manager.</h4>
-            }
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Stadium)
-        </dt>
-        <dd>
-            @if (Model.Stadium != null)
-            {
-                <a asp-controller="Stadiums" asp-action="Details" asp-route-id="@Model.Stadium.Id">@Model.Stadium.Name</a>
-            }
-            else
-            {
-                <h4>Does not have a stadium.</h4>
-            }
-            </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.YearOfFoundation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.YearOfFoundation)
-        </dd>
-    </dl>
-    @if (this.User.IsInRole("Admin"))
-    {
-        <a asp-area="Administration" asp-controller="Teams" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-        <a asp-area="Administration" asp-controller="Teams" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
-        <a asp-area="Administration" asp-controller="Teams" asp-action="SetStadium" asp-route-teamId="@Model.Id">Set a Stadium</a>
-        <a asp-area="Administration" asp-controller="Teams" asp-action="SquadList" asp-route-teamId="@Model.Id">Squad</a>
-    }
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+    <div class="jumbotron">
+        <h2 class="text-center">@Model.Name</h2>
+        @if (Model.Nickname != null)
+        {
+            <h6 class="text-center">a.k.a. '@Model.Nickname'</h6>
+        }
+        <div class="row">
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-10">
+                        @if (Model.YearOfFoundation != 0)
+                        {
+                            <h3>Founded: @Model.YearOfFoundation</h3>
+                        }
+                        else
+                        {
+                            <h3>Founded: No information</h3>
+                        }
+
+                        @if (Model.Manager != null)
+                        {
+                            <h3>Manager: <a asp-controller="Managers" asp-action="Details" asp-route-id="@Model.Manager.Id">@Model.Manager.Name</a></h3>
+                        }
+                        else
+                        {
+                            <h3>Manager: Does not have a manager.</h3>
+                        }
+
+                        @if (Model.Stadium != null)
+                        {
+                            <h3>Stadium: <a asp-controller="Stadiums" asp-action="Details" asp-route-id="@Model.Stadium.Id">@Model.Stadium.Name</a></h3>
+                        }
+                        else
+                        {
+                            <h3>Stadium: Does not have a stadium.</h3>
+                        }
+
+                        @if (this.User.IsInRole("Admin"))
+                        {
+                            <h3>Squad: <a asp-area="Administration" asp-controller="Teams" asp-action="SquadList" asp-route-teamId="@Model.Id">Squad List</a></h3>
+                        }
+                        else
+                        {
+                            <h3>Squad: <a asp-controller="Teams" asp-action="SquadList" asp-route-teamId="@Model.Id">Squad List</a></h3>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 text-center">
+                <img src="@Model.BadgeUrl" style="width: 150px" />
+            </div>
+        </div>
+        @if (this.User.IsInRole("Admin"))
+        {
+            <div class="row d-flex justify-content-around">
+                <a class="btn btn-teamLegend" id="adminButton" asp-area="Administration" asp-controller="Teams" asp-action="SetStadium" asp-route-teamId="@Model.Id">Set a Stadium</a>
+                <a class="btn btn-teamLegend" id="adminButton" asp-area="Administration" asp-controller="Teams" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+            </div>
+        }
+    </div>
+</main>

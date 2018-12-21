@@ -163,6 +163,10 @@ header a:hover {
     margin-bottom: 1px;
 }
 
+#adminButton:hover{
+    color: #ffffff;
+}
+
 #rememberMe {
     font-size: 17px;
 }

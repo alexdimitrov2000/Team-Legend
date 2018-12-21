@@ -1,0 +1,29 @@
+﻿@model TeamLegend.Web.Areas.Administration.Models.Teams.TeamPlayersCollectionViewModel
+
+@{
+    ViewData["Title"] = "Squad List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <h1 class="text-center">@Model.Team.Name</h1>
+    <hr class="teamLegend-line" />
+
+    <div class="jumbotron">
+        <h2 class="text-center">@ViewData["Title"]</h2>
+        <div class="row justify-content-around">
+            @foreach (var player in Model.Squad.Players)
+            {
+                <div class="team m-3 text-center">
+                    <img src="@player.PlayerPictureUrl" class="card-img-top" id="teamImg" />
+                    <hr class="teamLegend-line" />
+                    <div>
+                        <a asp-controller="Players" asp-action="Details" asp-route-id="@player.Id">
+                            <h3>@player.Name</h3>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</main>

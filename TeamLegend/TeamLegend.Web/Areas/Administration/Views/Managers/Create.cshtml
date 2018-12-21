@@ -1,48 +1,55 @@
 ﻿@model TeamLegend.Web.Areas.Administration.Models.Managers.ManagerCreateInputModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create a Manager";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<main>
+    <h1 class="text-center">@ViewData["Title"]</h1>
+    <hr class="teamLegend-line" />
 
-<h4>ManagerCreateInputModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+    <div class="jumbotron">
+        <form asp-area="Administration" asp-controller="Managers" asp-action="Create" method="post" enctype="multipart/form-data">
+            <div class="row justify-content-around">
+                <div class="col-md-6">
+                    <div class="col-md-10">
+                        <h4 class="text-center">Required fields</h4>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label"></label> <span class="required-field">&#42;</span>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-10">
+                        <h4 class="text-center">Optional fields</h4>
+                        <div class="form-group">
+                            <label asp-for="DateOfBirth" class="control-label"></label>
+                            <input asp-for="DateOfBirth" class="form-control" />
+                            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Nationality" class="control-label"></label>
+                            <input asp-for="Nationality" class="form-control" />
+                            <span asp-validation-for="Nationality" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ManagerPicture" class="control-label">Manager Picture: </label>
+                            <input asp-for="ManagerPicture" />
+                            <span asp-validation-for="ManagerPicture" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="DateOfBirth" class="control-label"></label>
-                <input asp-for="DateOfBirth" class="form-control" />
-                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Nationality" class="control-label"></label>
-                <input asp-for="Nationality" class="form-control" />
-                <span asp-validation-for="Nationality" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ManagerPicture" class="control-label"></label>
-                <input asp-for="ManagerPicture" />
-                <span asp-validation-for="ManagerPicture" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="button-holder d-flex justify-content-center">
+                <button type="submit" class="btn btn-teamLegend text-center col-md-3 col-sm-12" id="createButton">Create</button>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+</main>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

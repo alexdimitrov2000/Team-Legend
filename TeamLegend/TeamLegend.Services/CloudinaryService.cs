@@ -16,7 +16,8 @@
         private const string ProfilePicturesFolder = "ProfilePictures";
         private const string StadiumPicturesFolder = "StadiumPictures";
         private const string ManagerPicturesFolder = "ManagerPictures";
-        private Dictionary<Type, string> EntityFolders = new Dictionary<Type, string>
+
+        private readonly Dictionary<Type, string> EntityFolders = new Dictionary<Type, string>
         {
             { typeof(Team), TeamBadgesFolder },
             { typeof(Player), PlayerPicturesFolder },
@@ -24,7 +25,6 @@
             { typeof(Stadium), StadiumPicturesFolder },
             { typeof(Manager), ManagerPicturesFolder }
         };
-
         private readonly Cloudinary cloudinary;
 
         public CloudinaryService()

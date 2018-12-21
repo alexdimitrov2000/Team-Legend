@@ -5,59 +5,66 @@
 @{
     var players = await this.playersService.GetAllAsync();
     players = players.Where(p => p.CurrentTeam == null).ToList();
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create a Team";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
+<main>
+    <h1 class="text-center">@ViewData["Title"]</h1>
+    <hr class="teamLegend-line" />
 
-<h4>TeamCreateInputModel</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label> <span class="required-field">&#42;</span>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+    <div class="jumbotron">
+        <form asp-area="Administration" asp-controller="Teams" asp-action="Create" method="post" enctype="multipart/form-data">
+            <div class="row justify-content-around">
+                <div class="col-md-6">
+                    <div class="col-md-10">
+                        <h4 class="text-center">Required fields</h4>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label"></label> <span class="required-field">&#42;</span>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-10">
+                        <h4 class="text-center">Optional fields</h4>
+                        <div class="form-group">
+                            <label asp-for="Nickname" class="control-label"></label>
+                            <input asp-for="Nickname" class="form-control" />
+                            <span asp-validation-for="Nickname" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="DateOfFoundation" class="control-label"></label>
+                            <input asp-for="DateOfFoundation" class="form-control" />
+                            <span asp-validation-for="DateOfFoundation" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="SquadPlayers" class="control-label"></label>
+                            <select multiple class="dropdown-select form-control" asp-for="SquadPlayers" id="selectedPlayers">
+                                <option disabled class="dropdown-select">Select Players</option>
+                                @foreach (var player in players)
+                                {
+                                    <option value="@player.Id" class="dropdown-select" data-content="<img src='@this.cloudinaryService.BuildPlayerPictureUrl(player.Name, player.PlayerPictureVersion)' style='height: 30px' /> @player.Name"></option>
+                                }
+                            </select>
+                            <span asp-validation-for="SquadPlayers" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Badge" class="control-label">Team Badge: </label>
+                            <input asp-for="Badge" />
+                            <span asp-validation-for="Badge" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Nickname" class="control-label"></label>
-                <input asp-for="Nickname" class="form-control" />
-                <span asp-validation-for="Nickname" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateOfFoundation" class="control-label"></label>
-                <input asp-for="DateOfFoundation" class="form-control" />
-                <span asp-validation-for="DateOfFoundation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Badge" class="control-label"></label>
-                <input asp-for="Badge" class="form-control" />
-                <span asp-validation-for="Badge" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SquadPlayers" class="control-label"></label>
-                <select multiple class="dropdown form-control" searchable="Search..." asp-for="SquadPlayers" id="selectedPlayers">
-                    <option disabled>Select Players</option>
-                    @foreach (var player in players)
-                    {
-                        <option value="@player.Id" data-content="<img src='@this.cloudinaryService.BuildPlayerPictureUrl(player.Name, player.PlayerPictureVersion)' style='height: 30px' /> @player.Name"></option>
-                    }
-                </select>
-                <span asp-validation-for="SquadPlayers" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <div class="button-holder d-flex justify-content-center">
+                <button type="submit" class="btn btn-teamLegend text-center col-md-3 col-sm-12" id="createButton">Create</button>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+</main>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

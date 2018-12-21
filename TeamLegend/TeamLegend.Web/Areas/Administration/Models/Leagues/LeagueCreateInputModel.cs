@@ -15,6 +15,7 @@
         [StringLength(30, MinimumLength = 3, ErrorMessage = "Country name length must be in range {2}-{1}.")]
         public string Country { get; set; }
 
+        [Display(Name = "Participating Teams")]
         public List<string> ParticipatingTeams { get; set; }
     }
 }

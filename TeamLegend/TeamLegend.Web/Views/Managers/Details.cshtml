@@ -1,50 +1,48 @@
 ﻿@model TeamLegend.Web.Models.Managers.ManagerDetailsViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Manager Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<main class="mt-3">
+    <h1 class="text-center">@this.ViewData["Title"]</h1>
+    <hr class="teamLegend-line" />
+    <div class="jumbotron">
+        <h2 class="text-center">@Model.Name</h2>
 
-<div>
-    <h4>ManagerDetailsViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DateOfBirth)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DateOfBirth)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Nationality)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nationality)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ManagerPictureUrl)
-        </dt>
-        <dd>
-            <img src="@Model.ManagerPictureUrl" />
-        </dd>
-    </dl>
-    <a asp-area="Administration" asp-controller="Managers" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-10">
+                        @if (Model.DateOfBirth != null)
+                        {
+                            <h3>Date of Birth: @Model.DateOfBirth?.ToShortDateString() (@Model.Age age)</h3>
+                        }
+                        else
+                        {
+                            <h3>Date of Birth: No information</h3>
+                        }
+
+                        @if (Model.Nationality != null)
+                        {
+                            <h3>Nationality: @Model.Nationality</h3>
+                        }
+                        else
+                        {
+                            <h3>Nationality: No information</h3>
+                        }
+                        @if (this.User.IsInRole("Admin"))
+                        {
+                            <a class="btn btn-teamLegend" id="adminButton" asp-area="Administration" asp-controller="Managers" asp-action="Delete" asp-route-id="@Model.Id">Delete Manager</a>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <img src="@Model.ManagerPictureUrl" class="img-fluid" style="width: 500px" />
+            </div>
+        </div>
+    </div>
+</main>

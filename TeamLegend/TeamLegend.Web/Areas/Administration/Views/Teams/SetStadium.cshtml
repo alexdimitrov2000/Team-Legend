@@ -4,17 +4,27 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>SetStadium</h2>
+<main>
+    <h1 class="text-center">@this.ViewData["Title"]</h1>
+    <hr class="teamLegend-line" />
 
-@foreach (var stadium in Model.Stadiums)
-{
-    <div>
-        <card>
-            <img src="@stadium.StadiumPictureUrl" />
-            <h5><a asp-area="" asp-controller="Stadiums" asp-action="Details" asp-route-id="@stadium.Id">@stadium.Name</a></h5>
-            <form asp-action="SetStadium" method="post" asp-route-stadiumId="@stadium.Id" asp-route-teamId="@this.ViewData["TeamId"]">
-                <button type="submit" class="btn-primary">Set Stadium</button>
-            </form>
-        </card>
+    <div class="jumbotron">
+        <div class="row justify-content-around">
+            @foreach (var stadium in Model.Stadiums)
+            {
+                <div class="team m-3 text-center">
+                    <img src="@stadium.StadiumPictureUrl" id="stadiumImg" />
+                    <hr class="teamLegend-line" />
+                    <div>
+                        <a asp-controller="Players" asp-action="Details" asp-route-id="@stadium.Id">
+                            <h3>@stadium.Name</h3>
+                        </a>
+                    </div>
+                    <form asp-action="SetStadium" method="post" asp-route-stadiumId="@stadium.Id" asp-route-teamId="@this.ViewData["TeamId"]">
+                        <button type="submit" class="btn btn-teamLegend" id="setStadiumButton">Set Stadium</button>
+                    </form>
+                </div>
+            }
+        </div>
     </div>
-}
+</main>

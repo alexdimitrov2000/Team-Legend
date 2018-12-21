@@ -65,6 +65,11 @@ header a:hover {
     width: 150px;
 }
 
+#stadiumImg {
+    height: 100px;
+    margin-top: 6px;
+}
+
 .dropdown-select {
     color: black;
 }
@@ -165,6 +170,11 @@ header a:hover {
 
 #adminButton:hover{
     color: #ffffff;
+}
+
+#setStadiumButton {
+    margin-top: 5px;
+    margin-bottom: 10px
 }
 
 #rememberMe {

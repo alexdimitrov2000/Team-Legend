@@ -1,53 +1,58 @@
 ﻿@model TeamLegend.Web.Areas.Administration.Models.Leagues.LeagueTeamsCollectionViewModel
 
 @{
-    ViewData["Title"] = "TeamsList";
+    ViewData["Title"] = "Teams List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    this.TempData["LeagueId"] = Model.League.Id;
+    var participatingTeams = Model.ParticipatingTeams.Teams.OrderByDescending(t => t.TotalPoints).ToList();
 }
 
-<h2>TeamsList</h2>
+<main>
+    <h1 class="text-center">@ViewData["Title"]</h1>
+    <hr class="teamLegend-line" />
 
-<div>
-    <h4>LeagueTeamsCollectionViewModel</h4>
-    <hr />
-
-    <div class="row">
-        <div class="col-md-6">
-            <h3>Teams in the League</h3>
-            <div id="participatingTeams">
-                @foreach (var team in Model.ParticipatingTeams.Teams)
-                {
-                    <div>
-                        <img src="@team.BadgeUrl" style="height: 40px" />
-                        <a asp-area="" asp-controller="Teams" asp-action="Details" asp-route-id="@team.Id">@team.Name</a>
+    <div class="jumbotron">
+        <div class="row justify-content-around">
+            <div class="col-md-4">
+                <div class="col-md-10">
+                    <h4 class="text-center">Teams in the League</h4>
+                    <div class="text-left" id="participatingTeams">
+                        <ol class="list-group">
+                            @foreach (var team in participatingTeams)
+                            {
+                                <li class="list-group-item" id="team-list-item">
+                                    <img src="@team.BadgeUrl" style="height: 40px" />
+                                    <a asp-area="" asp-controller="Teams" asp-action="Details" asp-route-id="@team.Id">@team.Name</a>
+                                </li>
+                            }
+                        </ol>
                     </div>
-                }
+                </div>
+            </div>
+            <div class="col-md-4 text-center text-bold">
+                <h2>@Model.League.Name</h2>
+            </div>
+            <div class="col-md-4 text-center">
+                <h4>Teams with no League</h4>
+                <form asp-area="Administration" asp-controller="Leagues" asp-action="AddTeams">
+
+                    <select multiple class="col-md-10" asp-for="NewTeamsToLeague">
+                        <option disabled class="dropdown-select">Select Teams</option>
+                        @foreach (var team in Model.TeamsWithNoLeague.Teams)
+                        {
+                            <option value="@team.Id" class="dropdown-select" data-content="<img src='@team.BadgeUrl' style='height: 25px' /> @team.Name"></option>
+                        }
+                    </select>
+                    <input type="hidden" asp-for="League.Id" value="@Model.League.Id" />
+                    <div class="button-holder d-flex justify-content-center">
+                        <button type="submit" class="btn btn-teamLegend text-center col-md-9 col-sm-12" id="createButton">Add Teams</button>
+                    </div>
+
+                </form>
             </div>
         </div>
-        <div class="col-md-6">
-            <h3>Teams with no League</h3>
-            <form asp-area="Administration" asp-controller="Leagues" asp-action="AddTeams">
-
-                <select multiple class="dropdown" asp-for="NewTeamsToLeague">
-                    <option disabled>Select Teams</option>
-                    @foreach (var team in Model.TeamsWithNoLeague.Teams)
-                    {
-                        <option value="@team.Id" data-content="<img src='@team.BadgeUrl' style='height: 30px' /> @team.Name"></option>
-                    }
-                </select>
-
-                <button type="submit" class="btn">Add Teams</button>
-
-            </form>
-        </div>
     </div>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+</main>
 
 @section Scripts {
     <script>

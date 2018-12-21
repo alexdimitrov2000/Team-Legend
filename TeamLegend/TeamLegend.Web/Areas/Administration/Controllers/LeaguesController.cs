@@ -140,7 +140,7 @@
         public async Task<IActionResult> AddTeams(LeagueTeamsCollectionViewModel model)
         {
             var teamsIds = model.NewTeamsToLeague;
-            var leagueId = this.TempData["LeagueId"].ToString();
+            var leagueId = model.League.Id;
 
             var league = await this.leaguesService.GetByIdAsync(leagueId);
             var teamsToAdd = teamsIds.Select(t => this.teamsService.GetByIdAsync(t).GetAwaiter().GetResult()).ToList();

@@ -74,6 +74,22 @@ header a:hover {
         background-color: #075eff;
     }
 
+#team-list-item>a {
+    color: black;
+}
+
+#team-list-item:hover {
+    background-color: #075eff;
+}
+
+#team-list-item:hover>a{
+    color: #ffffff;
+}
+
+#team-list-item>a:hover {
+    color: #ffffff;
+}
+
 .profile-picture {
     border-radius: 50%;
     width: 33px;

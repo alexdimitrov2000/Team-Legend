@@ -16,7 +16,7 @@
                     <img src="@stadium.StadiumPictureUrl" id="stadiumImg" />
                     <hr class="teamLegend-line" />
                     <div>
-                        <a asp-controller="Players" asp-action="Details" asp-route-id="@stadium.Id">
+                        <a asp-area="" asp-controller="Stadiums" asp-action="Details" asp-route-id="@stadium.Id">
                             <h3>@stadium.Name</h3>
                         </a>
                     </div>

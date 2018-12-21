@@ -96,6 +96,11 @@ header a:hover {
     color: #ffffff;
 }
 
+.btn-Google {
+    background-color: #d62d20;
+    color: #ffffff;
+}
+
 #socialButton {
     height: 40px;
     font-size: 19px;

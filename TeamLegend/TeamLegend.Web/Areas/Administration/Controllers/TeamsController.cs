@@ -186,7 +186,7 @@
         public async Task<IActionResult> AddStaff(TeamPlayersCollectionViewModel model)
         {
             var playersIds = model.NewPlayers;
-            var teamId = this.TempData["TeamId"].ToString();
+            var teamId = model.Team.Id;
             var managerId = model.ManagerId;
 
             var team = await this.teamsService.GetByIdAsync(teamId);

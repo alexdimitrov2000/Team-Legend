@@ -5,83 +5,71 @@
 @{
     var managers = await this.managersService.GetAllAsync();
     managers = managers.Where(m => m.TeamId == null).ToList();
-    ViewData["Title"] = "SquadList";
+    ViewData["Title"] = "Squad List";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    TempData["TeamId"] = Model.Team.Id;
 }
 
-<h2 id="teamName">@Model.Team.Name</h2>
-<h3>Add Players</h3>
+<main>
+    <h1 class="text-center">Add Staff</h1>
+    <hr class="teamLegend-line" />
 
-<div class="row">
-    <div class="col-md-6">
-        <h3>Squad</h3>
-        <div id="squad">
-            @foreach (var player in Model.Squad.Players)
-            {
-                <div>
-                    <img src="@player.PlayerPictureUrl" style="height: 40px" />
-                    <a asp-area="" asp-controller="Players" asp-action="Details" asp-route-id="@player.Id">@player.Name</a>
+    <div class="jumbotron">
+        <div class="row justify-content-around">
+            <div class="col-md-4">
+                <div class="col-md-10">
+                    <h4 class="text-center">Squad</h4>
+                    <div class="text-left">
+                        <ol class="list-group">
+                            @foreach (var player in Model.Squad.Players)
+                            {
+                                <li class="list-group-item" id="team-list-item">
+                                    <img src="@player.PlayerPictureUrl" style="height: 40px" />
+                                    <a asp-area="" asp-controller="Players" asp-action="Details" asp-route-id="@player.Id">@player.Name</a>
+                                </li>
+                            }
+                        </ol>
+                    </div>
                 </div>
-            }
+            </div>
+            <div class="col-md-4 text-center text-bold">
+                <h2>@Model.Team.Name</h2>
+                <img src="@this.cloudinaryService.BuildTeamBadgePictureUrl(Model.Team.Name, Model.Team.BadgeVersion)" style="width: 200px" />
+            </div>
+            <div class="col-md-4 text-center">
+                <h4>Unemployed Players</h4>
+                <form asp-area="Administration" asp-controller="Teams" asp-action="AddStaff">
+
+                    <select multiple class="col-md-10 form-control" asp-for="NewPlayers">
+                        <option disabled class="dropdown-select">Select Players</option>
+                        @foreach (var player in Model.Unemployed.Players)
+                        {
+                            <option value="@player.Id" class="dropdown-select" data-content="<img src='@player.PlayerPictureUrl' style='height: 25px' /> @player.Name"></option>
+                        }
+                    </select>
+
+                    <h4 style="margin-top: 35px">Manager</h4>
+                    <select class="col-md-10 form-control" asp-for="ManagerId">
+                        <option selected class="dropdown-select">Select a Manager</option>
+                        @foreach (var manager in managers)
+                        {
+                            <option value="@manager.Id" class="dropdown-select" data-content="<img src='@this.cloudinaryService.BuildManagerPictureUrl(manager.Name, manager.ManagerPictureVersion)' style='height: 25px;width:25px' /> @manager.Name"></option>
+                        }
+                    </select>
+                    <span asp-validation-for="ManagerId" class="text-danger"></span>
+
+                    <input type="hidden" asp-for="Team.Id" value="@Model.Team.Id" />
+                    <div class="button-holder d-flex justify-content-center">
+                        <button type="submit" class="btn btn-teamLegend text-center col-md-9 col-sm-12" id="createButton">Add Staff</button>
+                    </div>
+
+                </form>
+            </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <h3>Unemployed Players</h3>
-        <form asp-area="Administration" asp-controller="Teams" asp-action="AddStaff">
-
-            <select multiple class="dropdown form-control" asp-for="NewPlayers" id="selectedPlayers">
-                <option disabled>Select Players</option>
-                @foreach (var player in Model.Unemployed.Players)
-                {
-                    <option value="@player.Id" data-content="<img src='@player.PlayerPictureUrl' style='height: 30px' /> @player.Name"></option>
-                }
-            </select>
-
-            <label asp-for="ManagerId" class="control-label"></label>
-            <select class="dropdown form-control" asp-for="ManagerId">
-                <option disabled selected>Select a Manager</option>
-                @foreach (var manager in managers)
-                {
-                    <option value="@manager.Id" data-content="<img src='@this.cloudinaryService.BuildManagerPictureUrl(manager.Name, manager.ManagerPictureVersion)' style='height: 25px;width:25px' /> @manager.Name"></option>
-                }
-            </select>
-            <span asp-validation-for="ManagerId" class="text-danger"></span>
-
-            <button type="submit" class="btn" id="AddPlayersForm">Add Staff</button>
-
-        </form>
-    </div>
-</div>
+</main>
 
 @section Scripts{
     <script>
         $('select').selectpicker();
     </script>
-    @*<script>
-            $('#addPlayersForm').click(function () {
-                var players = $('#selectedPlayers :selected').text();
-                alert(players);
-                $.ajax({
-                    type: "POST",
-                    url: "/Administration/Teams/AddStaff",
-                    data: { players: players }
-                })
-                    .done(function () {
-                        location.reload();
-                    });
-            $("#AddToSquad").click(function () {
-                var teamName = $("#teamName").val();
-                var playerName = $("#player a").val();
-                $.ajax({
-                    type: "POST",
-                    url: "/Administration/Teams/AddStaff",
-                    data: { teamName: teamName, playerName: playerName },
-                    success: function (data) {
-                        $("#player").appendTo("#squad");
-                    }
-                });
-            });
-            })
-        </script>*@
 }

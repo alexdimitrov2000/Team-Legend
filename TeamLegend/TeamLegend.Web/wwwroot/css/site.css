@@ -176,6 +176,25 @@ header a:hover {
         color: #003eb2;
     }
 
+table.table-bordered {
+    border: solid;
+    border-color: #075eff;
+    margin-top: 20px;
+}
+
+th {
+    color: #ffffff;
+    background-color: #075eff;
+}
+
+    table.table-bordered > thead > tr > th {
+        border: 0.09px solid #075eff;
+    }
+
+    table.table-bordered > tbody > tr > td {
+        border: 0.09px solid #075eff;
+    }
+
 .form-group a:hover {
     color: #ffffff;
 }

@@ -1,77 +1,62 @@
 ﻿@model TeamLegend.Web.Models.Leagues.LeagueDetailsViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "League Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<h2>Details</h2>
-
-<div>
-    <h4>LeagueDetailsViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Country)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Country)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.NumberOfTeams)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NumberOfTeams)
-        </dd>
-    </dl>
-    <a asp-area="Administration" asp-controller="Leagues" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
-    <a asp-area="Administration" asp-controller="Leagues" asp-action="TeamsList" asp-route-id="@Model.Id">Add more Teams</a>
-</div>*@
 <main class="mt-3">
-    <h1 class="text-center">League details</h1>
-    <hr class="bg-secondary half-width" />
-    <h2>@Model.Name  @Model.Country</h2>
-    @if (this.User.IsInRole("Admin"))
-    {
-        <a class="btn-primary" asp-area="Administration" asp-controller="Leagues" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
-        <a class="btn-primary" asp-area="Administration" asp-controller="Leagues" asp-action="TeamsList" asp-route-id="@Model.Id">Add more Teams</a>
-    }
-    <table class="table w-75 mx-auto table-hover">
-        <thead>
-            <tr class="row">
-                <th class="col-md-1"><strong>#</strong></th>
-                <th class="col-md-5"><strong>Team Name</strong></th>
-                <th class="col-md-1"><strong>Played</strong></th>
-                <th class="col-md-1"><strong>Scored</strong></th>
-                <th class="col-md-1"><strong>Conceded</strong></th>
-                <th class="col-md-2"><strong>Goal Difference</strong></th>
-                <th class="col-md-1"><strong>Total Points</strong></th>
-        </thead>
-        <tbody>
-            @for (int i = 0; i < Model.Teams.Count(); i++)
-            {
-                <tr class="row">
-                    @{ var team = Model.Teams[i]; }
-                    @{ var rowNumber = i + 1; }
-                    <td class="col-md-1"><strong>@rowNumber</strong></td>
-                    <td class="col-md-5"><img src='@team.BadgeUrl' style='height: 25px'/> @team.Name</td>
-                    <td class="col-md-1">@team.MatchesPlayed</td>
-                    <td class="col-md-1">@team.GoalsScored</td>
-                    <td class="col-md-1">@team.GoalsConceded</td>
-                    <td class="col-md-2">@team.GoalDifference</td>
-                    <td class="col-md-1">@team.TotalPoints</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+    <h1 class="text-center">@this.ViewData["Title"]</h1>
+    <hr class="teamLegend-line" />
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-7 text-right">
+                <h2>'@Model.Name' @Model.Country</h2>
+            </div>
+            <div class="col-md-5 text-right">
+                @if (this.User.IsInRole("Admin"))
+                {
+                    <div class="dropdown">
+                        <button type="button" class="btn dropdown-toggle" id="dropdown-menu-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-cog"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu-content">
+                            <a class="dropdown-item" asp-area="Administration" asp-controller="Leagues" asp-action="TeamsList" asp-route-id="@Model.Id">Add more Teams</a>
+                            <a class="dropdown-item" asp-area="Administration" asp-controller="Leagues" asp-action="Delete" asp-route-id="@Model.Id">Delete league</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table w-75 mx-auto table-hover table-bordered table-sm text-center">
+                <thead>
+                    <tr class="row">
+                        <th class="col-md-1"><strong>#</strong></th>
+                        <th class="col-md-5"><strong>Team Name</strong></th>
+                        <th class="col-md-1"><strong>Played</strong></th>
+                        <th class="col-md-1"><strong>Scored</strong></th>
+                        <th class="col-md-1"><strong>Conceded</strong></th>
+                        <th class="col-md-2"><strong>Goal Difference</strong></th>
+                        <th class="col-md-1"><strong>Total Points</strong></th>
+                </thead>
+                <tbody class="text-bold">
+                    @for (int i = 0; i < Model.Teams.Count(); i++)
+                    {
+                        <tr class="row">
+                            @{ var team = Model.Teams[i]; }
+                            @{ var rowNumber = i + 1; }
+                            <th class="col-md-1">@rowNumber</th>
+                            <td class="col-md-5"><a asp-controller="Teams" asp-action="Details" asp-route-id="@team.Id"><img src='@team.BadgeUrl' style='height: 25px' /> @team.Name</a></td>
+                            <td class="col-md-1">@team.MatchesPlayed</td>
+                            <td class="col-md-1">@team.GoalsScored</td>
+                            <td class="col-md-1">@team.GoalsConceded</td>
+                            <td class="col-md-2">@team.GoalsScored:@team.GoalsConceded (@team.GoalDifference)</td>
+                            <td class="col-md-1">@team.TotalPoints</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </main>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>

@@ -3,18 +3,18 @@
     using Models.League;
     using TeamLegend.Models;
     using Services.Contracts;
+    using TeamLegend.Web.Models.Teams;
+    using TeamLegend.Web.Models.Leagues;
     using Areas.Administration.Models.Leagues;
 
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
+    using Microsoft.EntityFrameworkCore;
 
-    using System.Threading.Tasks;
-    using System.Linq;
-    using TeamLegend.Web.Models.Teams;
-    using TeamLegend.Web.Models.Leagues;
     using System;
+    using System.Linq;
+    using System.Threading.Tasks;
 
     public class LeaguesController : AdministrationController
     {
@@ -24,8 +24,8 @@
         private readonly ITeamsService teamsService;
         private readonly ICloudinaryService cloudinaryService;
 
-        public LeaguesController(ILogger<LeaguesController> logger, 
-                                 ILeaguesService leaguesService, 
+        public LeaguesController(ILogger<LeaguesController> logger,
+                                 ILeaguesService leaguesService,
                                  IMapper mapper,
                                  ITeamsService teamsService,
                                  ICloudinaryService cloudinaryService)
@@ -70,7 +70,7 @@
                 this.logger.LogError(e.Message);
                 return this.View(model);
             }
-            
+
             return this.RedirectToAction("Details", "Leagues", new { area = "", id = league.Id });
         }
 
@@ -142,25 +142,30 @@
             var teamsIds = model.NewTeamsToLeague;
             var leagueId = model.League.Id;
 
-            var league = await this.leaguesService.GetByIdAsync(leagueId);
-            var teamsToAdd = teamsIds.Select(t => this.teamsService.GetByIdAsync(t).GetAwaiter().GetResult()).ToList();
-
+            League league = null;
             try
             {
+                league = await this.leaguesService.GetByIdAsync(leagueId);
+                var teamsToAdd = teamsIds.Select(t => this.teamsService.GetByIdAsync(t).GetAwaiter().GetResult()).ToList();
                 if (teamsToAdd.Any(t => t == null))
                     throw new ArgumentException("Not all teams exist.");
 
                 await this.leaguesService.AddTeamsAsync(league, teamsToAdd);
             }
+            catch (ArgumentNullException e)
+            {
+                this.logger.LogError(e.Message);
+                this.TempData["Error"] = "No teams were selected.";
+            }
             catch (ArgumentException e)
             {
                 this.logger.LogError(e.Message);
-                this.ViewData["Error"] = e.Message;
+                this.TempData["Error"] = e.Message;
             }
             catch (DbUpdateException e)
             {
                 this.logger.LogError(e.Message);
-                this.ViewData["Error"] = $"Could not add all teams to {league.Name}. Please try again.";
+                this.TempData["Error"] = $"Could not add all teams to {league?.Name}. Please try again.";
             }
 
             return this.RedirectToAction("Details", "Leagues", new { area = "", id = league.Id });

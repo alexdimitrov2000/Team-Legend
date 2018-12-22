@@ -44,6 +44,9 @@
                 return this.BadRequest(this.ModelState);
             }
 
+            if (this.TempData["Error"] != null)
+                this.TempData.Keep("Error");
+
             var participatingTeams = this.teamsService.GetAllAsync().GetAwaiter().GetResult()
                 .Where(t => t.LeagueId == id)
                 .Select(t => this.mapper.Map<TeamViewModel>(t))

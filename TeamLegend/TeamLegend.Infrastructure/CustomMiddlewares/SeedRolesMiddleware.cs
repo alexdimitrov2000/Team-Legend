@@ -14,8 +14,7 @@
         {
             this.next = next;
         }
-
-        // IMyService is injected into InvokeAsync
+        
         public async Task InvokeAsync(HttpContext httpContext, RoleManager<IdentityRole> roleManager)
         {
             if (!roleManager.Roles.Any())

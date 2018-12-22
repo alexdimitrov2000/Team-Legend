@@ -32,8 +32,6 @@
                             <h3>Current Team: Does not have a team.</h3>
                         }
 
-
-
                         @if (this.User.IsInRole("Admin"))
                         {
                             <a class="btn btn-teamLegend" id="adminButton" asp-area="Administration" asp-controller="Players" asp-action="Delete" asp-route-id="@Model.Id">Delete Player</a>

@@ -3,6 +3,8 @@
     using TeamLegend.Models;
     using TeamLegend.Models.Enums;
 
+    using System;
+
     public class PlayerDetailsViewModel
     {
         public string Id { get; set; }
@@ -15,7 +17,7 @@
 
         public double Height { get; set; }
 
-        public string DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
         public PlayingPosition PlayingPosition { get; set; }
 

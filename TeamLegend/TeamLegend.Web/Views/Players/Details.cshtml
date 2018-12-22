@@ -1,87 +1,49 @@
 ﻿@model TeamLegend.Web.Models.Players.PlayerDetailsViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Player Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<main class="mt-3">
+    <h1 class="text-center">@this.ViewData["Title"]</h1>
+    <hr class="teamLegend-line" />
+    <div class="jumbotron">
+        <h2 class="text-center">@Model.Name</h2>
 
-<div>
-    <h4>PlayerDetailsViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Nationality)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nationality)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Height)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Height)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DateOfBirth)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DateOfBirth)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PlayingPosition)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PlayingPosition)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.GoalsScored)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.GoalsScored)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Appearances)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Appearances)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.CurrentTeam)
-        </dt>
-        <dd>
-            @if (Model.CurrentTeam != null)
-            {
-                <a asp-controller="Teams" asp-action="Details" asp-route-id="@Model.CurrentTeam.Id">@Model.CurrentTeam.Name</a>
-            }
-            else
-            {
-                <h4>Does not have a team.</h4>
-            }
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PlayerPictureUrl)
-        </dt>
-        <dd>
-            <img src="@Model.PlayerPictureUrl" />
-        </dd>
-    </dl>
-    <a asp-area="Administration" asp-controller="Players" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
-</div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-10">
+                        <h3>Date of Birth: @Model.DateOfBirth.ToShortDateString() (@Model.Age age)</h3>
+
+                        <h3>Nationality: @Model.Nationality</h3>
+                        <h3>Playing Position: @Html.DisplayFor(model => model.PlayingPosition)</h3>
+                        <h3>Appearances: @Model.Appearances</h3>
+                        <h3>Goals Scored: @Model.GoalsScored</h3>
+
+                        @if (Model.CurrentTeam != null)
+                        {
+                            <h3>Current Team: <a asp-controller="Teams" asp-action="Details" asp-route-id="@Model.CurrentTeam.Id">@Model.CurrentTeam.Name</a></h3>
+                        }
+                        else
+                        {
+                            <h3>Current Team: Does not have a team.</h3>
+                        }
+
+
+
+                        @if (this.User.IsInRole("Admin"))
+                        {
+                            <a class="btn btn-teamLegend" id="adminButton" asp-area="Administration" asp-controller="Players" asp-action="Delete" asp-route-id="@Model.Id">Delete Player</a>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <img src="@Model.PlayerPictureUrl" class="img-fluid" style="width: 500px" />
+            </div>
+        </div>
+    </div>
+</main>

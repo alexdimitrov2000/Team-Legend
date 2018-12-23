@@ -15,10 +15,15 @@
             this.context = context;
         }
 
-        public async Task SetProfilePictureVersionAsync(ApplicationUser user, string version)
+        public async Task<bool> SetProfilePictureVersionAsync(ApplicationUser user, string version)
         {
+            if (user == null)
+                return false;
+
             user.ProfilePictureVersion = version;
             await this.context.SaveChangesAsync();
+
+            return true;
         }
     }
 }

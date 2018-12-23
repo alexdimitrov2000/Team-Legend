@@ -21,6 +21,9 @@
 
         public async Task<Player> CreateAsync(Player player)
         {
+            if (player == null)
+                return null;
+
             await this.context.Players.AddAsync(player);
             await this.context.SaveChangesAsync();
 
@@ -30,9 +33,7 @@
         public async Task<Player> GetByIdAsync(string id)
         {
             if (string.IsNullOrEmpty(id))
-            {
                 return null;
-            }
 
             return await this.context.Players.FirstOrDefaultAsync(p => p.Id == id);
         }
@@ -40,15 +41,16 @@
         public async Task<Player> GetByNameAsync(string name)
         {
             if (string.IsNullOrEmpty(name))
-            {
                 return null;
-            }
 
             return await this.context.Players.FirstOrDefaultAsync(p => p.Name == name);
         }
 
         public async Task<bool> DeleteAsync(Player player)
         {
+            if (player == null)
+                return false;
+
             this.context.Players.Remove(player);
             await this.context.SaveChangesAsync();
 
@@ -67,6 +69,9 @@
 
         public async Task<Player> AddPlayerToTeamAsync(Player player, Team team)
         {
+            if (player == null || team == null)
+                return null;
+
             player.CurrentTeam = team;
             this.context.Players.Update(player);
             await this.context.SaveChangesAsync();

@@ -20,6 +20,9 @@
 
         public async Task<League> CreateAsync(League league)
         {
+            if (league == null)
+                return null;
+
             await this.context.Leagues.AddAsync(league);
             await this.context.SaveChangesAsync();
 
@@ -34,14 +37,16 @@
         public async Task<League> GetByIdAsync(string id)
         {
             if (string.IsNullOrEmpty(id))
-            {
                 return null;
-            }
+
             return await this.context.Leagues.SingleOrDefaultAsync(l => l.Id == id);
         }
 
         public async Task<bool> DeleteAsync(League league)
         {
+            if (league == null)
+                return false;
+
             this.context.Leagues.Remove(league);
             await this.context.SaveChangesAsync();
 
@@ -50,6 +55,9 @@
 
         public async Task<League> AddTeamsAsync(League league, List<Team> teams)
         {
+            if (league == null || teams == null)
+                return null;
+
             teams.ForEach(t => league.Teams.Add(t));
             this.context.Leagues.Update(league);
 

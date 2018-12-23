@@ -20,6 +20,9 @@
 
         public async Task<Stadium> CreateAsync(Stadium stadium)
         {
+            if (stadium == null)
+                return null;
+
             await this.context.Stadiums.AddAsync(stadium);
             await this.context.SaveChangesAsync();
 
@@ -29,15 +32,16 @@
         public async Task<Stadium> GetByIdAsync(string id)
         {
             if (string.IsNullOrEmpty(id))
-            {
                 return null;
-            }
 
             return await this.context.Stadiums.SingleOrDefaultAsync(s => s.Id == id);
         }
 
         public async Task<bool> DeleteAsync(Stadium stadium)
         {
+            if (stadium == null)
+                return false;
+
             this.context.Stadiums.Remove(stadium);
             await this.context.SaveChangesAsync();
             return true;

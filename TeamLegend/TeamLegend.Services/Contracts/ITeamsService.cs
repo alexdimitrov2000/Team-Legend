@@ -16,8 +16,6 @@
 
         Task<List<Team>> GetAllWithoutLeagueAsync();
 
-        Task<Team> UpdateAsync(Team team);
-
         Task<bool> DeleteAsync(Team team);
 
         Task<Team> SetStadiumAsync(Team team, Stadium stadium);

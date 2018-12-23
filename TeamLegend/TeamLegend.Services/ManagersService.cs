@@ -20,6 +20,9 @@
 
         public async Task<Manager> CreateAsync(Manager manager)
         {
+            if (manager == null)
+                return null;
+
             await this.context.Managers.AddAsync(manager);
             await this.context.SaveChangesAsync();
 
@@ -43,6 +46,9 @@
 
         public async Task<bool> DeleteAsync(Manager manager)
         {
+            if (manager == null)
+                return false;
+
             this.context.Managers.Remove(manager);
             await this.context.SaveChangesAsync();
             return true;

@@ -1,5 +1,7 @@
 ﻿namespace TeamLegend.Web.Areas.Administration.Models.Managers
 {
+    using Common;
+
     using Microsoft.AspNetCore.Http;
 
     using System;
@@ -9,7 +11,7 @@
     {
         [Required]
         [Display(Name = "Name")]
-        [StringLength(int.MaxValue, MinimumLength = 3, ErrorMessage = "Manager's name has to contain at least {2} characters.")]
+        [StringLength(ValidationConstants.ManagerNameMaxLength, MinimumLength = ValidationConstants.ManagerNameMinLength, ErrorMessage = "Manager's name has to contain at least {2} characters.")]
         public string Name { get; set; }
 
         [DataType(DataType.Date)]
@@ -17,7 +19,7 @@
         public DateTime? DateOfBirth { get; set; }
 
         [Display(Name = "Nationality")]
-        [StringLength(int.MaxValue, MinimumLength = 3, ErrorMessage = "Manager's nationality name has to contain at least {2} characters.")]
+        [StringLength(ValidationConstants.ManagerNationalityMaxLength, MinimumLength = ValidationConstants.ManagerNationalityMinLength, ErrorMessage = "Manager's nationality name has to contain at least {2} characters.")]
         public string Nationality { get; set; }
 
         [Display(Name = "Manager Picture")]

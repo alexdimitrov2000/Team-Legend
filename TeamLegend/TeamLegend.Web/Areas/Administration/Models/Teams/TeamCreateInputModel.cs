@@ -1,5 +1,7 @@
 ﻿namespace TeamLegend.Web.Areas.Administration.Models.Teams
 {
+    using Common;
+
     using Microsoft.AspNetCore.Http;
 
     using System;
@@ -10,11 +12,11 @@
     {
         [Required]
         [Display(Name = "Name")]
-        [StringLength(100, MinimumLength = 3, ErrorMessage = "Team's name length must be at least {2} characters.")]
+        [StringLength(ValidationConstants.TeamNameMaxLength, MinimumLength = ValidationConstants.TeamNameMinLength, ErrorMessage = "Team's name length must be at least {2} characters.")]
         public string Name { get; set; }
 
         [Display(Name = "Nickname")]
-        [StringLength(100, MinimumLength = 2, ErrorMessage = "Team's nickname length must be at least {2} characters.")]
+        [StringLength(ValidationConstants.TeamNicknameMaxLength, MinimumLength = ValidationConstants.TeamNicknameMinLength, ErrorMessage = "Team's nickname length must be at least {2} characters.")]
         public string Nickname { get; set; }
 
         [Display(Name = "Date of Foundation")]

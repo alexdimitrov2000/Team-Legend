@@ -1,7 +1,10 @@
 ﻿namespace TeamLegend.Models
 {
+    using Common;
+
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     public class Team
     {
@@ -13,10 +16,17 @@
 
         public string Id { get; set; }
 
+        [Required]
+        [Display(Name = "Name")]
+        [StringLength(ValidationConstants.TeamNameMaxLength, MinimumLength = ValidationConstants.TeamNameMinLength, ErrorMessage = "Team's name length must be at least {2} characters.")]
         public string Name { get; set; }
 
+        [Display(Name = "Nickname")]
+        [StringLength(ValidationConstants.TeamNicknameMaxLength, MinimumLength = ValidationConstants.TeamNicknameMinLength, ErrorMessage = "Team's nickname length must be at least {2} characters.")]
         public string Nickname { get; set; }
 
+        [Display(Name = "Date of Foundation")]
+        [DataType(DataType.Date)]
         public DateTime? DateOfFoundation { get; set; }
 
         public int GoalsScored { get; set; }

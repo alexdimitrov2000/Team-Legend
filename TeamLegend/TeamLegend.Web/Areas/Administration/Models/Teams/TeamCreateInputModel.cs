@@ -25,6 +25,9 @@
 
         public IFormFile Badge { get; set; }
 
+        [Display(Name = "Manager")]
+        public string ManagerId { get; set; }
+
         [Display(Name = "Players")]
         public ICollection<string> SquadPlayers { get; set; }
     }

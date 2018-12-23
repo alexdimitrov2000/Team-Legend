@@ -80,6 +80,9 @@
 
                     await this.teamsService.AddNewPlayersAsync(team, playersToAdd);
                 }
+
+                if (model.ManagerId != null)
+                    await this.AddManager(model.ManagerId, team);
             }
             catch (DbUpdateException e)
             {

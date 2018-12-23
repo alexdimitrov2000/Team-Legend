@@ -1,10 +1,14 @@
 ﻿@model TeamLegend.Web.Areas.Administration.Models.Teams.TeamCreateInputModel
 
 @inject IPlayersService playersService;
+@inject IManagersService managersService;
 @inject ICloudinaryService cloudinaryService;
 @{
     var players = await this.playersService.GetAllAsync();
     players = players.Where(p => p.CurrentTeam == null).ToList();
+
+    var managers = await this.managersService.GetAllAsync();
+    managers = managers.Where(m => m.TeamId == null).ToList();
     ViewData["Title"] = "Create a Team";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -54,6 +58,17 @@
                                 }
                             </select>
                             <span asp-validation-for="SquadPlayers" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="ManagerId" class="control-label"></label>
+                            <select class="dropdown-select form-control" asp-for="ManagerId">
+                                <option disabled selected="selected" class="dropdown-select">Select a Manager</option>
+                                @foreach (var manager in managers)
+                                {
+                                    <option value="@manager.Id" class="dropdown-select" data-content="<img src='@this.cloudinaryService.BuildManagerPictureUrl(manager.Name, manager.ManagerPictureVersion)' style='height: 25px; width: 25px' /> @manager.Name"></option>
+                                }
+                            </select>
+                            <span asp-validation-for="ManagerId" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="Badge" class="control-label">Team Badge: </label>

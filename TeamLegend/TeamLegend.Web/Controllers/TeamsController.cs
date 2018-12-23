@@ -11,7 +11,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class TeamsController : Controller
+    public class TeamsController : BaseController
     {
         private readonly IMapper mapper;
         private readonly ITeamsService teamsService;

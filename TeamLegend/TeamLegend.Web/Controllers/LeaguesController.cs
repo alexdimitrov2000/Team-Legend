@@ -10,7 +10,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class LeaguesController : Controller
+    public class LeaguesController : BaseController
     {
         private readonly ILeaguesService leagueService;
         private readonly IMapper mapper;

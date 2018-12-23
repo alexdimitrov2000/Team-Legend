@@ -8,7 +8,7 @@
 
     using System.Threading.Tasks;
 
-    public class PlayersController : Controller
+    public class PlayersController : BaseController
     {
         private readonly IPlayersService playersService;
         private readonly ICloudinaryService cloudinaryService;

@@ -8,7 +8,7 @@
 
     using System.Threading.Tasks;
 
-    public class ManagersController : Controller
+    public class ManagersController : BaseController
     {
         private readonly IMapper mapper;
         private readonly IManagersService managersService;

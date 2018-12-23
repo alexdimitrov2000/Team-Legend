@@ -2,13 +2,13 @@
 {
     using Models.Leagues;
     using Services.Contracts;
+    using Web.Models.Teams;
 
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
 
     using System.Linq;
     using System.Threading.Tasks;
-    using TeamLegend.Web.Models.Teams;
 
     public class LeaguesController : Controller
     {

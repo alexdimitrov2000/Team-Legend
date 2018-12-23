@@ -43,7 +43,7 @@
         }
 
         [HttpPost]
-        [AutoValidateAntiforgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(LeagueCreateInputModel model)
         {
             if (!this.ModelState.IsValid)
@@ -137,6 +137,7 @@
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddTeams(LeagueTeamsCollectionViewModel model)
         {
             var teamsIds = model.NewTeamsToLeague;

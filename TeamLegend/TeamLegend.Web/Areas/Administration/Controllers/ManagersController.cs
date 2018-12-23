@@ -1,9 +1,9 @@
 ﻿namespace TeamLegend.Web.Areas.Administration.Controllers
 {
     using Common;
+    using Models.Managers;
     using TeamLegend.Models;
     using Services.Contracts;
-    using Areas.Administration.Models.Managers;
 
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;

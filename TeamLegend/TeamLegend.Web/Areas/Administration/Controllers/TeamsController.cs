@@ -1,19 +1,21 @@
 ﻿namespace TeamLegend.Web.Areas.Administration.Controllers
 {
-    using Areas.Administration.Models.Players;
-    using Areas.Administration.Models.Stadiums;
+    using Models.Teams;
+    using Models.Players;
+    using Models.Stadiums;
+    using Web.Models.Teams;
+    using TeamLegend.Common;
+    using TeamLegend.Models;
+    using Services.Contracts;
+
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Logging;
-    using Models.Teams;
-    using Services.Contracts;
+    using Microsoft.EntityFrameworkCore;
+
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using TeamLegend.Common;
-    using TeamLegend.Models;
-    using Web.Models.Teams;
 
     public class TeamsController : AdministrationController
     {
@@ -183,6 +185,7 @@
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddStaff(TeamPlayersCollectionViewModel model)
         {
             var playersIds = model.NewPlayers;

@@ -73,7 +73,7 @@
                 }
                 await this.teamsService.CreateAsync(team);
 
-                if (model.SquadPlayers.Count > 0)
+                if (model.SquadPlayers != null && model.SquadPlayers.Count > 0)
                 {
                     var playersIds = model.SquadPlayers;
                     var playersToAdd = playersIds.Select(p => this.playersService.GetByIdAsync(p).GetAwaiter().GetResult()).ToList();
@@ -84,6 +84,7 @@
             catch (DbUpdateException e)
             {
                 this.logger.LogError(e.Message);
+                this.TempData["Error"] = e.InnerException.Message;
                 return this.View(model);
             }
 

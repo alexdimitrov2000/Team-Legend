@@ -24,7 +24,7 @@
             builder.HasOne(t => t.Manager)
                 .WithOne(m => m.Team)
                 .HasForeignKey<Manager>(m => m.TeamId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.SetNull);
 
             builder.HasIndex(t => t.Name)
                 .IsUnique();

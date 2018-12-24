@@ -50,7 +50,11 @@
             var participatingTeams = this.teamsService.GetAllAsync().GetAwaiter().GetResult()
                 .Where(t => t.LeagueId == id)
                 .Select(t => this.mapper.Map<TeamViewModel>(t))
+                .OrderByDescending(t => t.TotalPoints)
+                .ThenByDescending(t => t.GoalDifference)
+                .ThenByDescending(t => t.GoalsScored)
                 .ToList();
+
             participatingTeams.ForEach(t => t.BadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(t.Name, t.BadgeVersion));
 
             var leagueDetailsViewModel = this.mapper.Map<LeagueDetailsViewModel>(league);

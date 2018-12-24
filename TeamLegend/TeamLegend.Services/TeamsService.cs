@@ -1,14 +1,12 @@
 ﻿namespace TeamLegend.Services
 {
-    using Data;
-    using Models;
     using Contracts;
-
+    using Data;
     using Microsoft.EntityFrameworkCore;
-
-    using System.Threading.Tasks;
+    using Models;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     public class TeamsService : ITeamsService
     {
@@ -97,7 +95,9 @@
             if (team == null || manager == null)
                 return null;
 
-            team.Manager.Team = null;
+            if (team.Manager != null)
+                team.Manager.Team = null;
+
             team.Manager = manager;
             this.context.Teams.Update(team);
 

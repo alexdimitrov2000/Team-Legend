@@ -97,6 +97,7 @@
             if (team == null || manager == null)
                 return null;
 
+            team.Manager.Team = null;
             team.Manager = manager;
             this.context.Teams.Update(team);
 

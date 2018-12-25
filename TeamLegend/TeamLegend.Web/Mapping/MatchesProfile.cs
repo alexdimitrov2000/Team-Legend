@@ -1,5 +1,6 @@
 ﻿namespace TeamLegend.Web.Mapping
 {
+    using Models.Home;
     using TeamLegend.Models;
     using Areas.Administration.Models.Matches;
 
@@ -10,6 +11,10 @@
         public MatchesProfile()
         {
             CreateMap<MatchCreateInputModel, Match>();
+
+            CreateMap<Match, MatchHomeViewModel>()
+                .ForMember(m => m.StadiumName,
+                        opt => opt.MapFrom(src => src.HomeTeam.Stadium.Name));
         }
     }
 }

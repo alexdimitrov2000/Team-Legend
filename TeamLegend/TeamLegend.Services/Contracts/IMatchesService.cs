@@ -10,5 +10,7 @@
         Task<Match> CreateAsync(Match match);
 
         Task<List<Match>> GetAllPlayedAsync();
+
+        Task<List<Match>> GetAllUnplayedAsync();
     }
 }

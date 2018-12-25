@@ -26,6 +26,7 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu-content">
                             <a class="dropdown-item" asp-area="Administration" asp-controller="Leagues" asp-action="TeamsList" asp-route-id="@Model.Id">Add more Teams</a>
+                            <a class="dropdown-item" asp-area="Administration" asp-controller="Matches" asp-action="Create" asp-route-leagueId="@Model.Id">Add Match</a>
                             <a class="dropdown-item" asp-area="Administration" asp-controller="Leagues" asp-action="Delete" asp-route-id="@Model.Id">Delete league</a>
                         </div>
                     </div>

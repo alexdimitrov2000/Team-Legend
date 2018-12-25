@@ -28,12 +28,12 @@
             var unplayedMatches = await this.matchesService.GetAllUnplayedAsync();
 
             var lastPlayedMatches = playedMatches.OrderByDescending(m => m.Date)
-                .Take(5)
+                .Take(4)
                 .Select(m => this.mapper.Map<MatchHomeViewModel>(m))
                 .ToList();
 
             var topComingMatches = unplayedMatches.OrderBy(m => m.Date)
-                .Take(5)
+                .Take(4)
                 .Select(m => this.mapper.Map<MatchHomeViewModel>(m))
                 .ToList();
 

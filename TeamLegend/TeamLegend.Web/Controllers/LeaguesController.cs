@@ -16,13 +16,15 @@
         private readonly IMapper mapper;
         private readonly ITeamsService teamsService;
         private readonly ICloudinaryService cloudinaryService;
+        private readonly IMatchesService matchesService;
 
-        public LeaguesController(ILeaguesService leagueService, IMapper mapper, ITeamsService teamsService, ICloudinaryService cloudinaryService)
+        public LeaguesController(ILeaguesService leagueService, IMapper mapper, ITeamsService teamsService, ICloudinaryService cloudinaryService, IMatchesService matchesService)
         {
             this.leagueService = leagueService;
             this.mapper = mapper;
             this.teamsService = teamsService;
             this.cloudinaryService = cloudinaryService;
+            this.matchesService = matchesService;
         }
 
         public async Task<IActionResult> All()
@@ -47,6 +49,8 @@
             if (this.TempData["Error"] != null)
                 this.TempData.Keep("Error");
 
+            var matches = await this.matchesService.GetAllPlayedAsync();
+
             var participatingTeams = this.teamsService.GetAllAsync().GetAwaiter().GetResult()
                 .Where(t => t.LeagueId == id)
                 .Select(t => this.mapper.Map<TeamViewModel>(t))
@@ -56,6 +60,7 @@
                 .ToList();
 
             participatingTeams.ForEach(t => t.BadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(t.Name, t.BadgeVersion));
+            participatingTeams.ForEach(t => t.MatchesPlayed = matches.Where(m => m.HomeTeamId == t.Id || m.AwayTeamId == t.Id).ToArray().Length);
 
             var leagueDetailsViewModel = this.mapper.Map<LeagueDetailsViewModel>(league);
             leagueDetailsViewModel.Teams = participatingTeams;

@@ -10,6 +10,9 @@
         public void Configure(EntityTypeBuilder<Fixture> builder)
         {
             builder.HasKey(f => f.Id);
+
+            builder.HasIndex(f => f.FixtureRound)
+                .IsUnique();
         }
     }
 }

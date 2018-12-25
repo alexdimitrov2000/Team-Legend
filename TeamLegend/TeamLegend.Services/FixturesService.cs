@@ -17,16 +17,16 @@
             this.context = context;
         }
 
-        public async Task<Fixture> GetOrCreateAsync(int fixtureRound)
+        public async Task<Fixture> GetOrCreateAsync(int fixtureRound, string leagueId)
         {
-            if (fixtureRound <= 0)
+            if (fixtureRound <= 0 || string.IsNullOrEmpty(leagueId))
                 return null;
 
-            var fixture = await this.context.Fixtures.FirstOrDefaultAsync(f => f.FixtureRound == fixtureRound);
+            var fixture = await this.context.Fixtures.FirstOrDefaultAsync(f => f.LeagueId == leagueId && f.FixtureRound == fixtureRound);
 
             if (fixture == null)
             {
-                fixture = new Fixture { FixtureRound = fixtureRound };
+                fixture = new Fixture { FixtureRound = fixtureRound, LeagueId = leagueId };
                 await this.context.Fixtures.AddAsync(fixture);
                 await this.context.SaveChangesAsync();
             }

@@ -1,5 +1,7 @@
 ﻿namespace TeamLegend.Web.Areas.Administration.Models.Matches
 {
+    using Common;
+
     using System;
     using System.ComponentModel.DataAnnotations;
 
@@ -21,6 +23,7 @@
         public DateTime? Date { get; set; }
 
         [Required]
+        [Range(ValidationConstants.FixtureRoundMinRange, ValidationConstants.FixtureRoundMaxRange)]
         [Display(Name = "Fixture Round")]
         public int FixtureRound { get; set; }
     }

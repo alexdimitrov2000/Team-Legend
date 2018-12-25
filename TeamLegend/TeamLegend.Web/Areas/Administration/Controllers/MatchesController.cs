@@ -48,7 +48,7 @@
 
             try
             {
-                var fixture = await this.fixturesService.GetOrCreateAsync(model.FixtureRound);
+                var fixture = await this.fixturesService.GetOrCreateAsync(model.FixtureRound, model.LeagueId);
                 match.Fixture = fixture;
 
                 await this.matchesService.CreateAsync(match);
@@ -60,7 +60,7 @@
                 return this.View(model);
             }
 
-            return this.RedirectToAction("Details", "Matches", new { area = "", id = match.Id });
+            return this.RedirectToAction("Index", "Home", new { area = "" });
         }
     }
 }

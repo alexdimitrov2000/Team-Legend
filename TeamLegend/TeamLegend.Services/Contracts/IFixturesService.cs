@@ -6,6 +6,6 @@
 
     public interface IFixturesService
     {
-        Task<Fixture> GetOrCreateAsync(int fixtureRound);
+        Task<Fixture> GetOrCreateAsync(int fixtureRound, string leagueId);
     }
 }

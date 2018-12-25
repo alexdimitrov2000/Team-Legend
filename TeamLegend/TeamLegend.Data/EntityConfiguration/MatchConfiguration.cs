@@ -13,11 +13,13 @@
 
             builder.HasOne(m => m.HomeTeam)
                 .WithMany(t => t.Matches)
-                .HasForeignKey(m => m.HomeTeamId);
+                .HasForeignKey(m => m.HomeTeamId)
+                .OnDelete(DeleteBehavior.SetNull);
 
             builder.HasOne(m => m.Fixture)
                 .WithMany(f => f.Matches)
-                .HasForeignKey(m => m.FixtureId);
+                .HasForeignKey(m => m.FixtureId)
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

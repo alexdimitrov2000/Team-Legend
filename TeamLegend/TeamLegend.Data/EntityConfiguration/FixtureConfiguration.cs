@@ -11,8 +11,13 @@
         {
             builder.HasKey(f => f.Id);
 
-            builder.HasIndex(f => f.FixtureRound)
+            builder.HasIndex(f => new { f.FixtureRound, f.LeagueId })
                 .IsUnique();
+
+            builder.HasOne(f => f.League)
+                .WithMany(l => l.Fixtures)
+                .HasForeignKey(f => f.LeagueId)
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

@@ -26,5 +26,8 @@
         public const int TeamNameMaxLength = 100;
         public const int TeamNicknameMinLength = 2;
         public const int TeamNicknameMaxLength = 100;
+
+        public const int FixtureRoundMinRange = 1;
+        public const int FixtureRoundMaxRange = 40;
     }
 }

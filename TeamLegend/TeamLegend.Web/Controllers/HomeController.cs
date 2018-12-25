@@ -1,15 +1,15 @@
 ﻿namespace TeamLegend.Web.Controllers
 {
     using Models;
+    using Models.Home;
     using Services.Contracts;
 
+    using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
 
+    using System.Linq;
     using System.Diagnostics;
     using System.Threading.Tasks;
-    using TeamLegend.Web.Models.Home;
-    using System.Linq;
-    using AutoMapper;
 
     public class HomeController : Controller
     {
@@ -44,25 +44,6 @@
             };
 
             return View(matchCollectionViewModel);
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

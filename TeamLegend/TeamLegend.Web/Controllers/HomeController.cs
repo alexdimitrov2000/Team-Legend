@@ -7,6 +7,7 @@
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
 
+    using System;
     using System.Linq;
     using System.Diagnostics;
     using System.Threading.Tasks;
@@ -32,7 +33,8 @@
                 .Select(m => this.mapper.Map<MatchHomeViewModel>(m))
                 .ToList();
 
-            var topComingMatches = unplayedMatches.OrderBy(m => m.Date)
+            var topComingMatches = unplayedMatches.Where(m => m.Date.Date >= DateTime.UtcNow.Date)
+                .OrderBy(m => m.Date)
                 .Take(4)
                 .Select(m => this.mapper.Map<MatchHomeViewModel>(m))
                 .ToList();

@@ -16,5 +16,7 @@
         Task<Match> GetByIdAsync(string id);
 
         Task<Match> UpdateScoreAsync(Match match, int homeTeamGoals, int awayTeamGoals);
+
+        Task<Match> UpdateTeamsGoalsAsync(Match match, int homeTeamGoals, int awayTeamGoals);
     }
 }

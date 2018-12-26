@@ -50,10 +50,40 @@
             return match;
         }
 
+        public async Task<Match> UpdateTeamsGoalsAsync(Match match, int homeTeamGoals, int awayTeamGoals)
+        {
+            var homeTeamScored = homeTeamGoals;
+            var awayTeamScored = awayTeamGoals;
+
+            var homeTeamConceded = awayTeamScored;
+            var awayTeamConceded = homeTeamScored;
+
+            match.HomeTeam.GoalsScored += homeTeamScored;
+            match.HomeTeam.GoalsConceded += homeTeamConceded;
+
+            match.AwayTeam.GoalsScored += awayTeamScored;
+            match.AwayTeam.GoalsConceded += awayTeamConceded;
+
+            this.context.Matches.Update(match);
+            await this.context.SaveChangesAsync();
+
+            return match;
+        }
+
         public async Task<Match> UpdateScoreAsync(Match match, int homeTeamGoals, int awayTeamGoals)
         {
-            if (homeTeamGoals <= 0 || awayTeamGoals <= 0 || match == null)
+            if (homeTeamGoals < 0 || awayTeamGoals < 0 || match == null)
                 return null;
+
+            if (homeTeamGoals > awayTeamGoals)
+                match.HomeTeam.TotalPoints += 3;
+            else if (awayTeamGoals > homeTeamGoals)
+                match.AwayTeam.TotalPoints += 3;
+            else if (homeTeamGoals == awayTeamGoals)
+            {
+                match.HomeTeam.TotalPoints += 1;
+                match.AwayTeam.TotalPoints += 1;
+            }
 
             match.HomeTeamGoals = homeTeamGoals;
             match.AwayTeamGoals = awayTeamGoals;

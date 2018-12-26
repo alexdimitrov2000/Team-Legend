@@ -10,6 +10,7 @@
     <Compile Remove="Migrations\20181127230709_InitialCreate.cs" />
     <Compile Remove="Migrations\20181202204413_InitialCreate.cs" />
     <Compile Remove="Migrations\20181225200835_AddedFixturesToLeagues.cs" />
+    <Compile Remove="Migrations\20181226134412_EditedPlayerAppearances.cs" />
   </ItemGroup>
 
   <ItemGroup>

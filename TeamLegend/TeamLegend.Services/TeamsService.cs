@@ -105,5 +105,19 @@
 
             return team;
         }
+
+        public async Task<Team> IncreasePlayersAppearancesAsync(Team team)
+        {
+            if (team == null)
+                return null;
+
+            var players = team.Players.ToList();
+            players.ForEach(p => p.Appearances++);
+
+            this.context.Players.UpdateRange(players);
+            await this.context.SaveChangesAsync();
+
+            return team;
+        }
     }
 }

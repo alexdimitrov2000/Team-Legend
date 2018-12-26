@@ -15,13 +15,19 @@
         private readonly IMapper mapper;
         private readonly ILogger<MatchesController> logger;
         private readonly IFixturesService fixturesService;
+        private readonly ITeamsService teamsService;
 
-        public MatchesController(IMatchesService matchesService, IMapper mapper, ILogger<MatchesController> logger, IFixturesService fixturesService)
+        public MatchesController(IMatchesService matchesService, 
+                                 IMapper mapper, 
+                                 ILogger<MatchesController> logger, 
+                                 IFixturesService fixturesService,
+                                 ITeamsService teamsService)
         {
             this.matchesService = matchesService;
             this.mapper = mapper;
             this.logger = logger;
             this.fixturesService = fixturesService;
+            this.teamsService = teamsService;
         }
 
         public IActionResult Create(string leagueId)
@@ -85,6 +91,12 @@
             try
             {
                 match = await this.matchesService.GetByIdAsync(model.Id);
+                if (!match.IsPlayed)
+                {
+                    await this.teamsService.IncreasePlayersAppearancesAsync(match.HomeTeam);
+                    await this.teamsService.IncreasePlayersAppearancesAsync(match.AwayTeam);
+                }
+
                 await this.matchesService.UpdateScoreAsync(match, model.HomeTeamGoals, model.AwayTeamGoals);
             }
             catch (DbUpdateException e)

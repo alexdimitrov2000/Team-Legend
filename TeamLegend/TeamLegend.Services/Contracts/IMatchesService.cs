@@ -12,5 +12,7 @@
         Task<List<Match>> GetAllPlayedAsync();
 
         Task<List<Match>> GetAllUnplayedAsync();
+
+        Task<Match> GetByIdAsync(string id);
     }
 }

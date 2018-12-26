@@ -6,9 +6,9 @@
 
     using Microsoft.EntityFrameworkCore;
 
+    using System.Linq;
     using System.Threading.Tasks;
     using System.Collections.Generic;
-    using System.Linq;
 
     public class MatchesService : IMatchesService
     {
@@ -39,74 +39,15 @@
         {
             return await this.context.Matches.Where(m => m.IsPlayed == false).ToListAsync();
         }
-        
-        public async Task<List<Match>> GenerateMatches(League league)
+
+        public async Task<Match> GetByIdAsync(string id)
         {
-            //var teams = league.Teams.ToList();
-            //teams.Remove(teams.First(t => t.Name == "Chelsea FC"));
+            if (string.IsNullOrEmpty(id))
+                return null;
 
-            //var matches = new List<Match>();
+            var match = await this.context.Matches.FirstOrDefaultAsync(m => m.Id == id);
 
-            //var random = new Random();
-
-            //foreach (var team in teams)
-            //{
-            //    var opponents = teams.Where(t => t.Name != team.Name).ToList();
-
-            //    for (int i = opponents.Count; i > 0; i--)
-            //    {
-            //        var opponent = opponents[random.Next(0, opponents.Count)];
-            //        var matchDate = DateTime.UtcNow.AddDays(7 * i);
-
-            //        var match = new Match
-            //        {
-            //            HomeTeam = team,
-            //            HomeTeamId = team.Id,
-            //            AwayTeam = opponent,
-            //            AwayTeamId = opponent.Id,
-            //            Date = matchDate,
-            //        };
-
-            //        matches.Add(match);
-            //        opponents.Remove(opponent);
-            //    }
-            //}
-
-            //var teamsToUpdate = new List<Team>();
-            //while (teams.Count > 0)
-            //{
-            //    var teamsCount = teams.Count;
-            //    var homeTeam = teams[random.Next(0, teamsCount)];
-            //    var awayTeam = teams[random.Next(0, teamsCount)];
-
-            //    if (homeTeam.Name == awayTeam.Name)
-            //        continue;
-
-            //    var match = new Match
-            //    {
-            //        HomeTeam = homeTeam,
-            //        AwayTeam = awayTeam,
-            //        Date = DateTime.UtcNow
-            //    };
-
-            //    matches.Add(match);
-
-            //    homeTeam.Matches.Add(match);
-            //    awayTeam.Matches.Add(match);
-            //    teamsToUpdate.Add(homeTeam);
-            //    teamsToUpdate.Add(awayTeam);
-
-            //    teams.Remove(homeTeam);
-            //    teams.Remove(awayTeam);
-            //    Console.WriteLine($"{match.HomeTeam.Name} vs {match.AwayTeam.Name}");
-            //}
-
-            //this.context.Teams.UpdateRange(teamsToUpdate);
-            //await this.context.Matches.AddRangeAsync(matches);
-            //await this.context.SaveChangesAsync();
-
-            //return matches;
-            return null;
+            return match;
         }
     }
 }

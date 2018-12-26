@@ -33,5 +33,14 @@
 
             return fixture;
         }
+
+        public async Task<Fixture> GetByLeagueIdAndRoundAsync(string leagueId, int round)
+        {
+            if (string.IsNullOrEmpty(leagueId) || round <= 0)
+                return null;
+
+            var fixture = await this.context.Fixtures.FirstOrDefaultAsync(f => f.LeagueId == leagueId && f.FixtureRound == round);
+            return fixture;
+        }
     }
 }

@@ -1,0 +1,113 @@
+﻿@model TeamLegend.Web.Models.Home.FixtureMatchesCollectionViewModel
+
+@inject ICloudinaryService cloudinaryService
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="mt-3">
+    <h1 class="text-center">@Model.League.Name</h1>
+    <h4 class="text-center">Fixture Round &#8470;@Model.FixtureRound</h4>
+    <hr class="teamLegend-line" />
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-7 text-right">
+                @if (this.TempData["Error"] != null)
+                {
+                    <h5 class="text-danger">@this.TempData["Error"]</h5>
+                }
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table w-75 mx-auto table-hover table-bordered table-sm text-center">
+                <tbody class="text-bold text-center">
+                    @if (this.User.IsInRole("Admin"))
+                    {
+                        @foreach (var match in Model.FixtureMatches)
+                        {
+                            <tr class="row">
+                                @{
+                                    var homeTeam = match.HomeTeam;
+                                    var awayTeam = match.AwayTeam;
+                                    var homeTeamBadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(homeTeam.Name, homeTeam.BadgeVersion);
+                                    var awayTeamBadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(awayTeam.Name, awayTeam.BadgeVersion);
+                                }
+                                <td class="col-md-9">
+                                    @if (match.IsPlayed)
+                                    {
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-md-4 text-right">@homeTeam.Name</div>
+                                            <div class="col-md-1 text-center"><img src="@homeTeamBadgeUrl" id="fixtureTeamImg" /></div>
+                                            <div class="col-md-1">@match.HomeTeamGoals : @match.AwayTeamGoals</div>
+                                            <div class="col-md-1 text-center"><img src="@awayTeamBadgeUrl" id="fixtureTeamImg" /></div>
+                                            <div class="col-md-4 text-left">@awayTeam.Name</div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-md-4 text-right">@homeTeam.Name</div>
+                                            <div class="col-md-1 text-center"><img src="@homeTeamBadgeUrl" id="fixtureTeamImg" /></div>
+                                            <div class="col-md-1">&ndash; : &ndash;</div>
+                                            <div class="col-md-1 text-center"><img src="@awayTeamBadgeUrl" id="fixtureTeamImg" /></div>
+                                            <div class="col-md-4 text-left">@awayTeam.Name</div>
+                                        </div>
+                                    }
+                                </td>
+                                <td class="col-md-2">@match.Date.ToShortDateString()</td>
+                                <td class="col-md-1">
+                                    @if (match.IsPlayed)
+                                    {
+                                        <button class="btn btn-teamLegend" type="button" disabled id="finalizeButton">Finalize</button>
+                                    }
+                                    else
+                                    {
+                                        <a asp-area="Administration" asp-controller="Matches" asp-action="Finalize" asp-route-id="@match.Id"><button class="btn btn-teamLegend" id="finalizeButton">Finalize</button></a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        @foreach (var match in Model.FixtureMatches)
+                        {
+                            <tr class="row">
+                                @{
+                                    var homeTeam = match.HomeTeam;
+                                    var awayTeam = match.AwayTeam;
+                                    var homeTeamBadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(homeTeam.Name, homeTeam.BadgeVersion);
+                                    var awayTeamBadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(awayTeam.Name, awayTeam.BadgeVersion);
+                                }
+                                <td class="col-md-10">
+                                    @if (match.IsPlayed)
+                                    {
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-md-4 text-right">@homeTeam.Name</div>
+                                            <div class="col-md-1 text-center"><img src="@homeTeamBadgeUrl" id="fixtureTeamImg" /></div>
+                                            <div class="col-md-1">@match.HomeTeamGoals : @match.AwayTeamGoals</div>
+                                            <div class="col-md-1 text-center"><img src="@awayTeamBadgeUrl" id="fixtureTeamImg" /></div>
+                                            <div class="col-md-4 text-left">@awayTeam.Name</div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-md-4 text-right">@homeTeam.Name</div>
+                                            <div class="col-md-1 text-center"><img src="@homeTeamBadgeUrl" id="fixtureTeamImg" /></div>
+                                            <div class="col-md-1">&ndash; : &ndash;</div>
+                                            <div class="col-md-1 text-center"><img src="@awayTeamBadgeUrl" id="fixtureTeamImg" /></div>
+                                            <div class="col-md-4 text-left">@awayTeam.Name</div>
+                                        </div>
+                                    }
+                                </td>
+                                <td class="col-md-2">@match.Date.ToShortDateString()</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

@@ -30,16 +30,16 @@
             return match;
         }
 
-        public Task<List<Match>> GetAllPlayedAsync()
+        public async Task<List<Match>> GetAllPlayedAsync()
         {
-            return this.context.Matches.Where(m => m.IsPlayed == true).ToListAsync();
+            return await this.context.Matches.Where(m => m.IsPlayed == true).ToListAsync();
         }
 
-        public Task<List<Match>> GetAllUnplayedAsync()
+        public async Task<List<Match>> GetAllUnplayedAsync()
         {
-            return this.context.Matches.Where(m => m.IsPlayed == false).ToListAsync();
+            return await this.context.Matches.Where(m => m.IsPlayed == false).ToListAsync();
         }
-
+        
         public async Task<List<Match>> GenerateMatches(League league)
         {
             //var teams = league.Teams.ToList();

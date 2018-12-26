@@ -8,7 +8,14 @@
 
 <main class="mt-3">
     <h1 class="text-center">@Model.League.Name</h1>
-    <h4 class="text-center">Fixture Round &#8470;@Model.FixtureRound</h4>
+    <h4 class="text-center">
+        Matchday &#8470; <select asp-for="FixtureRound" style="font-size: large" id="round">
+            @foreach (var fixture in Model.Fixtures)
+            {
+                <option value="@fixture">@fixture</option>
+            }
+        </select>
+    </h4>
     <hr class="teamLegend-line" />
     <div class="jumbotron">
         <div class="row">
@@ -111,3 +118,13 @@
         </div>
     </div>
 </main>
+
+@section Scripts {
+    <script>
+        $('#round').change(function () {
+            var round = $(this).val();
+            url = "/Fixtures/Details?leagueId=6465311c-c24b-4a9c-ad41-3f0136a2d2f7&round=" + round;
+            $(location).attr("href", url);
+        });
+    </script>
+}

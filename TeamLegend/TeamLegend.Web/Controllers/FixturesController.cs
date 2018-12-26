@@ -26,6 +26,7 @@
         {
             var fixture = await this.fixturesService.GetByLeagueIdAndRoundAsync(leagueId, round);
             var league = await this.leaguesService.GetByIdAsync(leagueId);
+            var fixtures = league.Fixtures.Select(f => f.FixtureRound).OrderBy(f => f).ToArray();
             var matches = fixture.Matches.OrderBy(m => m.Date)
                 .Select(m => this.mapper.Map<MatchHomeViewModel>(m))
                 .ToList();
@@ -34,6 +35,7 @@
             {
                 Id = fixture.Id,
                 League = league,
+                Fixtures = fixtures,
                 FixtureRound = fixture.FixtureRound,
                 FixtureMatches = matches
             };

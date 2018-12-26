@@ -10,6 +10,8 @@
 
         public int FixtureRound { get; set; }
 
+        public int[] Fixtures { get; set; }
+
         public League League { get; set; }
 
         public List<MatchHomeViewModel> FixtureMatches { get; set; }

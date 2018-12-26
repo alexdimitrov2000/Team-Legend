@@ -2,7 +2,7 @@
 
 @inject ICloudinaryService cloudinaryService
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Fixture Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -55,16 +55,9 @@
                                         </div>
                                     }
                                 </td>
-                                <td class="col-md-2">@match.Date.ToShortDateString()</td>
-                                <td class="col-md-1">
-                                    @if (match.IsPlayed)
-                                    {
-                                        <button class="btn btn-teamLegend" type="button" disabled id="finalizeButton">Finalize</button>
-                                    }
-                                    else
-                                    {
-                                        <a asp-area="Administration" asp-controller="Matches" asp-action="Finalize" asp-route-id="@match.Id"><button class="btn btn-teamLegend" id="finalizeButton">Finalize</button></a>
-                                    }
+                                <td class="col-md-1">@match.Date.ToShortDateString()</td>
+                                <td class="col-md-2">
+                                    <a asp-area="Administration" asp-controller="Matches" asp-action="Finalize" asp-route-id="@match.Id"><button class="btn btn-teamLegend" id="finalizeButton">Update Scores</button></a>
                                 </td>
                             </tr>
                         }

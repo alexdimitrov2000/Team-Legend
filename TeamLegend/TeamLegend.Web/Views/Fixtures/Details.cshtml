@@ -57,7 +57,14 @@
                                 </td>
                                 <td class="col-md-1">@match.Date.ToShortDateString()</td>
                                 <td class="col-md-2">
-                                    <a asp-area="Administration" asp-controller="Matches" asp-action="Finalize" asp-route-id="@match.Id"><button class="btn btn-teamLegend" id="finalizeButton">Update Scores</button></a>
+                                    @if (match.IsPlayed)
+                                    {
+                                        <button class="btn btn-teamLegend" id="finalizeButton" disabled>Update Scores</button>
+                                    }
+                                    else
+                                    {
+                                        <a asp-area="Administration" asp-controller="Matches" asp-action="Finalize" asp-route-id="@match.Id"><button class="btn btn-teamLegend" id="finalizeButton">Update Scores</button></a>
+                                    }
                                 </td>
                             </tr>
                         }

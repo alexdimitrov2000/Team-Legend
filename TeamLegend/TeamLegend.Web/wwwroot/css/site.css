@@ -66,6 +66,11 @@ header a:hover {
     height: 150px;
 }
 
+#badge {
+    width: auto;
+    height: 100px;
+}
+
 #fixtureTeamImg {
     width: auto;
     height: 35px;

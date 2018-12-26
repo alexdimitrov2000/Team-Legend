@@ -1,0 +1,75 @@
+﻿@model TeamLegend.Web.Areas.Administration.Models.Matches.MatchGoalscorersViewModel
+
+@{
+    ViewData["Title"] = "Set Goalscorers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var homeTeam = Model.HomeTeam;
+    var awayTeam = Model.AwayTeam;
+}
+
+<main>
+    <h1 class="text-center">Set match goalscorers</h1>
+    <hr class="teamLegend-line" />
+
+    <div class="jumbotron">
+        @if (this.ViewData["Error"] != null)
+        {
+            <h5 class="text-danger text-center">@this.ViewData["Error"]</h5>
+        }
+        <form asp-area="Administration" asp-controller="Matches" asp-action="SetGoalscorers" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger text-center"></div>
+            <div class="row justify-content-around">
+                <div class="col-md-4">
+                    <div class="col-md-10">
+                        <h3 class="text-center">@homeTeam.Name <img src="@homeTeam.BadgeUrl" id="badge" style="margin-left: 7px" /></h3>
+                        <div class="text-left">
+                            @for (int i = 0; i < Model.HomeTeamGoals; i++)
+                            {
+                                <h5 style="margin: 7px">Goal &#8470;@(i + 1)</h5>
+                                <select class="dropdown-select form-control" asp-for="HomeTeamScorers[i]">
+                                    <option disabled selected class="dropdown-select">Select Scorer</option>
+                                    @foreach (var player in homeTeam.Players)
+                                    {
+                                        <option value="@player.Id" class="dropdown-select" data-content="<img src='@player.PlayerPictureUrl' style='height: 30px' /> @player.Name"></option>
+                                    }
+                                </select>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 text-center text-bold" style="padding-top: 30px">
+                    <h2>@Model.HomeTeamGoals &ndash; @Model.AwayTeamGoals</h2>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h3 class="text-center"><img src="@awayTeam.BadgeUrl" id="badge" style="margin-right: 7px" /> @awayTeam.Name</h3>
+                    <div class="text-left">
+                        @for (int i = 0; i < Model.AwayTeamGoals; i++)
+                        {
+                            <h5 style="margin: 7px">Goal &#8470;@(i + 1)</h5>
+                            <select class="dropdown-select form-control" asp-for="AwayTeamScorers[i]">
+                                <option disabled selected class="dropdown-select">Select Scorer</option>
+                                @foreach (var player in awayTeam.Players)
+                                {
+                                    <option value="@player.Id" class="dropdown-select" data-content="<img src='@player.PlayerPictureUrl' style='height: 30px' /> @player.Name"></option>
+                                }
+                            </select>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="button-holder d-flex justify-content-center">
+                <input type="hidden" asp-for="Id" value="@Model.Id" />
+                <input type="hidden" asp-for="LeagueId" value="@Model.LeagueId" />
+                <input type="hidden" asp-for="FixtureRound" value="@Model.FixtureRound" />
+                <button type="submit" class="btn btn-teamLegend text-center col-md-4 col-sm-12" id="createButton">Set</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+@section Scripts{
+    <script>
+        $('select').selectpicker();
+    </script>
+}

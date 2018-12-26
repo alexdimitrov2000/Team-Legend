@@ -20,5 +20,7 @@
         Task<ICollection<Player>> GetAllWithoutTeamAsync();
 
         Task<Player> AddPlayerToTeamAsync(Player player, Team team);
+
+        Task<List<Player>> IncreasePlayersGoalsAsync(List<Player> players);
     }
 }

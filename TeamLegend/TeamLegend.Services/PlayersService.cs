@@ -78,5 +78,18 @@
 
             return player;
         }
+
+        public async Task<List<Player>> IncreasePlayersGoalsAsync(List<Player> players)
+        {
+            if (players == null)
+                return null;
+
+            players.ForEach(p => p.GoalsScored++);
+
+            this.context.Players.UpdateRange(players);
+            await this.context.SaveChangesAsync();
+
+            return players;
+        }
     }
 }

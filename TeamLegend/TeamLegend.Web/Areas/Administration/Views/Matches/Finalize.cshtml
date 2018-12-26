@@ -1,0 +1,56 @@
+﻿@model TeamLegend.Web.Areas.Administration.Models.Matches.MatchFinalizeViewModel
+
+@inject ICloudinaryService cloudinaryService
+@{
+    ViewData["Title"] = "Finalize Match";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var homeTeam = Model.HomeTeam;
+    var awayTeam = Model.AwayTeam;
+}
+
+<main>
+    <h1 class="text-center">@this.ViewData["Title"]</h1>
+    <hr class="teamLegend-line" />
+
+    <div class="jumbotron">
+        <form asp-area="Administration" asp-controller="Matches" asp-action="Finalize" method="post">
+            <div class="text-center text-danger">
+                @if (this.ViewData["Error"] != null)
+                {
+                    <h5>@this.ViewData["Error"]</h5>
+                }
+                <div asp-validation-summary="All"></div>
+            </div>
+            <div class="row d-flex align-items-center">
+                <div class="col-md-5 text-right">
+                    <h3>@homeTeam.Name <img src="@this.cloudinaryService.BuildTeamBadgePictureUrl(homeTeam.Name, homeTeam.BadgeVersion)" style="height: 50px; width: auto" /></h3>
+                </div>
+                <div class="col-md-2 text-center">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <input asp-for="HomeTeamGoals" min="0" step="1" class="form-control" />
+                        </div>
+                        <div class="col-md-2">
+                            &ndash;
+                        </div>
+                        <div class="col-md-5">
+                            <input asp-for="AwayTeamGoals" min="0" step="1" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 text-left">
+                    <h3><img src="@this.cloudinaryService.BuildTeamBadgePictureUrl(awayTeam.Name, awayTeam.BadgeVersion)" style="height: 50px; width: auto" /> @awayTeam.Name</h3>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <input type="hidden" asp-for="Id" value="@Model.Id" />
+                <input type="hidden" asp-for="HomeTeam.Name" value="@Model.HomeTeam.Name" />
+                <input type="hidden" asp-for="HomeTeam.BadgeVersion" value="@Model.HomeTeam.BadgeVersion" />
+                <input type="hidden" asp-for="AwayTeam.Name" value="@Model.AwayTeam.Name" />
+                <input type="hidden" asp-for="AwayTeam.BadgeVersion" value="@Model.AwayTeam.BadgeVersion" />
+                <button class="btn btn-teamLegend" id="createButton">Set Goalscorers</button>
+            </div>
+        </form>
+    </div>
+</main>

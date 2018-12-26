@@ -14,5 +14,7 @@
         Task<List<Match>> GetAllUnplayedAsync();
 
         Task<Match> GetByIdAsync(string id);
+
+        Task<Match> UpdateScoreAsync(Match match, int homeTeamGoals, int awayTeamGoals);
     }
 }

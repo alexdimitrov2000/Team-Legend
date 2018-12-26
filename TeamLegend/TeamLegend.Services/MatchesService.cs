@@ -49,5 +49,20 @@
 
             return match;
         }
+
+        public async Task<Match> UpdateScoreAsync(Match match, int homeTeamGoals, int awayTeamGoals)
+        {
+            if (homeTeamGoals <= 0 || awayTeamGoals <= 0 || match == null)
+                return null;
+
+            match.HomeTeamGoals = homeTeamGoals;
+            match.AwayTeamGoals = awayTeamGoals;
+            match.IsPlayed = true;
+
+            this.context.Matches.Update(match);
+            await this.context.SaveChangesAsync();
+
+            return match;
+        }
     }
 }

@@ -62,5 +62,39 @@
 
             return this.RedirectToAction("Index", "Home", new { area = "" });
         }
+
+        public async Task<IActionResult> Finalize(string id)
+        {
+            var match = await this.matchesService.GetByIdAsync(id);
+
+            var matchViewModel = this.mapper.Map<MatchFinalizeViewModel>(match);
+
+            return this.View(matchViewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Finalize(MatchFinalizeViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            Match match = null;
+            try
+            {
+                match = await this.matchesService.GetByIdAsync(model.Id);
+                await this.matchesService.UpdateScoreAsync(match, model.HomeTeamGoals, model.AwayTeamGoals);
+            }
+            catch (DbUpdateException e)
+            {
+                this.logger.LogError(e.Message);
+                this.ViewData["Error"] = e.InnerException.Message;
+                return this.View(model);
+            }
+
+            return this.RedirectToAction("Details", "Fixtures", new { area = "", leagueId = match.Fixture.LeagueId, round = match.Fixture.FixtureRound });
+        }
     }
 }

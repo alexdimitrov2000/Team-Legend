@@ -21,7 +21,9 @@
                 .ForMember(l => l.NumberOfTeams,
                         opt => opt.MapFrom(src => src.Teams.Count()));
 
-            CreateMap<League, LeagueDeleteViewModel>();
+            CreateMap<League, LeagueDeleteViewModel>()
+                .ForMember(m => m.NumberOfTeams,
+                        opt => opt.MapFrom(src => src.Teams.Count));
         }
     }
 }

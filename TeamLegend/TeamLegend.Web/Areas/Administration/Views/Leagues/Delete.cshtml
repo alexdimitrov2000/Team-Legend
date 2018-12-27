@@ -15,7 +15,10 @@
 
         <div class="row text-center">
             <div class="col-md-7">
-                <h3>Country: @Model.Country</h3>
+                <div class="col-md-7 text-right">
+                    <h3>Country: @Model.Country</h3>
+                    <h3>Teams: @Model.NumberOfTeams</h3>
+                </div>
             </div>
             <div class="col-md-5">
                 <form asp-area="Administration" asp-controller="Leagues" asp-action="Delete" asp-route-id="@Model.Id" method="post">

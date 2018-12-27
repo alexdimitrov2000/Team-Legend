@@ -116,6 +116,9 @@
             var participatingTeams = this.teamsService.GetAllAsync().GetAwaiter().GetResult()
                 .Where(t => t.LeagueId == id)
                 .Select(t => this.mapper.Map<TeamViewModel>(t))
+                .OrderByDescending(t => t.TotalPoints)
+                .ThenByDescending(t => t.GoalDifference)
+                .ThenByDescending(t => t.GoalsScored)
                 .ToList();
 
             var teamsWithNoLeague = this.teamsService.GetAllWithoutLeagueAsync().GetAwaiter().GetResult()

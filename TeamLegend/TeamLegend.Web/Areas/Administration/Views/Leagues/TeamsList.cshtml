@@ -3,8 +3,6 @@
 @{
     ViewData["Title"] = "Teams List";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
-    var participatingTeams = Model.ParticipatingTeams.Teams.OrderByDescending(t => t.TotalPoints).ToList();
 }
 
 <main>
@@ -18,7 +16,7 @@
                     <h4 class="text-center">Teams in the League</h4>
                     <div class="text-left" id="participatingTeams">
                         <ol class="list-group">
-                            @foreach (var team in participatingTeams)
+                            @foreach (var team in Model.ParticipatingTeams.Teams)
                             {
                                 <li class="list-group-item" id="team-list-item">
                                     <img src="@team.BadgeUrl" style="height: 40px" />

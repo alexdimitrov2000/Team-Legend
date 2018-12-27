@@ -33,6 +33,16 @@
                         {
                             <h3>Nationality: No information</h3>
                         }
+
+                        @if (Model.Team != null)
+                        {
+                            <h3>Current Team: <a asp-controller="Teams" asp-action="Details" asp-route-id="@Model.Team.Id">@Model.Team.Name</a></h3>
+                        }
+                        else
+                        {
+                            <h3>Current Team: Not leading a team.</h3>
+                        }
+
                         @if (this.User.IsInRole("Admin"))
                         {
                             <a class="btn btn-teamLegend" id="adminButton" asp-area="Administration" asp-controller="Managers" asp-action="Delete" asp-route-id="@Model.Id">Delete Manager</a>

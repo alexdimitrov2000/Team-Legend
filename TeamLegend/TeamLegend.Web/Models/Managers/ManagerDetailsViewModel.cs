@@ -1,5 +1,7 @@
 ﻿namespace TeamLegend.Web.Models.Managers
 {
+    using TeamLegend.Models;
+
     using System;
     using System.ComponentModel.DataAnnotations;
 
@@ -21,5 +23,8 @@
 
         [Display(Name = "Manager Picture")]
         public string ManagerPictureUrl { get; set; }
+
+        [Display(Name = "Team")]
+        public Team Team { get; set; }
     }
 }

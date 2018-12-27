@@ -182,6 +182,7 @@
 
             var squad = this.playersService.GetAllAsync().GetAwaiter().GetResult()
                 .Where(p => p.CurrentTeamId == teamId)
+                .OrderBy(p => p.PlayingPosition)
                 .Select(p => this.mapper.Map<PlayerViewModel>(p))
                 .ToList();
 

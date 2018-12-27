@@ -82,6 +82,7 @@
             this.ViewData["HasNextPage"] = ((page + 1) * NumberOfPlayersOnPage) - NumberOfPlayersOnPage < squadPlayers.Count();
 
             var squad = squadPlayers
+                        .OrderBy(p => p.PlayingPosition)
                         .Select(p => this.mapper.Map<PlayerViewModel>(p))
                         .Skip((page - 1) * NumberOfTeamsOnPage)
                         .Take(NumberOfTeamsOnPage)

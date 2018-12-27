@@ -5,9 +5,9 @@
     using Contracts;
 
     using Microsoft.EntityFrameworkCore;
-
-    using System.Linq;
+    
     using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     public class StadiumsService : IStadiumsService
     {
@@ -47,9 +47,9 @@
             return true;
         }
 
-        public IQueryable<Stadium> GetAll()
+        public async Task<List<Stadium>> GetAllAsync()
         {
-            return this.context.Stadiums.AsQueryable();
+            return await this.context.Stadiums.ToListAsync();
         }
     }
 }

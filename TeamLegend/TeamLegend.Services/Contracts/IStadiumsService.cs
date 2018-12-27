@@ -2,8 +2,8 @@
 {
     using Models;
 
-    using System.Linq;
     using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     public interface IStadiumsService
     {
@@ -13,6 +13,6 @@
 
         Task<bool> DeleteAsync(Stadium stadium);
 
-        IQueryable<Stadium> GetAll();
+        Task<List<Stadium>> GetAllAsync();
     }
 }

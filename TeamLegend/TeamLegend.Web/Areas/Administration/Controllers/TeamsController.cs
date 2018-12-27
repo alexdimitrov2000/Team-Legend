@@ -130,12 +130,14 @@
             return this.RedirectToAction("Index", "Home", new { area = "" });
         }
 
-        public IActionResult SetStadium(string teamId)
+        public async Task<IActionResult> SetStadium(string teamId, int page = 1)
         {
-            var stadiums = this.stadiumsService.GetAll().Select(s => this.mapper.Map<StadiumViewModel>(s)).ToList();
-            stadiums.ForEach(s => s.StadiumPictureUrl = this.cloudinaryService.BuildStadiumPictureUrl(s.Name, s.StadiumPictureVersion));
+            var stadiums = await this.stadiumsService.GetAllAsync();
 
-            var stadiumCollection = new StadiumsCollectionViewModel { Stadiums = stadiums };
+            var stadiumModels = stadiums.Select(s => this.mapper.Map<StadiumViewModel>(s)).ToList();
+            stadiumModels.ForEach(s => s.StadiumPictureUrl = this.cloudinaryService.BuildStadiumPictureUrl(s.Name, s.StadiumPictureVersion));
+
+            var stadiumCollection = new StadiumsCollectionViewModel { Stadiums = stadiumModels };
             this.ViewData["TeamId"] = teamId;
 
             return this.View(stadiumCollection);

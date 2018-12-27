@@ -14,7 +14,8 @@
 
     public class TeamsController : BaseController
     {
-        private const int NumberOfEntitiesOnPage = GlobalConstants.NumberOfTeamsOnPage;
+        private const int NumberOfTeamsOnPage = GlobalConstants.NumberOfTeamsOnPage;
+        private const int NumberOfPlayersOnPage = GlobalConstants.NumberOfPlayersOnPage;
 
         private readonly IMapper mapper;
         private readonly ITeamsService teamsService;
@@ -49,17 +50,17 @@
         {
             var teams = await this.teamsService.GetAllAsync();
 
-            var validatedPage = PageValidator.ValidatePage(page, teams.Count(), NumberOfEntitiesOnPage);
+            var validatedPage = PageValidator.ValidatePage(page, teams.Count(), NumberOfTeamsOnPage);
             if (validatedPage != page)
                 return this.RedirectToAction("All", "Teams", new { area = "", page = validatedPage });
 
             var teamsModels = teams.Select(t => this.mapper.Map<TeamViewModel>(t))
-                           .Skip((page - 1) * NumberOfEntitiesOnPage)
-                           .Take(NumberOfEntitiesOnPage)
+                           .Skip((page - 1) * NumberOfTeamsOnPage)
+                           .Take(NumberOfTeamsOnPage)
                            .ToList();
 
             this.ViewData["Page"] = page;
-            this.ViewData["HasNextPage"] = ((page + 1) * NumberOfEntitiesOnPage) - NumberOfEntitiesOnPage < teams.Count();
+            this.ViewData["HasNextPage"] = ((page + 1) * NumberOfTeamsOnPage) - NumberOfTeamsOnPage < teams.Count();
 
             teamsModels.ForEach(t => t.BadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(t.Name, t.BadgeVersion));
 
@@ -68,14 +69,23 @@
             return this.View(teamCollectionViewModel);
         }
 
-        public async Task<IActionResult> SquadList(string teamId)
+        public async Task<IActionResult> SquadList(string teamId, int page = 1)
         {
             var team = await this.teamsService.GetByIdAsync(teamId);
+            var squadPlayers = await this.playersService.GetAllFromTeamAsync(teamId);
 
-            var squad = this.playersService.GetAllAsync().GetAwaiter().GetResult()
-                .Where(p => p.CurrentTeamId == teamId)
-                .Select(p => this.mapper.Map<PlayerViewModel>(p))
-                .ToList();
+            var validatedPage = PageValidator.ValidatePage(page, squadPlayers.Count(), NumberOfPlayersOnPage);
+            if (validatedPage != page)
+                return this.RedirectToAction("SquadList", "Teams", new { area = "", teamId = teamId, page = validatedPage });
+
+            this.ViewData["Page"] = page;
+            this.ViewData["HasNextPage"] = ((page + 1) * NumberOfPlayersOnPage) - NumberOfPlayersOnPage < squadPlayers.Count();
+
+            var squad = squadPlayers
+                        .Select(p => this.mapper.Map<PlayerViewModel>(p))
+                        .Skip((page - 1) * NumberOfTeamsOnPage)
+                        .Take(NumberOfTeamsOnPage)
+                        .ToList();
 
             var teamModel = this.mapper.Map<TeamViewModel>(team);
             squad.ForEach(p => p.PlayerPictureUrl = this.cloudinaryService.BuildPlayerPictureUrl(p.Name, p.PlayerPictureVersion));

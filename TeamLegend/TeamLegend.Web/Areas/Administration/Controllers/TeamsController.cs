@@ -3,7 +3,6 @@
     using Models.Teams;
     using Models.Players;
     using Models.Stadiums;
-    using Web.Models.Teams;
     using TeamLegend.Common;
     using TeamLegend.Models;
     using Services.Contracts;

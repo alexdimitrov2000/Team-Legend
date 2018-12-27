@@ -2,9 +2,8 @@
 {
     using Common;
     using Models.Teams;
+    using Web.Models.Players;
     using Services.Contracts;
-    using Areas.Administration.Models.Teams;
-    using Areas.Administration.Models.Players;
 
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
@@ -94,7 +93,7 @@
             var teamPlayersCollection = new TeamPlayersCollectionViewModel
             {
                 Team = teamModel,
-                Squad = new PlayersCollectionViewModel { Players = squad }
+                Squad =  squad 
             };
 
             return this.View(teamPlayersCollection);

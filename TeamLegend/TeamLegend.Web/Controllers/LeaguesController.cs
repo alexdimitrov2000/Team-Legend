@@ -1,17 +1,18 @@
 ﻿namespace TeamLegend.Web.Controllers
 {
+    using AutoMapper;
+    using Common;
+    using Microsoft.AspNetCore.Mvc;
     using Models.Leagues;
     using Services.Contracts;
-    using Web.Models.Teams;
-
-    using AutoMapper;
-    using Microsoft.AspNetCore.Mvc;
-
     using System.Linq;
     using System.Threading.Tasks;
+    using Web.Models.Teams;
 
     public class LeaguesController : BaseController
     {
+        private const int NumberOfEntitiesOnPage = GlobalConstants.NumberOfLeaguesOnPage;
+
         private readonly ILeaguesService leagueService;
         private readonly IMapper mapper;
         private readonly ITeamsService teamsService;
@@ -27,13 +28,24 @@
             this.matchesService = matchesService;
         }
 
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(int page = 1)
         {
-            var leagues = (await this.leagueService.GetAllAsync())
-                .Select(l => this.mapper.Map<LeagueIndexViewModel>(l))
-                .ToList();
+            var leagues = await this.leagueService.GetAllAsync();
 
-            var leagueAllViewModel = new LeagueAllViewModel { Leagues = leagues };
+            var validatedPage = PageValidator.ValidatePage(page, leagues.Count(), NumberOfEntitiesOnPage);
+            if (validatedPage != page)
+                return this.RedirectToAction("All", "Leagues", new { area = "", page = validatedPage });
+            
+            this.ViewData["Page"] = page;
+            this.ViewData["HasNextPage"] = ((page + 1) * NumberOfEntitiesOnPage) - NumberOfEntitiesOnPage < leagues.Count();
+
+            var leaguesModels = leagues
+                            .Select(l => this.mapper.Map<LeagueIndexViewModel>(l))
+                            .Skip((page - 1) * NumberOfEntitiesOnPage)
+                            .Take(NumberOfEntitiesOnPage)
+                            .ToList();
+
+            var leagueAllViewModel = new LeagueAllViewModel { Leagues = leaguesModels };
             return this.View(leagueAllViewModel);
         }
 

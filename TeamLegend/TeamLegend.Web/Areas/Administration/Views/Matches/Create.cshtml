@@ -24,22 +24,22 @@
                     <div class="col-md-10">
                         <div class="form-group">
                             <label asp-for="HomeTeamId" class="control-label"></label> <span class="required-field">&#42;</span>
-                            <select class="form-control" asp-for="HomeTeamId">
+                            <select class="dropdown-select form-control" asp-for="HomeTeamId">
                                 <option disabled selected="selected" class="dropdown-select">Select a Team</option>
                                 @foreach (var team in teams)
                                 {
-                                    <option value="@team.Id" class="dropdown-select">@team.Name</option>
+                                    <option value="@team.Id" class="dropdown-select" data-content="<img src='@this.cloudinaryService.BuildTeamBadgePictureUrl(team.Name, team.BadgeVersion)' style='height: 25px' /> @team.Name"></option>
                                 }
                             </select>
                             <span asp-validation-for="HomeTeamId" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="AwayTeamId" class="control-label"></label> <span class="required-field">&#42;</span>
-                            <select class="form-control" asp-for="AwayTeamId">
+                            <select class="dropdown-select form-control" asp-for="AwayTeamId">
                                 <option disabled selected="selected" class="dropdown-select">Select a Team</option>
                                 @foreach (var team in teams)
                                 {
-                                    <option value="@team.Id" class="dropdown-select">@team.Name</option>
+                                    <option value="@team.Id" class="dropdown-select" data-content="<img src='@this.cloudinaryService.BuildTeamBadgePictureUrl(team.Name, team.BadgeVersion)' style='height: 25px' /> @team.Name"></option>
                                 }
                             </select>
                             <span asp-validation-for="AwayTeamId" class="text-danger"></span>
@@ -69,42 +69,9 @@
     </div>
 </main>
 
-@*<h2>Create</h2>
-
-    <h4>MatchCreateInputModel</h4>
-    <hr />
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="Create">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="HomeTeamId" class="control-label"></label>
-                    <input asp-for="HomeTeamId" class="form-control" />
-                    <span asp-validation-for="HomeTeamId" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="AwayTeamId" class="control-label"></label>
-                    <input asp-for="AwayTeamId" class="form-control" />
-                    <span asp-validation-for="AwayTeamId" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Date" class="control-label"></label>
-                    <input asp-for="Date" class="form-control" />
-                    <span asp-validation-for="Date" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="FixtureRound" class="control-label"></label>
-                    <input asp-for="FixtureRound" class="form-control" />
-                    <span asp-validation-for="FixtureRound" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div>
-        <a asp-action="Index">Back to List</a>
-    </div>*@
-
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $('select').selectpicker();
+    </script>
+}

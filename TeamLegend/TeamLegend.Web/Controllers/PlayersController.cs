@@ -1,10 +1,12 @@
 ﻿namespace TeamLegend.Web.Controllers
 {
-    using AutoMapper;
     using Common;
-    using Microsoft.AspNetCore.Mvc;
     using Models.Players;
     using Services.Contracts;
+
+    using AutoMapper;
+    using Microsoft.AspNetCore.Mvc;
+
     using System.Linq;
     using System.Threading.Tasks;
 

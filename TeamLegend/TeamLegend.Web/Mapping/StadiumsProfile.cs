@@ -16,7 +16,9 @@
 
             CreateMap<Stadium, StadiumDeleteViewModel>();
 
-            CreateMap<Stadium, StadiumViewModel>();
+            CreateMap<Stadium, Areas.Administration.Models.Stadiums.StadiumViewModel>();
+
+            CreateMap<Stadium, Models.Stadiums.StadiumViewModel>();
         }
     }
 }

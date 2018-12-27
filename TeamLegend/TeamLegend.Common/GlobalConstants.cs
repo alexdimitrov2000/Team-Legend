@@ -21,5 +21,7 @@
         public const int NumberOfStadiumsOnPage = 10;
 
         public const int NumberOfPlayersOnPage = 10;
+
+        public const int NumberOfManagersOnPage = 10;
     }
 }

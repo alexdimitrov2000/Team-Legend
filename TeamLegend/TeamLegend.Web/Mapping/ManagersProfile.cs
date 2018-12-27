@@ -15,6 +15,8 @@
             CreateMap<Manager, ManagerDetailsViewModel>();
 
             CreateMap<Manager, ManagerDeleteViewModel>();
+
+            CreateMap<Manager, ManagerViewModel>();
         }
     }
 }

@@ -3,22 +3,7 @@
     <div class="navbar-right">
         <ul class="nav navbar-nav mr-auto navbar-right">
             <li class="nav-item">
-                <div class="dropdown">
-                    <button type="button" class="btn dropdown-toggle" id="dropdown-menu-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        @if (this.ViewData["ProfilePicture"] != null)
-                        {
-                            <img src="@ViewData["ProfilePicture"]" class="profile-picture" />
-                        }
-                        else
-                        {
-                            <i class="fas fa-user"></i> @this.User.Identity.Name
-                        }
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu-content">
-                        <a class="dropdown-item text-bold" asp-area="Identity" asp-page="/Account/Manage/Index"><i class="fas fa-cog"></i> Manage account</a>
-                        <a class="dropdown-item text-bold" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"><i class="fas fa-sign-out-alt"></i> Logout</a>
-                    </div>
-                </div>
+                <vc:user-profile principal-user="@this.User"></vc:user-profile>
             </li>
         </ul>
     </div>

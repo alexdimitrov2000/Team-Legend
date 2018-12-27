@@ -95,7 +95,7 @@ header a:hover {
         background-color: #075eff;
     }
 
-#team-list-item>a {
+#team-list-item > a {
     color: black;
 }
 
@@ -103,11 +103,11 @@ header a:hover {
     background-color: #075eff;
 }
 
-#team-list-item:hover>a{
-    color: #ffffff;
-}
+    #team-list-item:hover > a {
+        color: #ffffff;
+    }
 
-#team-list-item>a:hover {
+#team-list-item > a:hover {
     color: #ffffff;
 }
 
@@ -191,7 +191,7 @@ header a:hover {
     padding-bottom: 5px;
 }
 
-#adminButton:hover{
+#adminButton:hover {
     color: #ffffff;
 }
 
@@ -240,13 +240,13 @@ th {
     background-color: #075eff;
 }
 
-    table.table-bordered > thead > tr > th {
-        border: 0.09px solid #075eff;
-    }
+table.table-bordered > thead > tr > th {
+    border: 0.09px solid #075eff;
+}
 
-    table.table-bordered > tbody > tr > td {
-        border: 0.09px solid #075eff;
-    }
+table.table-bordered > tbody > tr > td {
+    border: 0.09px solid #075eff;
+}
 
 .form-group a:hover {
     color: #ffffff;

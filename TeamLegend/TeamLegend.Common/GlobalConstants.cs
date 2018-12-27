@@ -13,5 +13,11 @@
         public const string ManagerPicture = "{0}_managerPicture";
 
         public const string FilePath = "/{0}/{1}";
+
+        public const int NumberOfTeamsOnPage = 10;
+
+        public const int NumberOfLeaguesOnPage = 9;
+
+        public const int NumberOfStadiumsOnPage = 10;
     }
 }

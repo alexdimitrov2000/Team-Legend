@@ -1,5 +1,6 @@
 ﻿namespace TeamLegend.Web.Controllers
 {
+    using Common;
     using Models.Teams;
     using Services.Contracts;
     using Areas.Administration.Models.Teams;
@@ -13,6 +14,8 @@
 
     public class TeamsController : BaseController
     {
+        private const int NumberOfEntitiesOnPage = GlobalConstants.NumberOfTeamsOnPage;
+
         private readonly IMapper mapper;
         private readonly ITeamsService teamsService;
         private readonly ICloudinaryService cloudinaryService;
@@ -42,11 +45,22 @@
             return this.View(teamDetailsViewModel);
         }
 
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(int page = 1)
         {
             var teams = await this.teamsService.GetAllAsync();
 
-            var teamsModels = teams.Select(t => this.mapper.Map<TeamViewModel>(t)).ToList();
+            var validatedPage = this.ValidatePage(page, teams.Count());
+            if (validatedPage != page)
+                return this.RedirectToAction("All", "Teams", new { area = "", page = validatedPage });
+
+            var teamsModels = teams.Select(t => this.mapper.Map<TeamViewModel>(t))
+                           .Skip((page - 1) * NumberOfEntitiesOnPage)
+                           .Take(NumberOfEntitiesOnPage)
+                           .ToList();
+
+            this.ViewData["Page"] = page;
+            this.ViewData["HasNextPage"] = ((page + 1) * NumberOfEntitiesOnPage) - NumberOfEntitiesOnPage < teams.Count();
+
             teamsModels.ForEach(t => t.BadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(t.Name, t.BadgeVersion));
 
             var teamCollectionViewModel = new TeamsCollectionViewModel { Teams = teamsModels };
@@ -73,6 +87,24 @@
             };
 
             return this.View(teamPlayersCollection);
+        }
+
+        private int ValidatePage(int page, int collectionCount)
+        {
+            if (page < 1)
+                return 1;
+
+            if ((page * NumberOfEntitiesOnPage) - NumberOfEntitiesOnPage > collectionCount)
+            {
+                if (collectionCount % NumberOfEntitiesOnPage != 0)
+                {
+                    page = (collectionCount / NumberOfEntitiesOnPage) + 1;
+
+                    return page;
+                }
+            }
+
+            return page;
         }
     }
 }

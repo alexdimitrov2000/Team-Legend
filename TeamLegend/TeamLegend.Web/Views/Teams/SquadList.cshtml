@@ -1,4 +1,4 @@
-﻿@model TeamLegend.Web.Areas.Administration.Models.Teams.TeamPlayersCollectionViewModel
+﻿@model TeamLegend.Web.Models.Teams.TeamPlayersCollectionViewModel
 
 @{
     ViewData["Title"] = "Squad List";
@@ -18,17 +18,9 @@
     <div class="jumbotron">
         <h2 class="text-center">@ViewData["Title"]</h2>
         <div class="row justify-content-around">
-            @foreach (var player in Model.Squad.Players)
+            @foreach (var player in Model.Squad)
             {
-                <div class="team m-3 text-center">
-                    <img src="@player.PlayerPictureUrl" class="card-img-top" id="teamImg" />
-                    <hr class="teamLegend-line" />
-                    <div>
-                        <a asp-controller="Players" asp-action="Details" asp-route-id="@player.Id">
-                            <h3>@player.Name</h3>
-                        </a>
-                    </div>
-                </div>
+                <partial name="_PlayerPartial" model="player" />
             }
         </div>
         <div class="d-flex justify-content-between m-3">

@@ -1,0 +1,11 @@
+﻿@model TeamLegend.Web.Models.Players.PlayerViewModel
+
+<div class="team m-3 text-center">
+    <img src="@Model.PlayerPictureUrl" class="card-img-top" id="teamImg" />
+    <hr class="teamLegend-line" />
+    <div>
+        <a asp-controller="Players" asp-action="Details" asp-route-id="@Model.Id">
+            <h3>@Model.Name</h3>
+        </a>
+    </div>
+</div>

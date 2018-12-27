@@ -16,10 +16,6 @@
                 .ForMember(m => m.YearOfFoundation,
                         opt => opt.MapFrom(src => src.DateOfFoundation.GetValueOrDefault().Year));
 
-            CreateMap<Team, TeamEditViewModel>();
-
-            CreateMap<TeamEditViewModel, Team>();
-
             CreateMap<Team, TeamDeleteViewModel>()
                 .ForMember(m => m.StadiumName,
                         opt => opt.MapFrom(src => src.Stadium == null ? "Does not have a stadium." : src.Stadium.Name))

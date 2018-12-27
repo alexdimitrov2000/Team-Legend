@@ -1,0 +1,10 @@
+﻿@model TeamLegend.Web.Models.Leagues.LeagueIndexViewModel
+
+<div class="league m-3 col-md-3 col-sm-6">
+    <a class="text-center" id="leagueNameLink" asp-controller="Leagues" asp-action="Details" asp-route-id="@Model.Id">
+        <h3>@Model.Name</h3>
+    </a>
+    <hr class="teamLegend-line" />
+    <h5>Country: @Model.Country</h5>
+    <h5>Teams: @Model.NumberOfTeams</h5>
+</div>

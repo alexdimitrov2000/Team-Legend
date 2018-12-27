@@ -18,7 +18,9 @@
 
             CreateMap<Player, PlayerDeleteViewModel>();
 
-            CreateMap<Player, PlayerViewModel>();
+            CreateMap<Player, Areas.Administration.Models.Players.PlayerViewModel>();
+
+            CreateMap<Player, Models.Players.PlayerViewModel>();
         }
     }
 }

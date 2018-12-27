@@ -1,0 +1,66 @@
+﻿@model TeamLegend.Web.Models.Players.PlayersCollectionViewModel
+
+@{
+    ViewData["Title"] = "All Players";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var pageNumber = (int)this.ViewData["Page"];
+    var previousPageNumber = pageNumber - 1;
+    var nextPageNumber = pageNumber + 1;
+
+    var hasNextPage = (bool)this.ViewData["HasNextPage"];
+}
+
+<main>
+    <h1 class="text-center">@this.ViewData["Title"]</h1>
+    <hr class="teamLegend-line" />
+
+    <div class="jumbotron">
+        <div class="row justify-content-around">
+            @foreach (var player in Model.Players)
+            {
+                <div class="team m-3 text-center">
+                    <img src="@player.PlayerPictureUrl" class="card-img-top" id="teamImg" />
+                    <hr class="teamLegend-line" />
+                    <div>
+                        <a asp-controller="Players" asp-action="Details" asp-route-id="@player.Id">
+                            <h3>@player.Name</h3>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="d-flex justify-content-between m-3">
+            @if (previousPageNumber < 1)
+            {
+                <button class="btn btn-teamLegend" disabled><i class="fas fa-chevron-circle-left"></i> Previous Page</button>
+            }
+            else
+            {
+                <button class="btn btn-teamLegend" id="previousPageButton"><i class="fas fa-chevron-circle-left"></i> Previous Page</button>
+            }
+            @if (!hasNextPage)
+            {
+                <button class="btn btn-teamLegend" disabled>Next Page <i class="fas fa-chevron-circle-right"></i></button>
+            }
+            else
+            {
+                <button class="btn btn-teamLegend" id="nextPageButton">Next Page <i class="fas fa-chevron-circle-right"></i></button>
+            }
+        </div>
+    </div>
+</main>
+
+@section Scripts {
+    <script>
+        $('#previousPageButton').click(function () {
+            url = "/Players/All?page=" + @previousPageNumber;
+            $(location).attr("href", url);
+        });
+
+        $('#nextPageButton').click(function () {
+            url = "/Players/All?page=" + @nextPageNumber;
+            $(location).attr("href", url);
+        });
+    </script>
+}

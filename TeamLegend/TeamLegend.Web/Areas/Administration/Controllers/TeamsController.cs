@@ -19,6 +19,8 @@
 
     public class TeamsController : AdministrationController
     {
+        private const int NumberOfStadiumsOnPage = GlobalConstants.NumberOfStadiumsOnPage;
+
         private readonly ILogger<TeamsController> logger;
         private readonly IMapper mapper;
         private readonly ITeamsService teamsService;
@@ -133,8 +135,19 @@
         public async Task<IActionResult> SetStadium(string teamId, int page = 1)
         {
             var stadiums = await this.stadiumsService.GetAllAsync();
+            
+            var validatedPage = PageValidator.ValidatePage(page, stadiums.Count(), NumberOfStadiumsOnPage);
+            if (validatedPage != page)
+                return this.RedirectToAction("SetStadium", "Teams", new { area = "Administration", teamId = teamId, page = validatedPage });
 
-            var stadiumModels = stadiums.Select(s => this.mapper.Map<StadiumViewModel>(s)).ToList();
+            this.ViewData["Page"] = page;
+            this.ViewData["HasNextPage"] = ((page + 1) * NumberOfStadiumsOnPage) - NumberOfStadiumsOnPage < stadiums.Count();
+
+            var stadiumModels = stadiums.Select(s => this.mapper.Map<StadiumViewModel>(s))
+                                .Skip((page - 1) * NumberOfStadiumsOnPage)
+                                .Take(NumberOfStadiumsOnPage)
+                                .ToList();
+
             stadiumModels.ForEach(s => s.StadiumPictureUrl = this.cloudinaryService.BuildStadiumPictureUrl(s.Name, s.StadiumPictureVersion));
 
             var stadiumCollection = new StadiumsCollectionViewModel { Stadiums = stadiumModels };

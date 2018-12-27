@@ -1,0 +1,45 @@
+﻿@model TeamLegend.Web.Models.Home.MatchHomeViewModel
+
+@inject ICloudinaryService cloudinaryService
+
+<tr class="row">
+    @{
+        var homeTeam = Model.HomeTeam;
+        var awayTeam = Model.AwayTeam;
+        var homeTeamBadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(homeTeam.Name, homeTeam.BadgeVersion);
+        var awayTeamBadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(awayTeam.Name, awayTeam.BadgeVersion);
+    }
+    <td class="col-md-9">
+        @if (Model.IsPlayed)
+        {
+            <div class="row d-flex align-items-center">
+                <div class="col-md-4 text-right">@homeTeam.Name</div>
+                <div class="col-md-1 text-center"><img src="@homeTeamBadgeUrl" id="fixtureTeamImg" /></div>
+                <div class="col-md-1">@Model.HomeTeamGoals : @Model.AwayTeamGoals</div>
+                <div class="col-md-1 text-center"><img src="@awayTeamBadgeUrl" id="fixtureTeamImg" /></div>
+                <div class="col-md-4 text-left">@awayTeam.Name</div>
+            </div>
+        }
+        else
+        {
+            <div class="row d-flex align-items-center">
+                <div class="col-md-4 text-right">@homeTeam.Name</div>
+                <div class="col-md-1 text-center"><img src="@homeTeamBadgeUrl" id="fixtureTeamImg" /></div>
+                <div class="col-md-1">&ndash; : &ndash;</div>
+                <div class="col-md-1 text-center"><img src="@awayTeamBadgeUrl" id="fixtureTeamImg" /></div>
+                <div class="col-md-4 text-left">@awayTeam.Name</div>
+            </div>
+        }
+    </td>
+    <td class="col-md-1">@Model.Date.ToShortDateString()</td>
+    <td class="col-md-2">
+        @if (Model.IsPlayed)
+        {
+            <button class="btn btn-teamLegend" id="finalizeButton" disabled>Update Scores</button>
+        }
+        else
+        {
+            <a asp-area="Administration" asp-controller="Matches" asp-action="Finalize" asp-route-id="@Model.Id"><button class="btn btn-teamLegend" id="finalizeButton">Update Scores</button></a>
+        }
+    </td>
+</tr>

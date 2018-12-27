@@ -1,6 +1,5 @@
 ﻿@model TeamLegend.Web.Models.Home.FixtureMatchesCollectionViewModel
 
-@inject ICloudinaryService cloudinaryService
 @{
     ViewData["Title"] = "Fixture Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -34,84 +33,14 @@
                     {
                         @foreach (var match in Model.FixtureMatches)
                         {
-                            <tr class="row">
-                                @{
-                                    var homeTeam = match.HomeTeam;
-                                    var awayTeam = match.AwayTeam;
-                                    var homeTeamBadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(homeTeam.Name, homeTeam.BadgeVersion);
-                                    var awayTeamBadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(awayTeam.Name, awayTeam.BadgeVersion);
-                                }
-                                <td class="col-md-9">
-                                    @if (match.IsPlayed)
-                                    {
-                                        <div class="row d-flex align-items-center">
-                                            <div class="col-md-4 text-right">@homeTeam.Name</div>
-                                            <div class="col-md-1 text-center"><img src="@homeTeamBadgeUrl" id="fixtureTeamImg" /></div>
-                                            <div class="col-md-1">@match.HomeTeamGoals : @match.AwayTeamGoals</div>
-                                            <div class="col-md-1 text-center"><img src="@awayTeamBadgeUrl" id="fixtureTeamImg" /></div>
-                                            <div class="col-md-4 text-left">@awayTeam.Name</div>
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <div class="row d-flex align-items-center">
-                                            <div class="col-md-4 text-right">@homeTeam.Name</div>
-                                            <div class="col-md-1 text-center"><img src="@homeTeamBadgeUrl" id="fixtureTeamImg" /></div>
-                                            <div class="col-md-1">&ndash; : &ndash;</div>
-                                            <div class="col-md-1 text-center"><img src="@awayTeamBadgeUrl" id="fixtureTeamImg" /></div>
-                                            <div class="col-md-4 text-left">@awayTeam.Name</div>
-                                        </div>
-                                    }
-                                </td>
-                                <td class="col-md-1">@match.Date.ToShortDateString()</td>
-                                <td class="col-md-2">
-                                    @if (match.IsPlayed)
-                                    {
-                                        <button class="btn btn-teamLegend" id="finalizeButton" disabled>Update Scores</button>
-                                    }
-                                    else
-                                    {
-                                        <a asp-area="Administration" asp-controller="Matches" asp-action="Finalize" asp-route-id="@match.Id"><button class="btn btn-teamLegend" id="finalizeButton">Update Scores</button></a>
-                                    }
-                                </td>
-                            </tr>
+                           <partial name="Matches/_AdminFixtureMatchPartial" model="match" />
                         }
                     }
                     else
                     {
                         @foreach (var match in Model.FixtureMatches)
                         {
-                            <tr class="row">
-                                @{
-                                    var homeTeam = match.HomeTeam;
-                                    var awayTeam = match.AwayTeam;
-                                    var homeTeamBadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(homeTeam.Name, homeTeam.BadgeVersion);
-                                    var awayTeamBadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(awayTeam.Name, awayTeam.BadgeVersion);
-                                }
-                                <td class="col-md-10">
-                                    @if (match.IsPlayed)
-                                    {
-                                        <div class="row d-flex align-items-center">
-                                            <div class="col-md-4 text-right">@homeTeam.Name</div>
-                                            <div class="col-md-1 text-center"><img src="@homeTeamBadgeUrl" id="fixtureTeamImg" /></div>
-                                            <div class="col-md-1">@match.HomeTeamGoals : @match.AwayTeamGoals</div>
-                                            <div class="col-md-1 text-center"><img src="@awayTeamBadgeUrl" id="fixtureTeamImg" /></div>
-                                            <div class="col-md-4 text-left">@awayTeam.Name</div>
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        <div class="row d-flex align-items-center">
-                                            <div class="col-md-4 text-right">@homeTeam.Name</div>
-                                            <div class="col-md-1 text-center"><img src="@homeTeamBadgeUrl" id="fixtureTeamImg" /></div>
-                                            <div class="col-md-1">&ndash; : &ndash;</div>
-                                            <div class="col-md-1 text-center"><img src="@awayTeamBadgeUrl" id="fixtureTeamImg" /></div>
-                                            <div class="col-md-4 text-left">@awayTeam.Name</div>
-                                        </div>
-                                    }
-                                </td>
-                                <td class="col-md-2">@match.Date.ToShortDateString()</td>
-                            </tr>
+                            <partial name="Matches/_FixtureMatchPartial" model="match" />
                         }
                     }
                 </tbody>

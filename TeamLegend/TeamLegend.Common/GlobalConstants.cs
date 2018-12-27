@@ -19,5 +19,7 @@
         public const int NumberOfLeaguesOnPage = 9;
 
         public const int NumberOfStadiumsOnPage = 10;
+
+        public const int NumberOfPlayersOnPage = 10;
     }
 }

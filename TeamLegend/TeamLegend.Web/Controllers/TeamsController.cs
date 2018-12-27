@@ -49,7 +49,7 @@
         {
             var teams = await this.teamsService.GetAllAsync();
 
-            var validatedPage = this.ValidatePage(page, teams.Count());
+            var validatedPage = PageValidator.ValidatePage(page, teams.Count(), NumberOfEntitiesOnPage);
             if (validatedPage != page)
                 return this.RedirectToAction("All", "Teams", new { area = "", page = validatedPage });
 
@@ -87,24 +87,6 @@
             };
 
             return this.View(teamPlayersCollection);
-        }
-
-        private int ValidatePage(int page, int collectionCount)
-        {
-            if (page < 1)
-                return 1;
-
-            if ((page * NumberOfEntitiesOnPage) - NumberOfEntitiesOnPage > collectionCount)
-            {
-                if (collectionCount % NumberOfEntitiesOnPage != 0)
-                {
-                    page = (collectionCount / NumberOfEntitiesOnPage) + 1;
-
-                    return page;
-                }
-            }
-
-            return page;
         }
     }
 }

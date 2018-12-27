@@ -20,7 +20,7 @@
         <div class="row justify-content-around">
             @foreach (var player in Model.Squad)
             {
-                <partial name="_PlayerPartial" model="player" />
+                <partial name="Players/_PlayerPartial" model="player" />
             }
         </div>
         <div class="d-flex justify-content-between m-3">

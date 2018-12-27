@@ -10,11 +10,9 @@
             if ((page * numberOfEntitiesOnPage) - numberOfEntitiesOnPage > collectionCount)
             {
                 if (collectionCount % numberOfEntitiesOnPage != 0)
-                {
                     page = (collectionCount / numberOfEntitiesOnPage) + 1;
-
-                    return page;
-                }
+                else
+                    page = collectionCount / numberOfEntitiesOnPage;
             }
 
             return page;

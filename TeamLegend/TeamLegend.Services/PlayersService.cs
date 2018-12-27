@@ -67,6 +67,11 @@
             return await this.context.Players.Where(p => p.CurrentTeam == null).ToListAsync();
         }
 
+        public async Task<ICollection<Player>> GetAllFromTeamAsync(string teamId)
+        {
+            return await this.context.Players.Where(p => p.CurrentTeamId == teamId).ToListAsync();
+        }
+
         public async Task<Player> AddPlayerToTeamAsync(Player player, Team team)
         {
             if (player == null || team == null)

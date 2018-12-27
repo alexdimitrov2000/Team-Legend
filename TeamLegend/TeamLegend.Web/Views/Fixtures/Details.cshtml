@@ -15,6 +15,7 @@
                 <option value="@fixture">@fixture</option>
             }
         </select>
+        <input type="hidden" value="@Model.League.Id" id="leagueId" />
     </h4>
     <hr class="teamLegend-line" />
     <div class="jumbotron">
@@ -123,7 +124,8 @@
     <script>
         $('#round').change(function () {
             var round = $(this).val();
-            url = "/Fixtures/Details?leagueId=6465311c-c24b-4a9c-ad41-3f0136a2d2f7&round=" + round;
+            var leagueId = $('#leagueId').val();
+            url = "/Fixtures/Details?leagueId=" + leagueId + "&round=" + round;
             $(location).attr("href", url);
         });
     </script>

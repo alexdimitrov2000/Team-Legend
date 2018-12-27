@@ -1,0 +1,29 @@
+﻿@model TeamLegend.Web.Models.Home.MatchHomeViewModel
+
+@inject ICloudinaryService cloudinaryService
+@{
+    var homeTeam = Model.HomeTeam;
+    var awayTeam = Model.AwayTeam;
+    var homeTeamBadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(homeTeam.Name, homeTeam.BadgeVersion);
+    var awayTeamBadgeUrl = this.cloudinaryService.BuildTeamBadgePictureUrl(awayTeam.Name, awayTeam.BadgeVersion);
+}
+<div class="league m-3 col-md-5 col-sm-6 text-bold" style="font-size: large">
+    <div class="row d-flex align-items-center">
+        <div class="col-md-4 text-right">@homeTeam.Name</div>
+        <div class="col-md-1 text-center"><img src="@homeTeamBadgeUrl" id="fixtureTeamImg" /></div>
+        <div class="col-md-2 text-center">&ndash; : &ndash;</div>
+        <div class="col-md-1 text-center"><img src="@awayTeamBadgeUrl" id="fixtureTeamImg" /></div>
+        <div class="col-md-4 text-left">@awayTeam.Name</div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center" style="opacity: 0.7">
+            at '@Model.StadiumName'
+        </div>
+    </div>
+    <hr class="teamLegend-line" style="margin-top: 15px; margin-bottom: 15px" />
+    <div class="row">
+        <div class="col-md-12 text-center">
+            Date: @Model.Date.ToShortDateString()
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿@model string
+
+<div class="dropdown">
+    <button type="button" class="btn dropdown-toggle" id="dropdown-menu-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-cog"></i>
+    </button>
+    <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu-content">
+        <a class="dropdown-item" asp-area="" asp-controller="Fixtures" asp-action="Details" asp-route-leagueId="@Model">Fixtures</a>
+        @if (this.User.IsInRole("Admin"))
+        {
+            <a class="dropdown-item" asp-area="Administration" asp-controller="Leagues" asp-action="TeamsList" asp-route-id="@Model">Add more Teams</a>
+            <a class="dropdown-item" asp-area="Administration" asp-controller="Matches" asp-action="Create" asp-route-leagueId="@Model">Add Match</a>
+            <a class="dropdown-item" asp-area="Administration" asp-controller="Leagues" asp-action="Delete" asp-route-id="@Model">Delete league</a>
+        }
+    </div>
+</div>

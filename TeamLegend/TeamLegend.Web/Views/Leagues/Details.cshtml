@@ -18,60 +18,11 @@
                 }
             </div>
             <div class="col-md-5 text-right">
-                <div class="dropdown">
-                    <button type="button" class="btn dropdown-toggle" id="dropdown-menu-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-cog"></i>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu-content">
-                        <a class="dropdown-item" asp-area="" asp-controller="Fixtures" asp-action="Details" asp-route-leagueId="@Model.Id">Fixtures</a>
-                        @if (this.User.IsInRole("Admin"))
-                        {
-                            <a class="dropdown-item" asp-area="Administration" asp-controller="Leagues" asp-action="TeamsList" asp-route-id="@Model.Id">Add more Teams</a>
-                            <a class="dropdown-item" asp-area="Administration" asp-controller="Matches" asp-action="Create" asp-route-leagueId="@Model.Id">Add Match</a>
-                            <a class="dropdown-item" asp-area="Administration" asp-controller="Leagues" asp-action="Delete" asp-route-id="@Model.Id">Delete league</a>
-                        }
-                    </div>
-                </div>
+                <partial name="_LeagueDetailsDropdownPartial" model="@Model.Id" />
             </div>
         </div>
         <div class="table-responsive">
-            <table class="table w-75 mx-auto table-hover table-bordered table-sm text-center">
-                <thead>
-                    <tr class="row">
-                        <th class="col-md-1"><strong>#</strong></th>
-                        <th class="col-md-5"><strong>Team Name</strong></th>
-                        <th class="col-md-1"><strong>Played</strong></th>
-                        <th class="col-md-1"><strong>Scored</strong></th>
-                        <th class="col-md-1"><strong>Conceded</strong></th>
-                        <th class="col-md-2"><strong>Goal Difference</strong></th>
-                        <th class="col-md-1"><strong>Total Points</strong></th>
-                </thead>
-                <tbody class="text-bold">
-                    @for (int i = 0; i < Model.Teams.Count(); i++)
-                    {
-                        <tr class="row">
-                            @{ var team = Model.Teams[i]; }
-                            @{ var rowNumber = i + 1; }
-                            <th class="col-md-1">@rowNumber</th>
-                            <td class="col-md-5">
-                                <div class="row">
-                                    <div class="col-md-5 text-right" style="padding-right: 5px">
-                                        <img src='@team.BadgeUrl' id="tableTeamImg" />
-                                    </div>
-                                    <div class="col-md-7 text-left" style="padding-left: 5px">
-                                        <a asp-controller="Teams" asp-action="Details" asp-route-id="@team.Id"> @team.Name</a>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="col-md-1">@team.MatchesPlayed</td>
-                            <td class="col-md-1">@team.GoalsScored</td>
-                            <td class="col-md-1">@team.GoalsConceded</td>
-                            <td class="col-md-2">@team.GoalsScored:@team.GoalsConceded (@team.GoalDifference)</td>
-                            <td class="col-md-1">@team.TotalPoints</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+            <partial name="_LeagueDetailsPartial" model="Model.Teams" />
         </div>
     </div>
 </main>

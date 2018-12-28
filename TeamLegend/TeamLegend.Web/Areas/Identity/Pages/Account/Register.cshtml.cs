@@ -1,5 +1,6 @@
 ﻿namespace TeamLegend.Web.Areas.Identity.Pages.Account
 {
+    using Common;
     using TeamLegend.Models;
 
     using Microsoft.AspNetCore.Mvc;
@@ -118,7 +119,7 @@
 
                     if (_userManager.Users.Count() == 1)
                     {
-                        addRoleSuccess = await _userManager.AddToRoleAsync(user, GlobalConstats);
+                        addRoleSuccess = await _userManager.AddToRoleAsync(user, GlobalConstants.AdminRole);
 
                         if (!addRoleSuccess.Succeeded)
                         {

@@ -50,7 +50,7 @@
                             <h3>Stadium: Does not have a stadium.</h3>
                         }
 
-                        @if (this.User.IsInRole("Admin"))
+                        @if (this.User.IsInRole(GlobalConstants.AdminRole))
                         {
                             <h3>Squad: <a asp-area="Administration" asp-controller="Teams" asp-action="SquadList" asp-route-teamId="@Model.Id">Squad List</a></h3>
                         }
@@ -65,7 +65,7 @@
                 <img src="@Model.BadgeUrl" style="width: 150px" />
             </div>
         </div>
-        @if (this.User.IsInRole("Admin"))
+        @if (this.User.IsInRole(GlobalConstants.AdminRole))
         {
             <div class="row d-flex justify-content-around">
                 <a class="btn btn-teamLegend" id="adminButton" asp-area="Administration" asp-controller="Teams" asp-action="SetStadium" asp-route-teamId="@Model.Id">Set a Stadium</a>

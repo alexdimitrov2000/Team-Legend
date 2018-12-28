@@ -23,5 +23,7 @@
         public const int NumberOfPlayersOnPage = 10;
 
         public const int NumberOfManagersOnPage = 10;
+
+        public const string AdminRole = "Admin";
     }
 }

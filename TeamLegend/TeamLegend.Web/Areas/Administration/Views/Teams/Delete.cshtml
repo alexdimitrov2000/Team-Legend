@@ -59,7 +59,7 @@
                 <img src="@Model.BadgeUrl" style="width: 150px" />
             </div>
         </div>
-        @if (this.User.IsInRole("Admin"))
+        @if (this.User.IsInRole(GlobalConstants.AdminRole))
         {
             <div class="row d-flex justify-content-center">
                 <form asp-area="Administration" asp-controller="Teams" asp-action="Delete" asp-route-id="@Model.Id" method="post">

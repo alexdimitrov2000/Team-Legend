@@ -6,7 +6,7 @@
     </button>
     <div class="dropdown-menu dropdown-menu-right" id="dropdown-menu-content">
         <a class="dropdown-item" asp-area="" asp-controller="Fixtures" asp-action="Details" asp-route-leagueId="@Model">Fixtures</a>
-        @if (this.User.IsInRole("Admin"))
+        @if (this.User.IsInRole(GlobalConstants.AdminRole))
         {
             <a class="dropdown-item" asp-area="Administration" asp-controller="Leagues" asp-action="TeamsList" asp-route-id="@Model">Add more Teams</a>
             <a class="dropdown-item" asp-area="Administration" asp-controller="Matches" asp-action="Create" asp-route-leagueId="@Model">Add Match</a>

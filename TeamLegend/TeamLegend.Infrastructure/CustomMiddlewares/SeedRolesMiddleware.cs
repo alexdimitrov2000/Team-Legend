@@ -1,5 +1,7 @@
 ﻿namespace TeamLegend.Infrastructure.CustomMiddlewares
 {
+    using Common;
+
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
 
@@ -19,7 +21,7 @@
         {
             if (!roleManager.Roles.Any())
             {
-                await roleManager.CreateAsync(new IdentityRole("Admin"));
+                await roleManager.CreateAsync(new IdentityRole(GlobalConstants.AdminRole));
                 await roleManager.CreateAsync(new IdentityRole("User"));
             }
 

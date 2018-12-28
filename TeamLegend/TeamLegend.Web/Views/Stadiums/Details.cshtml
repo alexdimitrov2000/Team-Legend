@@ -19,7 +19,7 @@
                     <div class="col-md-10">
                         <h3>Location: @Model.Location</h3>
                         <h3>Capacity: @Model.Capacity</h3>
-                        @if (this.User.IsInRole("Admin"))
+                        @if (this.User.IsInRole(GlobalConstants.AdminRole))
                         {
                             <a class="btn btn-teamLegend" id="adminButton" asp-area="Administration" asp-controller="Stadiums" asp-action="Delete" asp-route-id="@Model.Id">Delete Stadium</a>
                         }

@@ -4,7 +4,7 @@
     </li>
     @if (this.User.Identity.IsAuthenticated)
     {
-        @if (this.User.IsInRole("Admin"))
+        @if (this.User.IsInRole(GlobalConstants.AdminRole))
         {
             <li class="nav-item">
                 <div class="dropdown">

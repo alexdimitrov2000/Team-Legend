@@ -22,7 +22,7 @@
             if (fixtureRound <= 0 || string.IsNullOrEmpty(leagueId))
                 return null;
 
-            var fixture = await this.context.Fixtures.FirstOrDefaultAsync(f => f.LeagueId == leagueId && f.FixtureRound == fixtureRound);
+            var fixture = await this.context.Fixtures.SingleOrDefaultAsync(f => f.LeagueId == leagueId && f.FixtureRound == fixtureRound);
 
             if (fixture == null)
             {

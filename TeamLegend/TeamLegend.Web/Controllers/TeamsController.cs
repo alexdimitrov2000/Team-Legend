@@ -54,6 +54,7 @@
                 return this.RedirectToAction("All", "Teams", new { area = "", page = validatedPage });
 
             var teamsModels = teams.Select(t => this.mapper.Map<TeamViewModel>(t))
+                           .OrderBy(t => t.Name)
                            .Skip((page - 1) * NumberOfTeamsOnPage)
                            .Take(NumberOfTeamsOnPage)
                            .ToList();

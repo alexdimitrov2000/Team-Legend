@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamLegend.Common", "TeamLe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeamLegend.Infrastructure", "TeamLegend.Infrastructure\TeamLegend.Infrastructure.csproj", "{F100A2B3-63B9-46B7-BD13-2FDC18C4B7AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeamLegend.Services.Tests", "TeamLegend.Services.Tests\TeamLegend.Services.Tests.csproj", "{0689C9F7-B640-4E40-AD71-6B6085A0784A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{F100A2B3-63B9-46B7-BD13-2FDC18C4B7AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F100A2B3-63B9-46B7-BD13-2FDC18C4B7AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F100A2B3-63B9-46B7-BD13-2FDC18C4B7AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0689C9F7-B640-4E40-AD71-6B6085A0784A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0689C9F7-B640-4E40-AD71-6B6085A0784A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0689C9F7-B640-4E40-AD71-6B6085A0784A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0689C9F7-B640-4E40-AD71-6B6085A0784A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

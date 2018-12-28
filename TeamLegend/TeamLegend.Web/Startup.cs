@@ -18,6 +18,17 @@
 
     public class Startup
     {
+        private const string DefaultConnection = "DefaultConnection";
+
+        private const string FacebookAppId = "Authentication:Facebook:AppId";
+        private const string FacebookAppSecret = "Authentication:Facebook:AppSecret";
+
+        private const string MicrosoftApplicationId = "Authentication:Microsoft:ApplicationId";
+        private const string MicrosoftPassword = "Authentication:Microsoft:Password";
+
+        private const string GoogleClientId = "Authentication:Google:ClientId";
+        private const string GoogleClientSecret = "Authentication:Google:ClientSecret";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -37,7 +48,7 @@
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection"))
+                    Configuration.GetConnectionString(DefaultConnection))
                     .UseLazyLoadingProxies());
 
             services.Configure<IdentityOptions>(options =>
@@ -66,18 +77,18 @@
             services.AddAuthentication()
                 .AddFacebook(facebookOptions =>
                 {
-                    facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
-                    facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                    facebookOptions.AppId = Configuration[FacebookAppId];
+                    facebookOptions.AppSecret = Configuration[FacebookAppSecret];
                 })
                 .AddMicrosoftAccount(microsoftOptions =>
                 {
-                    microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ApplicationId"];
-                    microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:Password"];
+                    microsoftOptions.ClientId = Configuration[MicrosoftApplicationId];
+                    microsoftOptions.ClientSecret = Configuration[MicrosoftPassword];
                 })
                 .AddGoogle(googleOptions =>
                 {
-                    googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
-                    googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                    googleOptions.ClientId = Configuration[GoogleClientId];
+                    googleOptions.ClientSecret = Configuration[GoogleClientSecret];
                 });
 
             services.AddScoped<ICloudinaryService, CloudinaryService>();

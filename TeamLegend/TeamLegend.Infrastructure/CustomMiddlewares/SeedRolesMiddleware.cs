@@ -22,7 +22,7 @@
             if (!roleManager.Roles.Any())
             {
                 await roleManager.CreateAsync(new IdentityRole(GlobalConstants.AdminRole));
-                await roleManager.CreateAsync(new IdentityRole("User"));
+                await roleManager.CreateAsync(new IdentityRole(GlobalConstants.UserRole));
             }
 
             await this.next(httpContext);

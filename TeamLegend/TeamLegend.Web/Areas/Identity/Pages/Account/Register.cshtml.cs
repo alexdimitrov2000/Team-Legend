@@ -110,7 +110,7 @@
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    var addRoleSuccess = await _userManager.AddToRoleAsync(user, "User");
+                    var addRoleSuccess = await _userManager.AddToRoleAsync(user, GlobalConstants.UserRole);
 
                     if (!addRoleSuccess.Succeeded)
                     {

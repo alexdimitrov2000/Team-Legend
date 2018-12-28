@@ -25,5 +25,7 @@
         public const int NumberOfManagersOnPage = 10;
 
         public const string AdminRole = "Admin";
+
+        public const string UserRole = "User";
     }
 }

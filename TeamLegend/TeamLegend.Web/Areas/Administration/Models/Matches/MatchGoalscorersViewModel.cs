@@ -6,6 +6,9 @@
 
     public class MatchGoalscorersViewModel
     {
+        private const string HomeTeamScorersDisplay = "Home Team Scorers";
+        private const string AwayTeamScorersDisplay = "Away Team Scorers";
+
         public string Id { get; set; }
 
         public string LeagueId { get; set; }
@@ -21,11 +24,11 @@
         public TeamScorersViewModel AwayTeam { get; set; }
         
         [Required]
-        [Display(Name = "Home Team Scorers")]
+        [Display(Name = HomeTeamScorersDisplay)]
         public string[] HomeTeamScorers { get; set; }
 
         [Required]
-        [Display(Name = "Away Team Scorers")]
+        [Display(Name = AwayTeamScorersDisplay)]
         public string[] AwayTeamScorers { get; set; }
     }
 }

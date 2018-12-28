@@ -29,5 +29,8 @@
 
         public const int FixtureRoundMinRange = 1;
         public const int FixtureRoundMaxRange = 40;
+
+        public const int MatchMinimumGoals = 0;
+        public const int MatchMaximumGoals = 10;
     }
 }

@@ -7,11 +7,18 @@
 
     public class Manager
     {
+        private const string NameDisplay = "Name";
+        private const string DateOfBirthDisplay = "Date of Birth";
+        private const string NationalityDisplay = "Nationality";
+
+        private const string NameLengthErrorMessage = "Manager's name has to contain at least {2} characters.";
+        private const string NationalityLengthErrorMessage = "Manager's nationality name has to contain at least {2} characters.";
+
         public string Id { get; set; }
 
         [Required]
-        [Display(Name = "Name")]
-        [StringLength(ValidationConstants.ManagerNameMaxLength, MinimumLength = ValidationConstants.ManagerNameMinLength, ErrorMessage = "Manager's name has to contain at least {2} characters.")]
+        [Display(Name = NameDisplay)]
+        [StringLength(ValidationConstants.ManagerNameMaxLength, MinimumLength = ValidationConstants.ManagerNameMinLength, ErrorMessage = NameLengthErrorMessage)]
         public string Name { get; set; }
 
         public int? Age
@@ -30,11 +37,11 @@
         }
         
         [DataType(DataType.Date)]
-        [Display(Name = "Date of Birth")]
+        [Display(Name = DateOfBirthDisplay)]
         public DateTime? DateOfBirth { get; set; }
 
-        [Display(Name = "Nationality")]
-        [StringLength(ValidationConstants.ManagerNationalityMaxLength, MinimumLength = ValidationConstants.ManagerNationalityMinLength, ErrorMessage = "Manager's nationality name has to contain at least {2} characters.")]
+        [Display(Name = NationalityDisplay)]
+        [StringLength(ValidationConstants.ManagerNationalityMaxLength, MinimumLength = ValidationConstants.ManagerNationalityMinLength, ErrorMessage = NationalityLengthErrorMessage)]
         public string Nationality { get; set; }
 
         public string ManagerPictureVersion { get; set; }

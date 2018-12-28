@@ -8,6 +8,13 @@
 
     public class Team
     {
+        private const string NameDisplay = "Name";
+        private const string NicknameDisplay = "Nickname";
+        private const string DateOfFoundationDisplay = "Date of Foundation";
+
+        private const string NameLengthErrorMessage = "Team's name length must be at least {2} characters.";
+        private const string NicknameLengthErrorMessage = "Team's nickname length must be at least {2} characters.";
+
         public Team()
         {
             this.Players = new HashSet<Player>();
@@ -17,15 +24,15 @@
         public string Id { get; set; }
 
         [Required]
-        [Display(Name = "Name")]
-        [StringLength(ValidationConstants.TeamNameMaxLength, MinimumLength = ValidationConstants.TeamNameMinLength, ErrorMessage = "Team's name length must be at least {2} characters.")]
+        [Display(Name = NameDisplay)]
+        [StringLength(ValidationConstants.TeamNameMaxLength, MinimumLength = ValidationConstants.TeamNameMinLength, ErrorMessage = NameLengthErrorMessage)]
         public string Name { get; set; }
 
-        [Display(Name = "Nickname")]
-        [StringLength(ValidationConstants.TeamNicknameMaxLength, MinimumLength = ValidationConstants.TeamNicknameMinLength, ErrorMessage = "Team's nickname length must be at least {2} characters.")]
+        [Display(Name = NicknameDisplay)]
+        [StringLength(ValidationConstants.TeamNicknameMaxLength, MinimumLength = ValidationConstants.TeamNicknameMinLength, ErrorMessage = NicknameLengthErrorMessage)]
         public string Nickname { get; set; }
 
-        [Display(Name = "Date of Foundation")]
+        [Display(Name = DateOfFoundationDisplay)]
         [DataType(DataType.Date)]
         public DateTime? DateOfFoundation { get; set; }
 

@@ -8,21 +8,29 @@
 
     public class StadiumCreateInputModel
     {
+        private const string NameDisplay = "Name";
+        private const string LocationDisplay = "Location";
+        private const string CapacityDisplay = "Capacity";
+        private const string StadiumPictureDisplay = "Stadium Picture";
+
+        private const string NameLengthErrorMessage = "Stadium's name must be at least {2} characters long.";
+        private const string LocationLengthErrorMessage = "Stadium's location must be at least {2} characters long.";
+
         [Required]
-        [Display(Name = "Name")]
-        [StringLength(ValidationConstants.StadiumNameMaxLength, MinimumLength = ValidationConstants.StadiumNameMinLength, ErrorMessage = "Stadium's name must be at least {2} characters long.")]
+        [Display(Name = NameDisplay)]
+        [StringLength(ValidationConstants.StadiumNameMaxLength, MinimumLength = ValidationConstants.StadiumNameMinLength, ErrorMessage = NameLengthErrorMessage)]
         public string Name { get; set; }
 
         [Required]
-        [Display(Name = "Location")]
-        [StringLength(ValidationConstants.StadiumLocationMaxLength, MinimumLength = ValidationConstants.StadiumLocationMinLength, ErrorMessage = "Stadium's location must be at least {2} characters long.")]
+        [Display(Name = LocationDisplay)]
+        [StringLength(ValidationConstants.StadiumLocationMaxLength, MinimumLength = ValidationConstants.StadiumLocationMinLength, ErrorMessage = LocationLengthErrorMessage)]
         public string Location { get; set; }
 
         [Required]
-        [Display(Name = "Capacity")]
+        [Display(Name = CapacityDisplay)]
         public double Capacity { get; set; }
 
-        [Display(Name = "Stadium Picture")]
+        [Display(Name = StadiumPictureDisplay)]
         public IFormFile StadiumPicture { get; set; }
     }
 }

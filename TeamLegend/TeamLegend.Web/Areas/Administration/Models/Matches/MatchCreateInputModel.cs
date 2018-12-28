@@ -7,24 +7,31 @@
 
     public class MatchCreateInputModel
     {
+        private const string HomeTeamDisplay = "Home Team";
+        private const string AwayTeamDisplay = "Away Team";
+        private const string DateDisplay = "Match Date";
+        private const string FixtureRoundDisplay = "Fixture Round";
+
+        private const string DateErrorMessage = "Please provide a valid date.";
+
         public string LeagueId { get; set; }
 
         [Required]
-        [Display(Name = "Home Team")]
+        [Display(Name = HomeTeamDisplay)]
         public string HomeTeamId { get; set; }
 
         [Required]
-        [Display(Name = "Away Team")]
+        [Display(Name = AwayTeamDisplay)]
         public string AwayTeamId { get; set; }
 
         [Required()]
-        [Display(Name = "Match Date")]
-        [DataType(DataType.Date, ErrorMessage = "Please provide a valid date.")]
+        [Display(Name = DateDisplay)]
+        [DataType(DataType.Date, ErrorMessage = DateErrorMessage)]
         public DateTime? Date { get; set; }
 
         [Required]
         [Range(ValidationConstants.FixtureRoundMinRange, ValidationConstants.FixtureRoundMaxRange)]
-        [Display(Name = "Fixture Round")]
+        [Display(Name = FixtureRoundDisplay)]
         public int FixtureRound { get; set; }
     }
 }

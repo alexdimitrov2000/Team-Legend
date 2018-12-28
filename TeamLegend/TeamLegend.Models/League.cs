@@ -7,6 +7,12 @@
 
     public class League
     {
+        private const string NameDisplay = "Name";
+        private const string CountryDisplay = "Country";
+
+        private const string NameLengthErrorMessage = "League name length must be in range {2}-{1}.";
+        private const string CountryLengthErrorMessage = "Country name length must be in range {2}-{1}.";
+
         public League()
         {
             this.Teams = new HashSet<Team>();
@@ -16,13 +22,13 @@
         public string Id { get; set; }
 
         [Required]
-        [Display(Name = "Name")]
-        [StringLength(ValidationConstants.LeagueNameMaxLength, MinimumLength = ValidationConstants.LeagueNameMinLength, ErrorMessage = "League name length must be in range {2}-{1}.")]
+        [Display(Name = NameDisplay)]
+        [StringLength(ValidationConstants.LeagueNameMaxLength, MinimumLength = ValidationConstants.LeagueNameMinLength, ErrorMessage = NameLengthErrorMessage)]
         public string Name { get; set; }
 
         [Required]
-        [Display(Name = "Country")]
-        [StringLength(ValidationConstants.LeagueCountryMaxLength, MinimumLength = ValidationConstants.LeagueCountryMinLength, ErrorMessage = "Country name length must be in range {2}-{1}.")]
+        [Display(Name = CountryDisplay)]
+        [StringLength(ValidationConstants.LeagueCountryMaxLength, MinimumLength = ValidationConstants.LeagueCountryMinLength, ErrorMessage = CountryLengthErrorMessage)]
         public string Country { get; set; }
 
         public virtual ICollection<Team> Teams { get; set; }

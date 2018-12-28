@@ -55,7 +55,7 @@
 
         public string BuildProfilePictureUrl(string username, string imageVersion)
         {
-            if (username == null || imageVersion == null)
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(imageVersion))
                 return null;
 
             string path = string.Format(GlobalConstants.FilePath, ProfilePicturesFolder, string.Format(GlobalConstants.ProfilePicture, username));
@@ -66,7 +66,7 @@
 
         public string BuildStadiumPictureUrl(string stadiumName, string imageVersion)
         {
-            if (stadiumName == null || imageVersion == null)
+            if (string.IsNullOrEmpty(stadiumName) || string.IsNullOrEmpty(imageVersion))
                 return null;
 
             string path = string.Format(GlobalConstants.FilePath, StadiumPicturesFolder, string.Format(GlobalConstants.StadiumPicture, stadiumName));
@@ -75,7 +75,7 @@
 
         public string BuildPlayerPictureUrl(string playerName, string imageVersion)
         {
-            if (playerName == null || imageVersion == null)
+            if (string.IsNullOrEmpty(playerName) || string.IsNullOrEmpty(imageVersion))
                 return null;
 
             string path = string.Format(GlobalConstants.FilePath, PlayerPicturesFolder, string.Format(GlobalConstants.PlayerPicture, playerName));
@@ -84,7 +84,7 @@
 
         public string BuildTeamBadgePictureUrl(string teamName, string imageVersion)
         {
-            if (teamName == null || imageVersion == null)
+            if (string.IsNullOrEmpty(teamName) || string.IsNullOrEmpty(imageVersion))
                 return null;
 
             string path = string.Format(GlobalConstants.FilePath, TeamBadgesFolder, string.Format(GlobalConstants.BadgePicture, teamName));
@@ -93,7 +93,7 @@
 
         public string BuildManagerPictureUrl(string managerName, string imageVersion)
         {
-            if (managerName == null || imageVersion == null)
+            if (string.IsNullOrEmpty(managerName) || string.IsNullOrEmpty(imageVersion))
                 return null;
 
             string path = string.Format(GlobalConstants.FilePath, ManagerPicturesFolder, string.Format(GlobalConstants.ManagerPicture, managerName));

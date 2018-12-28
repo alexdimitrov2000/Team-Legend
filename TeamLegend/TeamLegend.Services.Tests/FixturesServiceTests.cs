@@ -200,6 +200,7 @@
             var existingFixture = new Fixture { FixtureRound = fixtureRound, LeagueId = leagueId + "new" };
             var context = new ApplicationDbContext(this.Options);
             await context.Fixtures.AddAsync(existingFixture);
+            await context.SaveChangesAsync();
 
             var fixturesService = new FixturesService(context);
 
@@ -216,12 +217,33 @@
             var existingFixture = new Fixture { FixtureRound = fixtureRound + 1, LeagueId = leagueId + "new" };
             var context = new ApplicationDbContext(this.Options);
             await context.Fixtures.AddAsync(existingFixture);
+            await context.SaveChangesAsync();
 
             var fixturesService = new FixturesService(context);
 
             var result = await fixturesService.GetByLeagueIdAndRoundAsync(leagueId, fixtureRound);
 
             Assert.Null(result);
+        }
+
+        [Theory]
+        [InlineData(1, "5")]
+        [InlineData(10, "leagueId")]
+        public async Task GetByLeagueIdAndRoundAsync_WithExistingFixture_ReturnsExistingFixture(int fixtureRound, string leagueId)
+        {
+            var existingFixture = new Fixture { FixtureRound = fixtureRound, LeagueId = leagueId };
+            var context = new ApplicationDbContext(this.Options);
+            await context.Fixtures.AddAsync(existingFixture);
+            await context.SaveChangesAsync();
+
+            var fixturesService = new FixturesService(context);
+
+            var resultFixture = await fixturesService.GetByLeagueIdAndRoundAsync(leagueId, fixtureRound);
+
+            Assert.NotNull(resultFixture);
+            Assert.Equal(existingFixture.FixtureRound, resultFixture.FixtureRound);
+            Assert.Equal(existingFixture.LeagueId, resultFixture.LeagueId);
+            Assert.Equal(existingFixture.Id, resultFixture.Id);
         }
     }
 }

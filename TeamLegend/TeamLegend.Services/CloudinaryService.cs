@@ -40,6 +40,9 @@
 
         public ImageUploadResult UploadPicture(Type entityType, string pictureId, Stream fileStream)
         {
+            if (entityType == null || string.IsNullOrEmpty(pictureId) || fileStream == null)
+                return null;
+
             ImageUploadParams imageUploadParams = new ImageUploadParams
             {
                 File = new FileDescription(pictureId, fileStream),

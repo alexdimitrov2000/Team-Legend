@@ -39,7 +39,7 @@
             if (string.IsNullOrEmpty(leagueId) || round <= 0)
                 return null;
 
-            var fixture = await this.context.Fixtures.FirstOrDefaultAsync(f => f.LeagueId == leagueId && f.FixtureRound == round);
+            var fixture = await this.context.Fixtures.SingleOrDefaultAsync(f => f.LeagueId == leagueId && f.FixtureRound == round);
             return fixture;
         }
     }

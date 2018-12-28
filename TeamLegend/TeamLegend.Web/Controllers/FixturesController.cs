@@ -3,11 +3,11 @@
     using Models.Home;
     using Services.Contracts;
 
+    using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
 
     using System.Linq;
     using System.Threading.Tasks;
-    using AutoMapper;
 
     public class FixturesController : BaseController
     {

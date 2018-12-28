@@ -1,12 +1,14 @@
 ﻿namespace TeamLegend.Services
 {
-    using Contracts;
     using Data;
-    using Microsoft.EntityFrameworkCore;
     using Models;
-    using System.Collections.Generic;
+    using Contracts;
+
+    using Microsoft.EntityFrameworkCore;
+
     using System.Linq;
     using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     public class TeamsService : ITeamsService
     {

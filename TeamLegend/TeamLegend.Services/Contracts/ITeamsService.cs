@@ -1,8 +1,9 @@
 ﻿namespace TeamLegend.Services.Contracts
 {
     using Models;
-    using System.Collections.Generic;
+
     using System.Threading.Tasks;
+    using System.Collections.Generic;
 
     public interface ITeamsService
     {

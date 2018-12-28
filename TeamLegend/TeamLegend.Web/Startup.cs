@@ -1,19 +1,20 @@
 ﻿namespace TeamLegend.Web
 {
-    using AutoMapper;
     using Data;
+    using Services;
+    using TeamLegend.Models;
+    using Services.Contracts;
     using Infrastructure.Extensions;
+
+    using AutoMapper;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Services;
-    using Services.Contracts;
-    using TeamLegend.Models;
 
     public class Startup
     {

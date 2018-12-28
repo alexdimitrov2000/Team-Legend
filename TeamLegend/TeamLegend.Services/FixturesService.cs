@@ -4,9 +4,9 @@
     using Models;
     using Contracts;
 
-    using System.Threading.Tasks;
-    using System.Collections.Generic;
     using Microsoft.EntityFrameworkCore;
+
+    using System.Threading.Tasks;
 
     public class FixturesService : IFixturesService
     {

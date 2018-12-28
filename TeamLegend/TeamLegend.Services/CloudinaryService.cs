@@ -1,13 +1,15 @@
 ﻿namespace TeamLegend.Services
 {
-    using CloudinaryDotNet;
-    using CloudinaryDotNet.Actions;
     using Common;
     using Contracts;
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
     using TeamLegend.Models;
+
+    using CloudinaryDotNet;
+    using CloudinaryDotNet.Actions;
+
+    using System;
+    using System.IO;
+    using System.Collections.Generic;
 
     public class CloudinaryService : ICloudinaryService
     {

@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using TeamLegend.Models;
-
-namespace TeamLegend.Web.Areas.Identity.Pages.Account
+﻿namespace TeamLegend.Web.Areas.Identity.Pages.Account
 {
+    using TeamLegend.Models;
+
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Microsoft.AspNetCore.Identity.UI.Services;
+
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.ComponentModel.DataAnnotations;
+
     [AllowAnonymous]
     public class RegisterModel : PageModel
     {
@@ -119,7 +118,7 @@ namespace TeamLegend.Web.Areas.Identity.Pages.Account
 
                     if (_userManager.Users.Count() == 1)
                     {
-                        addRoleSuccess = await _userManager.AddToRoleAsync(user, "Admin");
+                        addRoleSuccess = await _userManager.AddToRoleAsync(user, GlobalConstats);
 
                         if (!addRoleSuccess.Succeeded)
                         {

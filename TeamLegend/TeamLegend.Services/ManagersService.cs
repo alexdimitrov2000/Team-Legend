@@ -36,7 +36,7 @@
                 return null;
             }
 
-            return await this.context.Managers.FirstOrDefaultAsync(p => p.Id == id);
+            return await this.context.Managers.SingleOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<List<Manager>> GetAllAsync()

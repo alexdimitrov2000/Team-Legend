@@ -6,6 +6,6 @@
 
     public interface IUsersService
     {
-        Task<bool> SetProfilePictureVersionAsync(ApplicationUser user, string version);
+        Task<ApplicationUser> SetProfilePictureVersionAsync(ApplicationUser user, string version);
     }
 }

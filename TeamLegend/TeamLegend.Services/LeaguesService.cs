@@ -36,7 +36,7 @@
 
         public async Task<League> GetByIdAsync(string id)
         {
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
                 return null;
 
             return await this.context.Leagues.SingleOrDefaultAsync(l => l.Id == id);

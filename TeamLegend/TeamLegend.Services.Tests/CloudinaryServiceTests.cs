@@ -22,6 +22,7 @@
         [InlineData(null, "id", null)]
         [InlineData(typeof(Team), "", null)]
         [InlineData(null, null, null)]
+        [InlineData(null, "   ", null)]
         public void UploadPicture_WithNullParameters_ReturnsNull(Type entityType, string pictureId, Stream stream)
         {
             var result = this.cloudinaryService.UploadPicture(entityType, pictureId, stream);
@@ -33,6 +34,7 @@
         [InlineData(null, "")]
         [InlineData(null, null)]
         [InlineData("", "")]
+        [InlineData("  ", "  ")]
         public void BuildProfilePictureUrl_WithNullParameters_ReturnsNull(string username, string imageVersion)
         {
             var result = this.cloudinaryService.BuildProfilePictureUrl(username, imageVersion);
@@ -54,6 +56,7 @@
         [InlineData(null, "")]
         [InlineData(null, null)]
         [InlineData("", "")]
+        [InlineData("   ", "  ")]
         public void BuildStadiumPictureUrl_WithNullParameters_ReturnsNull(string stadiumName, string imageVersion)
         {
             var result = this.cloudinaryService.BuildStadiumPictureUrl(stadiumName, imageVersion);
@@ -75,6 +78,7 @@
         [InlineData(null, "")]
         [InlineData(null, null)]
         [InlineData("", "")]
+        [InlineData("   ", "    ")]
         public void BuildPlayerPictureUrl_WithNullParameters_ReturnsNull(string playerName, string imageVersion)
         {
             var result = this.cloudinaryService.BuildPlayerPictureUrl(playerName, imageVersion);
@@ -96,6 +100,7 @@
         [InlineData(null, "")]
         [InlineData(null, null)]
         [InlineData("", "")]
+        [InlineData("   ", "    ")]
         public void BuildTeamBadgePictureUrl_WithNullParameters_ReturnsNull(string teamName, string imageVersion)
         {
             var result = this.cloudinaryService.BuildTeamBadgePictureUrl(teamName, imageVersion);
@@ -117,6 +122,7 @@
         [InlineData(null, "")]
         [InlineData(null, null)]
         [InlineData("", "")]
+        [InlineData("   ", "    ")]
         public void BuildManagerPicturePictureUrl_WithNullParameters_ReturnsNull(string managerName, string imageVersion)
         {
             var result = this.cloudinaryService.BuildManagerPictureUrl(managerName, imageVersion);

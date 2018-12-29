@@ -40,7 +40,7 @@
 
         public ImageUploadResult UploadPicture(Type entityType, string pictureId, Stream fileStream)
         {
-            if (entityType == null || string.IsNullOrEmpty(pictureId) || fileStream == null)
+            if (entityType == null || string.IsNullOrEmpty(pictureId) || string.IsNullOrWhiteSpace(pictureId) || fileStream == null)
                 return null;
 
             ImageUploadParams imageUploadParams = new ImageUploadParams
@@ -55,7 +55,7 @@
 
         public string BuildProfilePictureUrl(string username, string imageVersion)
         {
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(imageVersion))
+            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(imageVersion) || string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(imageVersion))
                 return null;
 
             string path = string.Format(GlobalConstants.FilePath, ProfilePicturesFolder, string.Format(GlobalConstants.ProfilePicture, username));
@@ -66,7 +66,7 @@
 
         public string BuildStadiumPictureUrl(string stadiumName, string imageVersion)
         {
-            if (string.IsNullOrEmpty(stadiumName) || string.IsNullOrEmpty(imageVersion))
+            if (string.IsNullOrEmpty(stadiumName) || string.IsNullOrEmpty(imageVersion) || string.IsNullOrWhiteSpace(stadiumName) || string.IsNullOrWhiteSpace(imageVersion))
                 return null;
 
             string path = string.Format(GlobalConstants.FilePath, StadiumPicturesFolder, string.Format(GlobalConstants.StadiumPicture, stadiumName));
@@ -75,7 +75,7 @@
 
         public string BuildPlayerPictureUrl(string playerName, string imageVersion)
         {
-            if (string.IsNullOrEmpty(playerName) || string.IsNullOrEmpty(imageVersion))
+            if (string.IsNullOrEmpty(playerName) || string.IsNullOrEmpty(imageVersion) || string.IsNullOrWhiteSpace(playerName) || string.IsNullOrWhiteSpace(imageVersion))
                 return null;
 
             string path = string.Format(GlobalConstants.FilePath, PlayerPicturesFolder, string.Format(GlobalConstants.PlayerPicture, playerName));
@@ -84,7 +84,7 @@
 
         public string BuildTeamBadgePictureUrl(string teamName, string imageVersion)
         {
-            if (string.IsNullOrEmpty(teamName) || string.IsNullOrEmpty(imageVersion))
+            if (string.IsNullOrEmpty(teamName) || string.IsNullOrEmpty(imageVersion) || string.IsNullOrWhiteSpace(teamName) || string.IsNullOrWhiteSpace(imageVersion))
                 return null;
 
             string path = string.Format(GlobalConstants.FilePath, TeamBadgesFolder, string.Format(GlobalConstants.BadgePicture, teamName));
@@ -93,7 +93,7 @@
 
         public string BuildManagerPictureUrl(string managerName, string imageVersion)
         {
-            if (string.IsNullOrEmpty(managerName) || string.IsNullOrEmpty(imageVersion))
+            if (string.IsNullOrEmpty(managerName) || string.IsNullOrEmpty(imageVersion) || string.IsNullOrWhiteSpace(managerName) || string.IsNullOrWhiteSpace(imageVersion))
                 return null;
 
             string path = string.Format(GlobalConstants.FilePath, ManagerPicturesFolder, string.Format(GlobalConstants.ManagerPicture, managerName));

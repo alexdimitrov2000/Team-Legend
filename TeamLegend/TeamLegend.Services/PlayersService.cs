@@ -32,15 +32,15 @@
 
         public async Task<Player> GetByIdAsync(string id)
         {
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
                 return null;
 
-            return await this.context.Players.FirstOrDefaultAsync(p => p.Id == id);
+            return await this.context.Players.SingleOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<Player> GetByNameAsync(string name)
         {
-            if (string.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name))
                 return null;
 
             return await this.context.Players.FirstOrDefaultAsync(p => p.Name == name);
@@ -64,24 +64,15 @@
 
         public async Task<ICollection<Player>> GetAllWithoutTeamAsync()
         {
-            return await this.context.Players.Where(p => p.CurrentTeam == null).ToListAsync();
+            return await this.context.Players.Where(p => p.CurrentTeam == null && p.CurrentTeamId == null).ToListAsync();
         }
 
         public async Task<ICollection<Player>> GetAllFromTeamAsync(string teamId)
         {
-            return await this.context.Players.Where(p => p.CurrentTeamId == teamId).ToListAsync();
-        }
-
-        public async Task<Player> AddPlayerToTeamAsync(Player player, Team team)
-        {
-            if (player == null || team == null)
+            if (string.IsNullOrEmpty(teamId) || string.IsNullOrWhiteSpace(teamId))
                 return null;
 
-            player.CurrentTeam = team;
-            this.context.Players.Update(player);
-            await this.context.SaveChangesAsync();
-
-            return player;
+            return await this.context.Players.Where(p => p.CurrentTeamId == teamId).ToListAsync();
         }
 
         public async Task<List<Player>> IncreasePlayersGoalsAsync(List<Player> players)

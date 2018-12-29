@@ -21,8 +21,6 @@
 
         Task<ICollection<Player>> GetAllFromTeamAsync(string teamId);
 
-        Task<Player> AddPlayerToTeamAsync(Player player, Team team);
-
         Task<List<Player>> IncreasePlayersGoalsAsync(List<Player> players);
     }
 }

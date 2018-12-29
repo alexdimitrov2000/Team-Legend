@@ -56,6 +56,7 @@
         [Theory]
         [InlineData(null)]
         [InlineData("")]
+        [InlineData("   ")]
         public async Task GetByIdAsync_WithInvalidIdParam_ReturnsNull(string id)
         {
             var context = new ApplicationDbContext(this.Options);

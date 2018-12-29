@@ -31,7 +31,7 @@
 
         public async Task<Manager> GetByIdAsync(string id)
         {
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
             {
                 return null;
             }

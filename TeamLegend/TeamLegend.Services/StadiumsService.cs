@@ -31,7 +31,7 @@
 
         public async Task<Stadium> GetByIdAsync(string id)
         {
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
                 return null;
 
             return await this.context.Stadiums.SingleOrDefaultAsync(s => s.Id == id);

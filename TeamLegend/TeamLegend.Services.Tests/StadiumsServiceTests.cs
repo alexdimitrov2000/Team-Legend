@@ -56,6 +56,25 @@
         }
 
         [Theory]
+        [InlineData("1")]
+        [InlineData("stadiumName")]
+        public async Task CreateAsync_WithGivenName_CreatesOnceThenThrows(string stadiumName)
+        {
+            var context = new ApplicationDbContext(this.Options);
+
+            var stadiumsService = new StadiumsService(context);
+
+            var stadium = new Stadium { Name = stadiumName };
+
+            var result = await stadiumsService.CreateAsync(stadium);
+
+            Assert.Equal(1, context.Stadiums.Count());
+            Assert.Equal(36, result.Id.Length);
+
+            Assert.Throws<ArgumentException>(() => stadiumsService.CreateAsync(stadium).GetAwaiter().GetResult());
+        }
+
+        [Theory]
         [InlineData(null)]
         [InlineData("")]
         [InlineData("   ")]

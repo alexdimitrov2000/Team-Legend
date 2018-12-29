@@ -135,7 +135,24 @@
         [InlineData("1", "2")]
         [InlineData("abc", "abv")]
         [InlineData("leagueId", "leagueName")]
-        public async Task GetByIdAsync_WithExistingLeagueButInconsistentId_ReturnsExistingNull(string id, string leagueName)
+        public async Task GetByIdAsync_WithInexistentLeague_ReturnsNull(string id, string leagueName)
+        {
+            var context = new ApplicationDbContext(this.Options);
+
+            var leaguesService = new LeaguesService(context);
+
+            var existingLeague = new League { Id = id, Name = leagueName };
+
+            var resultLeague = await leaguesService.GetByIdAsync(id);
+
+            Assert.Null(resultLeague);
+        }
+
+        [Theory]
+        [InlineData("1", "2")]
+        [InlineData("abc", "abv")]
+        [InlineData("leagueId", "leagueName")]
+        public async Task GetByIdAsync_WithExistingLeagueButInconsistentId_ReturnsNull(string id, string leagueName)
         {
             var context = new ApplicationDbContext(this.Options);
 

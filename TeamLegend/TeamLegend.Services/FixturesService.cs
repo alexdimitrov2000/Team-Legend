@@ -19,7 +19,7 @@
 
         public async Task<Fixture> GetOrCreateAsync(int fixtureRound, string leagueId)
         {
-            if (fixtureRound <= 0 || string.IsNullOrEmpty(leagueId))
+            if (fixtureRound <= 0 || string.IsNullOrEmpty(leagueId) || string.IsNullOrWhiteSpace(leagueId))
                 return null;
 
             var fixture = await this.context.Fixtures.SingleOrDefaultAsync(f => f.LeagueId == leagueId && f.FixtureRound == fixtureRound);
@@ -36,7 +36,7 @@
 
         public async Task<Fixture> GetByLeagueIdAndRoundAsync(string leagueId, int round)
         {
-            if (string.IsNullOrEmpty(leagueId) || round <= 0)
+            if (string.IsNullOrEmpty(leagueId) || string.IsNullOrWhiteSpace(leagueId) || round <= 0)
                 return null;
 
             var fixture = await this.context.Fixtures.SingleOrDefaultAsync(f => f.LeagueId == leagueId && f.FixtureRound == round);

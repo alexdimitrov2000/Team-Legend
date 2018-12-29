@@ -24,8 +24,11 @@
         [Theory]
         [InlineData(0, "")]
         [InlineData(-10, "")]
+        [InlineData(10, "")]
         [InlineData(0, null)]
         [InlineData(-10, null)]
+        [InlineData(10, null)]
+        [InlineData(10, "  ")]
         public async Task GetOrCreateAsync_WithInvalidParams_ReturnsNull(int fixtureRound, string leagueId)
         {
             var context = new ApplicationDbContext(this.Options);
@@ -148,6 +151,8 @@
         [Theory]
         [InlineData(0, "")]
         [InlineData(-10, "")]
+        [InlineData(10, "")]
+        [InlineData(5, "  ")]
         [InlineData(0, null)]
         [InlineData(-10, null)]
         public async Task GetByLeagueIdAndRoundAsync_WithInvalidParams_ReturnsNull(int fixtureRound, string leagueId)

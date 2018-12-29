@@ -17,10 +17,12 @@
 
         public async Task<ApplicationUser> SetProfilePictureVersionAsync(ApplicationUser user, string version)
         {
-            if (user == null)
+            if (user == null || string.IsNullOrEmpty(version) || string.IsNullOrWhiteSpace(version))
                 return null;
 
             user.ProfilePictureVersion = version;
+
+            this.context.Users.Update(user);
             await this.context.SaveChangesAsync();
 
             return user;

@@ -32,18 +32,10 @@
 
         public async Task<Team> GetByIdAsync(string id)
         {
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(id) || string.IsNullOrWhiteSpace(id))
                 return null;
 
-            return await this.context.Teams.FirstOrDefaultAsync(p => p.Id == id);
-        }
-
-        public async Task<Team> GetByNameAsync(string name)
-        {
-            if (string.IsNullOrEmpty(name))
-                return null;
-
-            return await this.context.Teams.FirstOrDefaultAsync(p => p.Name == name);
+            return await this.context.Teams.SingleOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<List<Team>> GetAllAsync()
@@ -53,7 +45,7 @@
 
         public async Task<List<Team>> GetAllWithoutLeagueAsync()
         {
-            return await this.context.Teams.Where(t => t.LeagueId == null).ToListAsync();
+            return await this.context.Teams.Where(t => t.LeagueId == null && t.League == null).ToListAsync();
         }
 
         public async Task<bool> DeleteAsync(Team team)

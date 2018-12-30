@@ -11,8 +11,6 @@
 
         Task<Team> GetByIdAsync(string id);
 
-        Task<Team> GetByNameAsync(string name);
-
         Task<List<Team>> GetAllAsync();
 
         Task<List<Team>> GetAllWithoutLeagueAsync();

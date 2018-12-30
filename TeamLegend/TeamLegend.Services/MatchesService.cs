@@ -45,13 +45,16 @@
             if (string.IsNullOrEmpty(id))
                 return null;
 
-            var match = await this.context.Matches.FirstOrDefaultAsync(m => m.Id == id);
+            var match = await this.context.Matches.SingleOrDefaultAsync(m => m.Id == id);
 
             return match;
         }
 
         public async Task<Match> UpdateTeamsGoalsAsync(Match match, int homeTeamGoals, int awayTeamGoals)
         {
+            if (homeTeamGoals < 0 || awayTeamGoals < 0 || match == null)
+                return null;
+
             var homeTeamScored = homeTeamGoals;
             var awayTeamScored = awayTeamGoals;
 

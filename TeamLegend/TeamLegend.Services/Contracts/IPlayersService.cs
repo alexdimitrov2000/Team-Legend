@@ -11,8 +11,6 @@
 
         Task<Player> GetByIdAsync(string id);
 
-        Task<Player> GetByNameAsync(string name);
-
         Task<bool> DeleteAsync(Player player);
 
         Task<ICollection<Player>> GetAllAsync();

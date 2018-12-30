@@ -38,14 +38,6 @@
             return await this.context.Players.SingleOrDefaultAsync(p => p.Id == id);
         }
 
-        public async Task<Player> GetByNameAsync(string name)
-        {
-            if (string.IsNullOrEmpty(name) || string.IsNullOrWhiteSpace(name))
-                return null;
-
-            return await this.context.Players.FirstOrDefaultAsync(p => p.Name == name);
-        }
-
         public async Task<bool> DeleteAsync(Player player)
         {
             if (player == null)

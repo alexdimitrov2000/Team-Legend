@@ -1,5 +1,7 @@
 ﻿namespace TeamLegend.Web.Areas.Administration.Models.Managers
 {
+    using TeamLegend.Models;
+
     using System;
     using System.ComponentModel.DataAnnotations;
 
@@ -10,6 +12,7 @@
         private const string ManagerDateOfBirthDisplay = "Date of Birth";
         private const string ManagerNationalityDisplay = "Nationality";
         private const string ManagerPictureDisplay = "Manager Picture";
+        private const string ManagerTeamDisplay = "Team";
 
         public string Id { get; set; }
 
@@ -27,5 +30,8 @@
 
         [Display(Name = ManagerPictureDisplay)]
         public string ManagerPictureUrl { get; set; }
+
+        [Display(Name = ManagerTeamDisplay)]
+        public Team Team { get; set; }
     }
 }

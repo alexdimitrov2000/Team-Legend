@@ -250,5 +250,63 @@
             Assert.Equal(existingFixture.LeagueId, resultFixture.LeagueId);
             Assert.Equal(existingFixture.Id, resultFixture.Id);
         }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("   ")]
+        public void ValidateRoundAsync_WithInvalidLeagueId_ThrowsException(string leagueId)
+        {
+            var context = new ApplicationDbContext(this.Options);
+
+            var fixturesService = new FixturesService(context);
+
+            Assert.Throws<ArgumentException>(() => fixturesService.ValidateRoundAsync(leagueId, 1).GetAwaiter().GetResult());
+        }
+
+        [Theory]
+        [InlineData("1", -1)]
+        [InlineData("abc", -12)]
+        [InlineData("leagueId", 0)]
+        public async Task ValidateRoundAsync_WithNegativeOrZeroRound_ReturnsOne(string leagueId, int round)
+        {
+            var context = new ApplicationDbContext(this.Options);
+
+            var fixturesService = new FixturesService(context);
+
+            var fixture = new Fixture { LeagueId = leagueId, FixtureRound = 1 };
+            await context.Fixtures.AddAsync(fixture);
+            await context.SaveChangesAsync();
+
+            var resultRound = await fixturesService.ValidateRoundAsync(leagueId, round);
+
+            Assert.NotEqual(round, resultRound);
+            Assert.Equal(1, resultRound);
+        }
+
+        [Theory]
+        [InlineData("1", 15)]
+        [InlineData("abc", 12)]
+        [InlineData("leagueId", 20)]
+        public async Task ValidateRoundAsync_WithHigherThanExistingRound_ReturnsLastExistingRound(string leagueId, int round)
+        {
+            var context = new ApplicationDbContext(this.Options);
+
+            var fixturesService = new FixturesService(context);
+            
+            var fixtures = new Fixture[]
+            {
+                new Fixture { LeagueId = leagueId, FixtureRound = 1 },
+                new Fixture { LeagueId = leagueId, FixtureRound = 3 },
+                new Fixture { LeagueId = leagueId, FixtureRound = 5 },
+            };
+            await context.Fixtures.AddRangeAsync(fixtures);
+            await context.SaveChangesAsync();
+
+            var resultRound = await fixturesService.ValidateRoundAsync(leagueId, round);
+
+            Assert.NotEqual(round, resultRound);
+            Assert.Equal(5, resultRound);
+        }
     }
 }

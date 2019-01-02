@@ -87,51 +87,51 @@
       "TeamLegend.Data.ApplicationDbContext": {
         "Microsoft.EntityFrameworkCore.DbSet`1<TeamLegend.Models.League> TeamLegend.Data.ApplicationDbContext::get_Leagues()": {
           "Lines": {
-            "17": 324
+            "17": 334
           },
           "Branches": []
         },
         "Microsoft.EntityFrameworkCore.DbSet`1<TeamLegend.Models.Stadium> TeamLegend.Data.ApplicationDbContext::get_Stadiums()": {
           "Lines": {
-            "18": 341
+            "18": 351
           },
           "Branches": []
         },
         "Microsoft.EntityFrameworkCore.DbSet`1<TeamLegend.Models.Team> TeamLegend.Data.ApplicationDbContext::get_Teams()": {
           "Lines": {
-            "19": 455
+            "19": 464
           },
           "Branches": []
         },
         "Microsoft.EntityFrameworkCore.DbSet`1<TeamLegend.Models.Player> TeamLegend.Data.ApplicationDbContext::get_Players()": {
           "Lines": {
-            "20": 390
+            "20": 398
           },
           "Branches": []
         },
         "Microsoft.EntityFrameworkCore.DbSet`1<TeamLegend.Models.Fixture> TeamLegend.Data.ApplicationDbContext::get_Fixtures()": {
           "Lines": {
-            "21": 326
+            "21": 342
           },
           "Branches": []
         },
         "Microsoft.EntityFrameworkCore.DbSet`1<TeamLegend.Models.Match> TeamLegend.Data.ApplicationDbContext::get_Matches()": {
           "Lines": {
-            "22": 344
+            "22": 354
           },
           "Branches": []
         },
         "Microsoft.EntityFrameworkCore.DbSet`1<TeamLegend.Models.Manager> TeamLegend.Data.ApplicationDbContext::get_Managers()": {
           "Lines": {
-            "23": 300
+            "23": 312
           },
           "Branches": []
         },
         "System.Void TeamLegend.Data.ApplicationDbContext::OnConfiguring(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)": {
           "Lines": {
-            "26": 218,
-            "27": 218,
-            "28": 218
+            "26": 223,
+            "27": 223,
+            "28": 223
           },
           "Branches": []
         },
@@ -151,9 +151,9 @@
         },
         "System.Void TeamLegend.Data.ApplicationDbContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<TeamLegend.Data.ApplicationDbContext>)": {
           "Lines": {
-            "13": 268,
-            "14": 264,
-            "15": 264
+            "13": 276,
+            "14": 273,
+            "15": 275
           },
           "Branches": []
         }
@@ -10615,40 +10615,40 @@
       "TeamLegend.Models.Fixture": {
         "System.String TeamLegend.Models.Fixture::get_Id()": {
           "Lines": {
-            "15": 377
+            "15": 521
           },
           "Branches": []
         },
         "System.Int32 TeamLegend.Models.Fixture::get_FixtureRound()": {
           "Lines": {
-            "19": 165
+            "19": 225
           },
           "Branches": []
         },
         "System.String TeamLegend.Models.Fixture::get_LeagueId()": {
           "Lines": {
-            "21": 266
+            "21": 362
           },
           "Branches": []
         },
         "TeamLegend.Models.League TeamLegend.Models.Fixture::get_League()": {
           "Lines": {
-            "22": 121
+            "22": 169
           },
           "Branches": []
         },
         "System.Collections.Generic.ICollection`1<TeamLegend.Models.Match> TeamLegend.Models.Fixture::get_Matches()": {
           "Lines": {
-            "24": 151
+            "24": 211
           },
           "Branches": []
         },
         "System.Void TeamLegend.Models.Fixture::.ctor()": {
           "Lines": {
-            "10": 28,
-            "11": 28,
-            "12": 28,
-            "13": 28
+            "10": 40,
+            "11": 40,
+            "12": 40,
+            "13": 40
           },
           "Branches": []
         }
@@ -11139,13 +11139,13 @@
       "TeamLegend.Models.Team": {
         "System.String TeamLegend.Models.Team::get_Id()": {
           "Lines": {
-            "24": 1952
+            "24": 1953
           },
           "Branches": []
         },
         "System.String TeamLegend.Models.Team::get_Name()": {
           "Lines": {
-            "29": 689
+            "29": 690
           },
           "Branches": []
         },
@@ -11163,7 +11163,7 @@
         },
         "System.Int32 TeamLegend.Models.Team::get_GoalsScored()": {
           "Lines": {
-            "39": 646
+            "39": 645
           },
           "Branches": []
         },
@@ -11211,7 +11211,7 @@
         },
         "TeamLegend.Models.League TeamLegend.Models.Team::get_League()": {
           "Lines": {
-            "53": 726
+            "53": 725
           },
           "Branches": []
         },
@@ -11223,13 +11223,13 @@
         },
         "System.Collections.Generic.ICollection`1<TeamLegend.Models.Player> TeamLegend.Models.Team::get_Players()": {
           "Lines": {
-            "57": 821
+            "57": 819
           },
           "Branches": []
         },
         "System.Collections.Generic.ICollection`1<TeamLegend.Models.Match> TeamLegend.Models.Team::get_Matches()": {
           "Lines": {
-            "58": 736
+            "58": 735
           },
           "Branches": []
         },
@@ -11238,8 +11238,8 @@
             "18": 130,
             "19": 130,
             "20": 130,
-            "21": 130,
-            "22": 130
+            "21": 129,
+            "22": 129
           },
           "Branches": []
         }
@@ -11748,10 +11748,10 @@
       "TeamLegend.Services.FixturesService": {
         "System.Void TeamLegend.Services.FixturesService::.ctor(TeamLegend.Data.ApplicationDbContext)": {
           "Lines": {
-            "15": 35,
-            "16": 35,
-            "17": 35,
-            "18": 35
+            "17": 44,
+            "18": 44,
+            "19": 44,
+            "20": 44
           },
           "Branches": []
         }
@@ -11759,22 +11759,22 @@
       "TeamLegend.Services.FixturesService/<GetOrCreateAsync>d__2": {
         "System.Void TeamLegend.Services.FixturesService/<GetOrCreateAsync>d__2::MoveNext()": {
           "Lines": {
-            "21": 21,
-            "22": 21,
-            "23": 7,
-            "25": 14,
+            "23": 21,
+            "24": 21,
+            "25": 7,
             "27": 14,
-            "28": 10,
-            "29": 10,
+            "29": 14,
             "30": 10,
             "31": 10,
             "32": 10,
-            "34": 14,
-            "35": 21
+            "33": 10,
+            "34": 10,
+            "36": 14,
+            "37": 21
           },
           "Branches": [
             {
-              "Line": 22,
+              "Line": 24,
               "Offset": 100,
               "EndOffset": 102,
               "Path": 0,
@@ -11782,7 +11782,7 @@
               "Hits": 17
             },
             {
-              "Line": 22,
+              "Line": 24,
               "Offset": 118,
               "EndOffset": 120,
               "Path": 0,
@@ -11790,7 +11790,7 @@
               "Hits": 15
             },
             {
-              "Line": 22,
+              "Line": 24,
               "Offset": 100,
               "EndOffset": 138,
               "Path": 1,
@@ -11798,7 +11798,7 @@
               "Hits": 6
             },
             {
-              "Line": 22,
+              "Line": 24,
               "Offset": 118,
               "EndOffset": 138,
               "Path": 1,
@@ -11806,7 +11806,7 @@
               "Hits": 6
             },
             {
-              "Line": 22,
+              "Line": 24,
               "Offset": 141,
               "EndOffset": 143,
               "Path": 0,
@@ -11814,7 +11814,7 @@
               "Hits": 7
             },
             {
-              "Line": 22,
+              "Line": 24,
               "Offset": 141,
               "EndOffset": 150,
               "Path": 1,
@@ -11822,7 +11822,7 @@
               "Hits": 14
             },
             {
-              "Line": 25,
+              "Line": 27,
               "Offset": 363,
               "EndOffset": 433,
               "Path": 1,
@@ -11830,7 +11830,7 @@
               "Hits": 14
             },
             {
-              "Line": 27,
+              "Line": 29,
               "Offset": 478,
               "EndOffset": 483,
               "Path": 0,
@@ -11838,7 +11838,7 @@
               "Hits": 10
             },
             {
-              "Line": 30,
+              "Line": 32,
               "Offset": 582,
               "EndOffset": 654,
               "Path": 1,
@@ -11846,7 +11846,7 @@
               "Hits": 10
             },
             {
-              "Line": 31,
+              "Line": 33,
               "Offset": 702,
               "EndOffset": 771,
               "Path": 1,
@@ -11854,7 +11854,7 @@
               "Hits": 10
             },
             {
-              "Line": 27,
+              "Line": 29,
               "Offset": 478,
               "EndOffset": 780,
               "Path": 1,
@@ -11867,16 +11867,16 @@
       "TeamLegend.Services.FixturesService/<GetByLeagueIdAndRoundAsync>d__3": {
         "System.Void TeamLegend.Services.FixturesService/<GetByLeagueIdAndRoundAsync>d__3::MoveNext()": {
           "Lines": {
-            "38": 16,
-            "39": 16,
-            "40": 6,
-            "42": 10,
-            "43": 10,
-            "44": 16
+            "40": 16,
+            "41": 16,
+            "42": 6,
+            "44": 10,
+            "45": 10,
+            "46": 16
           },
           "Branches": [
             {
-              "Line": 39,
+              "Line": 41,
               "Offset": 79,
               "EndOffset": 81,
               "Path": 0,
@@ -11884,52 +11884,118 @@
               "Hits": 11
             },
             {
-              "Line": 39,
-              "Offset": 97,
-              "EndOffset": 99,
-              "Path": 0,
-              "Ordinal": 2,
-              "Hits": 10
-            },
-            {
-              "Line": 39,
+              "Line": 41,
               "Offset": 79,
-              "EndOffset": 118,
+              "EndOffset": 99,
               "Path": 1,
               "Ordinal": 1,
+              "Hits": 5
+            },
+            {
+              "Line": 41,
+              "Offset": 102,
+              "EndOffset": 104,
+              "Path": 0,
+              "Ordinal": 2,
               "Hits": 6
             },
             {
-              "Line": 39,
-              "Offset": 97,
-              "EndOffset": 118,
+              "Line": 41,
+              "Offset": 102,
+              "EndOffset": 111,
+              "Path": 1,
+              "Ordinal": 3,
+              "Hits": 10
+            },
+            {
+              "Line": 44,
+              "Offset": 324,
+              "EndOffset": 391,
+              "Path": 1,
+              "Ordinal": 5,
+              "Hits": 10
+            }
+          ]
+        }
+      },
+      "TeamLegend.Services.FixturesService/<ValidateRoundAsync>d__4": {
+        "System.Void TeamLegend.Services.FixturesService/<ValidateRoundAsync>d__4::MoveNext()": {
+          "Lines": {
+            "49": 9,
+            "50": 9,
+            "51": 3,
+            "53": 6,
+            "54": 3,
+            "56": 3,
+            "58": 3,
+            "59": 3,
+            "61": 0,
+            "62": 6
+          },
+          "Branches": [
+            {
+              "Line": 50,
+              "Offset": 62,
+              "EndOffset": 64,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 7
+            },
+            {
+              "Line": 50,
+              "Offset": 62,
+              "EndOffset": 82,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 2
+            },
+            {
+              "Line": 50,
+              "Offset": 85,
+              "EndOffset": 87,
+              "Path": 0,
+              "Ordinal": 2,
+              "Hits": 3
+            },
+            {
+              "Line": 50,
+              "Offset": 85,
+              "EndOffset": 98,
               "Path": 1,
               "Ordinal": 3,
               "Hits": 6
             },
             {
-              "Line": 39,
-              "Offset": 121,
-              "EndOffset": 123,
+              "Line": 53,
+              "Offset": 112,
+              "EndOffset": 114,
               "Path": 0,
               "Ordinal": 4,
-              "Hits": 6
+              "Hits": 3
             },
             {
-              "Line": 39,
-              "Offset": 121,
-              "EndOffset": 130,
+              "Line": 53,
+              "Offset": 112,
+              "EndOffset": 121,
               "Path": 1,
               "Ordinal": 5,
-              "Hits": 10
+              "Hits": 3
             },
             {
-              "Line": 42,
-              "Offset": 343,
-              "EndOffset": 410,
+              "Line": 56,
+              "Offset": 402,
+              "EndOffset": 474,
               "Path": 1,
               "Ordinal": 7,
-              "Hits": 10
+              "Hits": 3
+            },
+            {
+              "Line": 58,
+              "Offset": 517,
+              "EndOffset": 519,
+              "Path": 0,
+              "Ordinal": 8,
+              "Hits": 3
             }
           ]
         }
@@ -12706,6 +12772,36 @@
               "Path": 1,
               "Ordinal": 13,
               "Hits": 16
+            }
+          ]
+        }
+      },
+      "TeamLegend.Services.MatchesService/<DeleteTeamMatches>d__8": {
+        "System.Void TeamLegend.Services.MatchesService/<DeleteTeamMatches>d__8::MoveNext()": {
+          "Lines": {
+            "102": 0,
+            "103": 0,
+            "105": 0,
+            "106": 0,
+            "108": 0,
+            "109": 0
+          },
+          "Branches": [
+            {
+              "Line": 106,
+              "Offset": 310,
+              "EndOffset": 312,
+              "Path": 0,
+              "Ordinal": 0,
+              "Hits": 0
+            },
+            {
+              "Line": 106,
+              "Offset": 310,
+              "EndOffset": 377,
+              "Path": 1,
+              "Ordinal": 1,
+              "Hits": 0
             }
           ]
         }
@@ -19322,7 +19418,7 @@
       "MessageSinkMessageExtensions": {
         "TMessage MessageSinkMessageExtensions::Cast(Xunit.Abstractions.IMessageSinkMessage,System.Collections.Generic.HashSet`1<System.String>)": {
           "Lines": {
-            "20": 67978
+            "20": 69928
           },
           "Branches": [
             {
@@ -19331,7 +19427,7 @@
               "EndOffset": 3,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 67978
+              "Hits": 69928
             },
             {
               "Line": 20,
@@ -19339,7 +19435,7 @@
               "EndOffset": 26,
               "Path": 0,
               "Ordinal": 2,
-              "Hits": 66462
+              "Hits": 68367
             },
             {
               "Line": 20,
@@ -19347,7 +19443,7 @@
               "EndOffset": 36,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 1516
+              "Hits": 1561
             },
             {
               "Line": 20,
@@ -19355,19 +19451,19 @@
               "EndOffset": 36,
               "Path": 1,
               "Ordinal": 3,
-              "Hits": 1516
+              "Hits": 1561
             }
           ]
         },
         "System.Boolean MessageSinkMessageExtensions::Dispatch(Xunit.Abstractions.IMessageSinkMessage,System.Collections.Generic.HashSet`1<System.String>,Xunit.MessageHandler`1<TMessage>)": {
           "Lines": {
-            "33": 166632,
-            "35": 67978,
-            "36": 67978,
-            "38": 1516,
-            "39": 1516,
-            "40": 1516,
-            "44": 165116
+            "33": 171411,
+            "35": 69928,
+            "36": 69928,
+            "38": 1561,
+            "39": 1561,
+            "40": 1561,
+            "44": 169850
           },
           "Branches": [
             {
@@ -19376,7 +19472,7 @@
               "EndOffset": 3,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 67978
+              "Hits": 69928
             },
             {
               "Line": 36,
@@ -19384,7 +19480,7 @@
               "EndOffset": 19,
               "Path": 0,
               "Ordinal": 2,
-              "Hits": 1516
+              "Hits": 1561
             },
             {
               "Line": 33,
@@ -19392,7 +19488,7 @@
               "EndOffset": 43,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 165116
+              "Hits": 169850
             },
             {
               "Line": 36,
@@ -19400,7 +19496,7 @@
               "EndOffset": 43,
               "Path": 1,
               "Ordinal": 3,
-              "Hits": 165116
+              "Hits": 169850
             }
           ]
         }
@@ -20199,7 +20295,7 @@
         },
         "System.Collections.Generic.Dictionary`2<TKey,TValue> DictionaryExtensions::ToDictionaryIgnoringDuplicateKeys(System.Collections.Generic.IEnumerable`1<TValue>,System.Func`2<TValue,TKey>,System.Collections.Generic.IEqualityComparer`1<TKey>)": {
           "Lines": {
-            "44": 144
+            "44": 147
           },
           "Branches": [
             {
@@ -20223,10 +20319,10 @@
         "System.Collections.Generic.Dictionary`2<TKey,TValue> DictionaryExtensions::ToDictionaryIgnoringDuplicateKeys(System.Collections.Generic.IEnumerable`1<TInput>,System.Func`2<TInput,TKey>,System.Func`2<TInput,TValue>,System.Collections.Generic.IEqualityComparer`1<TKey>)": {
           "Lines": {
             "51": 1,
-            "53": 288,
-            "55": 143,
-            "56": 143,
-            "57": 143,
+            "53": 294,
+            "55": 146,
+            "56": 146,
+            "57": 146,
             "60": 1
           },
           "Branches": [
@@ -20236,7 +20332,7 @@
               "EndOffset": 16,
               "Path": 1,
               "Ordinal": 3,
-              "Hits": 143
+              "Hits": 146
             },
             {
               "Line": 56,
@@ -20244,7 +20340,7 @@
               "EndOffset": 40,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 143
+              "Hits": 146
             },
             {
               "Line": 56,
@@ -20252,7 +20348,7 @@
               "EndOffset": 54,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 144
+              "Hits": 147
             },
             {
               "Line": 53,
@@ -21226,23 +21322,23 @@
         "System.Collections.Generic.List`1<Xunit.TestCaseDescriptor> Xunit.DefaultTestCaseDescriptorProvider::GetTestCaseDescriptors(System.Collections.Generic.List`1<Xunit.Abstractions.ITestCase>,System.Boolean)": {
           "Lines": {
             "23": 1,
-            "25": 606,
-            "27": 302,
-            "28": 302,
-            "29": 302,
-            "33": 302,
-            "34": 302,
-            "35": 302,
-            "36": 302,
-            "37": 302,
-            "38": 302,
-            "39": 302,
-            "40": 302,
-            "41": 302,
-            "42": 302,
-            "43": 302,
-            "44": 302,
-            "45": 302,
+            "25": 624,
+            "27": 311,
+            "28": 311,
+            "29": 311,
+            "33": 311,
+            "34": 311,
+            "35": 311,
+            "36": 311,
+            "37": 311,
+            "38": 311,
+            "39": 311,
+            "40": 311,
+            "41": 311,
+            "42": 311,
+            "43": 311,
+            "44": 311,
+            "45": 311,
             "46": 0,
             "49": 1
           },
@@ -21253,7 +21349,7 @@
               "EndOffset": 24,
               "Path": 1,
               "Ordinal": 11,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 27,
@@ -21269,7 +21365,7 @@
               "EndOffset": 43,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 27,
@@ -21277,7 +21373,7 @@
               "EndOffset": 43,
               "Path": 0,
               "Ordinal": 2,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 27,
@@ -21293,7 +21389,7 @@
               "EndOffset": 158,
               "Path": 0,
               "Ordinal": 4,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 33,
@@ -21309,7 +21405,7 @@
               "EndOffset": 178,
               "Path": 0,
               "Ordinal": 6,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 33,
@@ -21333,7 +21429,7 @@
               "EndOffset": 218,
               "Path": 1,
               "Ordinal": 9,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 25,
@@ -21359,49 +21455,49 @@
       "Xunit.TestCaseDescriptor": {
         "System.String Xunit.TestCaseDescriptor::get_ClassName()": {
           "Lines": {
-            "76": 906
+            "76": 933
           },
           "Branches": []
         },
         "System.String Xunit.TestCaseDescriptor::get_DisplayName()": {
           "Lines": {
-            "79": 604
+            "79": 622
           },
           "Branches": []
         },
         "System.String Xunit.TestCaseDescriptor::get_MethodName()": {
           "Lines": {
-            "82": 906
+            "82": 933
           },
           "Branches": []
         },
         "System.String Xunit.TestCaseDescriptor::get_Serialization()": {
           "Lines": {
-            "85": 302
+            "85": 311
           },
           "Branches": []
         },
         "System.String Xunit.TestCaseDescriptor::get_SkipReason()": {
           "Lines": {
-            "88": 302
+            "88": 311
           },
           "Branches": []
         },
         "System.String Xunit.TestCaseDescriptor::get_SourceFileName()": {
           "Lines": {
-            "91": 604
+            "91": 622
           },
           "Branches": []
         },
         "System.Nullable`1<System.Int32> Xunit.TestCaseDescriptor::get_SourceLineNumber()": {
           "Lines": {
-            "94": 604
+            "94": 622
           },
           "Branches": []
         },
         "System.String Xunit.TestCaseDescriptor::get_UniqueID()": {
           "Lines": {
-            "100": 1208
+            "100": 1244
           },
           "Branches": []
         },
@@ -21430,7 +21526,7 @@
         },
         "System.Void Xunit.TestCaseDescriptor::.ctor()": {
           "Lines": {
-            "16": 604
+            "16": 622
           },
           "Branches": []
         },
@@ -22092,9 +22188,9 @@
         },
         "TValue Xunit.TestFrameworkOptions::GetValue(System.String)": {
           "Lines": {
-            "73": 700,
+            "73": 721,
             "74": 0,
-            "76": 700
+            "76": 721
           },
           "Branches": [
             {
@@ -22111,7 +22207,7 @@
               "EndOffset": 23,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 700
+              "Hits": 721
             }
           ]
         },
@@ -23898,20 +23994,20 @@
       "Xunit.OptimizedRemoteMessageSink": {
         "System.Collections.Generic.HashSet`1<System.String> Xunit.OptimizedRemoteMessageSink::GetMessageTypes(Xunit.Abstractions.IMessageSinkMessage)": {
           "Lines": {
-            "23": 2707,
-            "26": 2707,
-            "30": 2707,
-            "31": 2707,
-            "34": 2707,
-            "35": 2707,
-            "37": 2707,
+            "23": 2785,
+            "26": 2785,
+            "30": 2785,
+            "31": 2785,
+            "34": 2785,
+            "35": 2785,
+            "37": 2785,
             "39": 17,
             "43": 138,
             "44": 17,
             "45": 17,
             "48": 17,
             "49": 17,
-            "52": 2707
+            "52": 2785
           },
           "Branches": [
             {
@@ -23944,13 +24040,13 @@
               "EndOffset": 140,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 2707
+              "Hits": 2785
             }
           ]
         },
         "System.Boolean Xunit.OptimizedRemoteMessageSink::OnMessage(Xunit.Abstractions.IMessageSinkMessage)": {
           "Lines": {
-            "56": 2707
+            "56": 2785
           },
           "Branches": []
         },
@@ -26759,14 +26855,14 @@
         },
         "System.Void Xunit.DefaultRunnerReporterWithTypesMessageHandler::HandleTestPassed(Xunit.MessageHandlerArgs`1<Xunit.Abstractions.ITestPassed>)": {
           "Lines": {
-            "326": 302,
-            "327": 302,
-            "328": 302,
+            "326": 311,
+            "327": 311,
+            "328": 311,
             "330": 0,
             "332": 0,
             "333": 0,
             "334": 0,
-            "336": 302
+            "336": 311
           },
           "Branches": [
             {
@@ -26791,7 +26887,7 @@
               "EndOffset": 143,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 327,
@@ -26799,7 +26895,7 @@
               "EndOffset": 143,
               "Path": 1,
               "Ordinal": 3,
-              "Hits": 302
+              "Hits": 311
             }
           ]
         },
@@ -27054,7 +27150,7 @@
       "Xunit.AggregateMessageSink": {
         "System.Collections.Generic.List`1<Xunit.IMessageSinkWithTypes> Xunit.AggregateMessageSink::get_AggregatedSinks()": {
           "Lines": {
-            "16": 9646
+            "16": 9922
           },
           "Branches": []
         },
@@ -27133,11 +27229,11 @@
         },
         "System.Boolean Xunit.AggregateMessageSink::OnMessageWithTypes(Xunit.Abstractions.IMessageSinkMessage,System.Collections.Generic.HashSet`1<System.String>)": {
           "Lines": {
-            "63": 4812,
-            "65": 4812,
-            "66": 33688,
-            "67": 12032,
-            "69": 4812
+            "63": 4950,
+            "65": 4950,
+            "66": 34654,
+            "67": 12377,
+            "69": 4950
           },
           "Branches": [
             {
@@ -27146,7 +27242,7 @@
               "EndOffset": 33,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 12032
+              "Hits": 12377
             },
             {
               "Line": 66,
@@ -27154,7 +27250,7 @@
               "EndOffset": 59,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 4812
+              "Hits": 4950
             }
           ]
         }
@@ -28549,8 +28645,8 @@
         },
         "System.Boolean Xunit.DiagnosticEventSink::OnMessageWithTypes(Xunit.Abstractions.IMessageSinkMessage,System.Collections.Generic.HashSet`1<System.String>)": {
           "Lines": {
-            "27": 4813,
-            "28": 4813
+            "27": 4951,
+            "28": 4951
           },
           "Branches": [
             {
@@ -28559,7 +28655,7 @@
               "EndOffset": 15,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 4813
+              "Hits": 4951
             },
             {
               "Line": 27,
@@ -28583,8 +28679,8 @@
         },
         "System.Boolean Xunit.DiscoveryEventSink::OnMessageWithTypes(Xunit.Abstractions.IMessageSinkMessage,System.Collections.Generic.HashSet`1<System.String>)": {
           "Lines": {
-            "27": 303,
-            "28": 303
+            "27": 312,
+            "28": 312
           },
           "Branches": [
             {
@@ -28593,7 +28689,7 @@
               "EndOffset": 15,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 303
+              "Hits": 312
             },
             {
               "Line": 27,
@@ -28617,36 +28713,36 @@
         },
         "System.Boolean Xunit.ExecutionEventSink::OnMessageWithTypes(Xunit.Abstractions.IMessageSinkMessage,System.Collections.Generic.HashSet`1<System.String>)": {
           "Lines": {
-            "167": 4812,
-            "168": 4812,
-            "169": 4812,
-            "170": 4812,
-            "171": 4812,
-            "172": 4812,
-            "173": 4812,
-            "174": 4812,
-            "175": 4812,
-            "176": 4812,
-            "177": 4812,
-            "178": 4812,
-            "179": 4812,
-            "180": 4812,
-            "181": 4812,
-            "182": 4812,
-            "183": 4812,
-            "184": 4812,
-            "185": 4812,
-            "186": 4812,
-            "187": 4812,
-            "188": 4812,
-            "189": 4812,
-            "190": 4812,
-            "191": 4812,
-            "192": 4812,
-            "193": 4812,
-            "194": 4812,
-            "195": 4812,
-            "196": 4812
+            "167": 4950,
+            "168": 4950,
+            "169": 4950,
+            "170": 4950,
+            "171": 4950,
+            "172": 4950,
+            "173": 4950,
+            "174": 4950,
+            "175": 4950,
+            "176": 4950,
+            "177": 4950,
+            "178": 4950,
+            "179": 4950,
+            "180": 4950,
+            "181": 4950,
+            "182": 4950,
+            "183": 4950,
+            "184": 4950,
+            "185": 4950,
+            "186": 4950,
+            "187": 4950,
+            "188": 4950,
+            "189": 4950,
+            "190": 4950,
+            "191": 4950,
+            "192": 4950,
+            "193": 4950,
+            "194": 4950,
+            "195": 4950,
+            "196": 4950
           },
           "Branches": [
             {
@@ -28655,7 +28751,7 @@
               "EndOffset": 18,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28663,7 +28759,7 @@
               "EndOffset": 36,
               "Path": 0,
               "Ordinal": 2,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28671,7 +28767,7 @@
               "EndOffset": 54,
               "Path": 0,
               "Ordinal": 4,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28679,7 +28775,7 @@
               "EndOffset": 72,
               "Path": 0,
               "Ordinal": 6,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28687,7 +28783,7 @@
               "EndOffset": 90,
               "Path": 0,
               "Ordinal": 8,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28695,7 +28791,7 @@
               "EndOffset": 108,
               "Path": 0,
               "Ordinal": 10,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28703,7 +28799,7 @@
               "EndOffset": 126,
               "Path": 0,
               "Ordinal": 12,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28711,7 +28807,7 @@
               "EndOffset": 144,
               "Path": 0,
               "Ordinal": 14,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28719,7 +28815,7 @@
               "EndOffset": 162,
               "Path": 0,
               "Ordinal": 16,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28727,7 +28823,7 @@
               "EndOffset": 180,
               "Path": 0,
               "Ordinal": 18,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28735,7 +28831,7 @@
               "EndOffset": 198,
               "Path": 0,
               "Ordinal": 20,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28743,7 +28839,7 @@
               "EndOffset": 216,
               "Path": 0,
               "Ordinal": 22,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28751,7 +28847,7 @@
               "EndOffset": 234,
               "Path": 0,
               "Ordinal": 24,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28759,7 +28855,7 @@
               "EndOffset": 252,
               "Path": 0,
               "Ordinal": 26,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28767,7 +28863,7 @@
               "EndOffset": 270,
               "Path": 0,
               "Ordinal": 28,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28775,7 +28871,7 @@
               "EndOffset": 288,
               "Path": 0,
               "Ordinal": 30,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28783,7 +28879,7 @@
               "EndOffset": 306,
               "Path": 0,
               "Ordinal": 32,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28791,7 +28887,7 @@
               "EndOffset": 324,
               "Path": 0,
               "Ordinal": 34,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28799,7 +28895,7 @@
               "EndOffset": 342,
               "Path": 0,
               "Ordinal": 36,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28807,7 +28903,7 @@
               "EndOffset": 360,
               "Path": 0,
               "Ordinal": 38,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28815,7 +28911,7 @@
               "EndOffset": 378,
               "Path": 0,
               "Ordinal": 40,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28823,7 +28919,7 @@
               "EndOffset": 393,
               "Path": 0,
               "Ordinal": 42,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28831,7 +28927,7 @@
               "EndOffset": 408,
               "Path": 0,
               "Ordinal": 44,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28839,7 +28935,7 @@
               "EndOffset": 423,
               "Path": 0,
               "Ordinal": 46,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28847,7 +28943,7 @@
               "EndOffset": 438,
               "Path": 0,
               "Ordinal": 48,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28855,7 +28951,7 @@
               "EndOffset": 453,
               "Path": 0,
               "Ordinal": 50,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28863,7 +28959,7 @@
               "EndOffset": 468,
               "Path": 0,
               "Ordinal": 52,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28871,7 +28967,7 @@
               "EndOffset": 483,
               "Path": 0,
               "Ordinal": 54,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -28879,7 +28975,7 @@
               "EndOffset": 498,
               "Path": 0,
               "Ordinal": 56,
-              "Hits": 4812
+              "Hits": 4950
             },
             {
               "Line": 167,
@@ -29121,7 +29217,7 @@
       "Xunit.MessageHandlerArgs": {
         "System.Boolean Xunit.MessageHandlerArgs::get_IsStopped()": {
           "Lines": {
-            "13": 1516
+            "13": 1561
           },
           "Branches": []
         },
@@ -29136,15 +29232,15 @@
       "Xunit.MessageHandlerArgs`1": {
         "TMessage Xunit.MessageHandlerArgs`1::get_Message()": {
           "Lines": {
-            "43": 1515
+            "43": 1560
           },
           "Branches": []
         },
         "System.Void Xunit.MessageHandlerArgs`1::.ctor(TMessage)": {
           "Lines": {
-            "35": 1516,
-            "37": 1516,
-            "38": 1516
+            "35": 1561,
+            "37": 1561,
+            "38": 1561
           },
           "Branches": []
         }
@@ -29160,11 +29256,11 @@
         },
         "System.Boolean Xunit.RunnerEventSink::OnMessageWithTypes(Xunit.Abstractions.IMessageSinkMessage,System.Collections.Generic.HashSet`1<System.String>)": {
           "Lines": {
-            "42": 2408,
-            "43": 2408,
-            "44": 2408,
-            "45": 2408,
-            "46": 2408
+            "42": 2477,
+            "43": 2477,
+            "44": 2477,
+            "45": 2477,
+            "46": 2477
           },
           "Branches": [
             {
@@ -29173,7 +29269,7 @@
               "EndOffset": 15,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 2408
+              "Hits": 2477
             },
             {
               "Line": 42,
@@ -29181,7 +29277,7 @@
               "EndOffset": 30,
               "Path": 0,
               "Ordinal": 2,
-              "Hits": 2408
+              "Hits": 2477
             },
             {
               "Line": 42,
@@ -29189,7 +29285,7 @@
               "EndOffset": 45,
               "Path": 0,
               "Ordinal": 4,
-              "Hits": 2408
+              "Hits": 2477
             },
             {
               "Line": 42,
@@ -29197,7 +29293,7 @@
               "EndOffset": 60,
               "Path": 0,
               "Ordinal": 6,
-              "Hits": 2408
+              "Hits": 2477
             },
             {
               "Line": 42,
@@ -29239,7 +29335,7 @@
       "Xunit.TestDiscoverySink": {
         "System.Collections.Generic.List`1<Xunit.Abstractions.ITestCase> Xunit.TestDiscoverySink::get_TestCases()": {
           "Lines": {
-            "33": 305
+            "33": 314
           },
           "Branches": []
         },
@@ -29263,8 +29359,8 @@
         },
         "System.Boolean Xunit.TestDiscoverySink::OnMessageWithTypes(Xunit.Abstractions.IMessageSinkMessage,System.Collections.Generic.HashSet`1<System.String>)": {
           "Lines": {
-            "49": 303,
-            "50": 303
+            "49": 312,
+            "50": 312
           },
           "Branches": [
             {
@@ -29273,7 +29369,7 @@
               "EndOffset": 15,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 303
+              "Hits": 312
             },
             {
               "Line": 49,
@@ -29287,7 +29383,7 @@
         },
         "System.Void Xunit.TestDiscoverySink::<.ctor>b__2_1(Xunit.MessageHandlerArgs`1<Xunit.Abstractions.ITestCaseDiscoveryMessage>)": {
           "Lines": {
-            "26": 303
+            "26": 312
           },
           "Branches": []
         },
@@ -29813,8 +29909,8 @@
             "37": 0,
             "38": 0,
             "40": 1,
-            "41": 144,
-            "42": 144,
+            "41": 147,
+            "42": 147,
             "44": 0,
             "46": 0
           },
@@ -29896,7 +29992,7 @@
               "EndOffset": 3,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 143
+              "Hits": 146
             },
             {
               "Line": 41,
@@ -52281,23 +52377,23 @@
         },
         "Microsoft.VisualStudio.TestPlatform.ObjectModel.TestCase Xunit.Runner.VisualStudio.VsDiscoverySink::CreateVsTestCase(System.String,Xunit.TestCaseDescriptor,LoggerHelper,Xunit.Runner.VisualStudio.TestPlatformContext)": {
           "Lines": {
-            "83": 302,
-            "84": 302,
-            "86": 302,
+            "83": 311,
+            "84": 311,
+            "86": 311,
             "87": 0,
-            "89": 302,
-            "90": 302,
-            "91": 302,
-            "93": 302,
-            "95": 302,
-            "97": 604,
+            "89": 311,
+            "90": 311,
+            "91": 311,
+            "93": 311,
+            "95": 311,
+            "97": 622,
             "98": 0,
             "99": 0,
-            "102": 302,
+            "102": 311,
             "104": 0,
             "106": 0,
             "107": 0,
-            "109": 302
+            "109": 311
           },
           "Branches": [
             {
@@ -52314,7 +52410,7 @@
               "EndOffset": 77,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 93,
@@ -52322,7 +52418,7 @@
               "EndOffset": 143,
               "Path": 0,
               "Ordinal": 2,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 97,
@@ -52354,7 +52450,7 @@
               "EndOffset": 248,
               "Path": 0,
               "Ordinal": 6,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 93,
@@ -52362,15 +52458,15 @@
               "EndOffset": 264,
               "Path": 1,
               "Ordinal": 3,
-              "Hits": 302
+              "Hits": 311
             }
           ]
         },
         "System.String Xunit.Runner.VisualStudio.VsDiscoverySink::Escape(System.String)": {
           "Lines": {
-            "113": 302,
+            "113": 311,
             "114": 0,
-            "116": 302
+            "116": 311
           },
           "Branches": [
             {
@@ -52387,14 +52483,14 @@
               "EndOffset": 9,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 302
+              "Hits": 311
             }
           ]
         },
         "System.String Xunit.Runner.VisualStudio.VsDiscoverySink::Truncate(System.String)": {
           "Lines": {
-            "121": 302,
-            "122": 302,
+            "121": 311,
+            "122": 311,
             "124": 0
           },
           "Branches": [
@@ -52404,7 +52500,7 @@
               "EndOffset": 13,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 121,
@@ -52629,10 +52725,10 @@
         },
         "System.Guid Xunit.Runner.VisualStudio.VsDiscoverySink::GuidFromString(System.String)": {
           "Lines": {
-            "236": 302,
-            "237": 302,
-            "238": 302,
-            "239": 302
+            "236": 311,
+            "237": 311,
+            "238": 311,
+            "239": 311
           },
           "Branches": []
         },
@@ -52729,8 +52825,8 @@
         },
         "Microsoft.VisualStudio.TestPlatform.ObjectModel.TestCase Xunit.Runner.VisualStudio.VsExecutionSink::FindTestCase(Xunit.Abstractions.ITestCase)": {
           "Lines": {
-            "65": 906,
-            "66": 906,
+            "65": 933,
+            "66": 933,
             "68": 0,
             "69": 0
           },
@@ -52741,7 +52837,7 @@
               "EndOffset": 21,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 906
+              "Hits": 933
             },
             {
               "Line": 65,
@@ -52755,20 +52851,20 @@
         },
         "System.Void Xunit.Runner.VisualStudio.VsExecutionSink::TryAndReport(System.String,Xunit.Abstractions.ITestCase,System.Action)": {
           "Lines": {
-            "76": 906,
-            "77": 906,
+            "76": 933,
+            "77": 933,
             "78": 0,
             "80": 0,
             "81": 0,
-            "82": 906
+            "82": 933
           },
           "Branches": []
         },
         "System.Void Xunit.Runner.VisualStudio.VsExecutionSink::HandleCancellation(Xunit.MessageHandlerArgs)": {
           "Lines": {
-            "86": 907,
+            "86": 934,
             "87": 0,
-            "88": 907
+            "88": 934
           },
           "Branches": [
             {
@@ -52785,7 +52881,7 @@
               "EndOffset": 19,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 907
+              "Hits": 934
             }
           ]
         },
@@ -52845,13 +52941,13 @@
         },
         "System.Void Xunit.Runner.VisualStudio.VsExecutionSink::HandleTestPassed(Xunit.MessageHandlerArgs`1<Xunit.Abstractions.ITestPassed>)": {
           "Lines": {
-            "132": 302,
-            "133": 302,
-            "134": 302,
-            "135": 604,
+            "132": 311,
+            "133": 311,
+            "134": 311,
+            "135": 622,
             "137": 0,
-            "139": 302,
-            "140": 302
+            "139": 311,
+            "140": 311
           },
           "Branches": [
             {
@@ -52860,7 +52956,7 @@
               "EndOffset": 42,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 134,
@@ -52903,13 +52999,13 @@
         },
         "System.Void Xunit.Runner.VisualStudio.VsExecutionSink::HandleTestCaseStarting(Xunit.MessageHandlerArgs`1<Xunit.Abstractions.ITestCaseStarting>)": {
           "Lines": {
-            "156": 302,
-            "157": 302,
-            "158": 302,
-            "159": 604,
+            "156": 311,
+            "157": 311,
+            "158": 311,
+            "159": 622,
             "161": 0,
-            "163": 302,
-            "164": 302
+            "163": 311,
+            "164": 311
           },
           "Branches": [
             {
@@ -52918,7 +53014,7 @@
               "EndOffset": 46,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 158,
@@ -52932,13 +53028,13 @@
         },
         "System.Void Xunit.Runner.VisualStudio.VsExecutionSink::HandleTestCaseFinished(Xunit.MessageHandlerArgs`1<Xunit.Abstractions.ITestCaseFinished>)": {
           "Lines": {
-            "168": 302,
-            "169": 302,
-            "170": 302,
-            "171": 604,
+            "168": 311,
+            "169": 311,
+            "170": 311,
+            "171": 622,
             "173": 0,
-            "175": 302,
-            "176": 302
+            "175": 311,
+            "176": 311
           },
           "Branches": [
             {
@@ -52947,7 +53043,7 @@
               "EndOffset": 56,
               "Path": 0,
               "Ordinal": 0,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 170,
@@ -53069,7 +53165,7 @@
         },
         "Microsoft.VisualStudio.TestPlatform.ObjectModel.TestResult Xunit.Runner.VisualStudio.VsExecutionSink::MakeVsTestResult(Microsoft.VisualStudio.TestPlatform.ObjectModel.TestOutcome,Xunit.Abstractions.ITestResultMessage)": {
           "Lines": {
-            "257": 302
+            "257": 311
           },
           "Branches": []
         },
@@ -53081,23 +53177,23 @@
         },
         "Microsoft.VisualStudio.TestPlatform.ObjectModel.TestResult Xunit.Runner.VisualStudio.VsExecutionSink::MakeVsTestResult(Microsoft.VisualStudio.TestPlatform.ObjectModel.TestOutcome,Xunit.Abstractions.ITestCase,System.String,System.Double,System.String)": {
           "Lines": {
-            "264": 302,
-            "265": 302,
+            "264": 311,
+            "265": 311,
             "266": 0,
-            "268": 302,
-            "269": 302,
-            "270": 302,
-            "271": 302,
-            "272": 302,
-            "273": 302,
-            "274": 302,
-            "275": 302,
-            "276": 302,
-            "279": 302,
-            "280": 106,
-            "282": 302,
+            "268": 311,
+            "269": 311,
+            "270": 311,
+            "271": 311,
+            "272": 311,
+            "273": 311,
+            "274": 311,
+            "275": 311,
+            "276": 311,
+            "279": 311,
+            "280": 122,
+            "282": 311,
             "283": 0,
-            "285": 302
+            "285": 311
           },
           "Branches": [
             {
@@ -53114,7 +53210,7 @@
               "EndOffset": 13,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 279,
@@ -53122,7 +53218,7 @@
               "EndOffset": 83,
               "Path": 0,
               "Ordinal": 2,
-              "Hits": 106
+              "Hits": 122
             },
             {
               "Line": 279,
@@ -53130,7 +53226,7 @@
               "EndOffset": 103,
               "Path": 1,
               "Ordinal": 3,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 282,
@@ -53146,19 +53242,19 @@
               "EndOffset": 135,
               "Path": 1,
               "Ordinal": 5,
-              "Hits": 302
+              "Hits": 311
             }
           ]
         },
         "Microsoft.VisualStudio.TestPlatform.ObjectModel.TestOutcome Xunit.Runner.VisualStudio.VsExecutionSink::GetAggregatedTestOutcome(Xunit.Abstractions.ITestCaseFinished)": {
           "Lines": {
-            "290": 302,
+            "290": 311,
             "291": 0,
-            "292": 302,
+            "292": 311,
             "293": 0,
-            "294": 302,
+            "294": 311,
             "295": 0,
-            "297": 302
+            "297": 311
           },
           "Branches": [
             {
@@ -53175,7 +53271,7 @@
               "EndOffset": 10,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 292,
@@ -53191,7 +53287,7 @@
               "EndOffset": 21,
               "Path": 1,
               "Ordinal": 3,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 294,
@@ -53207,14 +53303,14 @@
               "EndOffset": 32,
               "Path": 1,
               "Ordinal": 5,
-              "Hits": 302
+              "Hits": 311
             }
           ]
         },
         "System.Boolean Xunit.Runner.VisualStudio.VsExecutionSink::OnMessageWithTypes(Xunit.Abstractions.IMessageSinkMessage,System.Collections.Generic.HashSet`1<System.String>)": {
           "Lines": {
-            "302": 2404,
-            "303": 2404
+            "302": 2473,
+            "303": 2473
           },
           "Branches": []
         },
@@ -53262,7 +53358,7 @@
         },
         "System.Boolean Xunit.Runner.VisualStudio.TestPlatformContext::get_RequireXunitTestProperty()": {
           "Lines": {
-            "20": 303
+            "20": 312
           },
           "Branches": []
         }
@@ -53701,10 +53797,10 @@
       "Xunit.Runner.VisualStudio.TestCaseFilter": {
         "System.Boolean Xunit.Runner.VisualStudio.TestCaseFilter::MatchTestCase(Microsoft.VisualStudio.TestPlatform.ObjectModel.TestCase)": {
           "Lines": {
-            "30": 302,
+            "30": 311,
             "33": 0,
-            "35": 302,
-            "38": 302,
+            "35": 311,
+            "38": 311,
             "41": 0
           },
           "Branches": [
@@ -53722,7 +53818,7 @@
               "EndOffset": 30,
               "Path": 1,
               "Ordinal": 1,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 35,
@@ -53730,7 +53826,7 @@
               "EndOffset": 38,
               "Path": 0,
               "Ordinal": 2,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 35,
@@ -54943,7 +55039,7 @@
             "499": 1,
             "502": 1,
             "503": 1,
-            "504": 305,
+            "504": 314,
             "505": 1,
             "506": 1,
             "507": 2,
@@ -54965,15 +55061,15 @@
             "525": 0,
             "526": 0,
             "528": 0,
-            "532": 303,
+            "532": 312,
             "533": 1,
-            "534": 303,
-            "536": 606,
-            "538": 302,
-            "539": 302,
+            "534": 312,
+            "536": 624,
+            "538": 311,
+            "539": 311,
             "540": 0,
-            "543": 302,
-            "544": 302,
+            "543": 311,
+            "544": 311,
             "552": 0,
             "553": 0,
             "554": 0,
@@ -55006,7 +55102,7 @@
             "602": 0,
             "603": 0,
             "606": 1,
-            "608": 908,
+            "608": 935,
             "610": 1,
             "611": 1,
             "612": 0,
@@ -55164,7 +55260,7 @@
               "EndOffset": 579,
               "Path": 1,
               "Ordinal": 21,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 539,
@@ -55180,7 +55276,7 @@
               "EndOffset": 682,
               "Path": 1,
               "Ordinal": 19,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 536,
@@ -55481,8 +55577,8 @@
             "705": 2,
             "707": 952,
             "711": 474,
-            "712": 68500,
-            "715": 61466,
+            "712": 68564,
+            "715": 61514,
             "719": 24,
             "720": 12,
             "722": 0,
@@ -55590,7 +55686,7 @@
               "EndOffset": 375,
               "Path": 1,
               "Ordinal": 27,
-              "Hits": 33776
+              "Hits": 33808
             },
             {
               "Line": 715,
@@ -55598,7 +55694,7 @@
               "EndOffset": 391,
               "Path": 0,
               "Ordinal": 10,
-              "Hits": 33776
+              "Hits": 33808
             },
             {
               "Line": 715,
@@ -55606,7 +55702,7 @@
               "EndOffset": 403,
               "Path": 0,
               "Ordinal": 12,
-              "Hits": 27610
+              "Hits": 27642
             },
             {
               "Line": 715,
@@ -55614,7 +55710,7 @@
               "EndOffset": 425,
               "Path": 0,
               "Ordinal": 14,
-              "Hits": 27608
+              "Hits": 27640
             },
             {
               "Line": 715,
@@ -55622,7 +55718,7 @@
               "EndOffset": 447,
               "Path": 0,
               "Ordinal": 16,
-              "Hits": 27606
+              "Hits": 27638
             },
             {
               "Line": 715,
@@ -55638,7 +55734,7 @@
               "EndOffset": 485,
               "Path": 1,
               "Ordinal": 19,
-              "Hits": 27606
+              "Hits": 27638
             },
             {
               "Line": 715,
@@ -55686,7 +55782,7 @@
               "EndOffset": 613,
               "Path": 1,
               "Ordinal": 11,
-              "Hits": 34250
+              "Hits": 34282
             },
             {
               "Line": 715,
@@ -55694,7 +55790,7 @@
               "EndOffset": 613,
               "Path": 1,
               "Ordinal": 13,
-              "Hits": 34250
+              "Hits": 34282
             },
             {
               "Line": 715,
@@ -55702,7 +55798,7 @@
               "EndOffset": 613,
               "Path": 1,
               "Ordinal": 15,
-              "Hits": 34250
+              "Hits": 34282
             },
             {
               "Line": 715,
@@ -55710,7 +55806,7 @@
               "EndOffset": 613,
               "Path": 1,
               "Ordinal": 17,
-              "Hits": 34250
+              "Hits": 34282
             },
             {
               "Line": 715,
@@ -55718,7 +55814,7 @@
               "EndOffset": 613,
               "Path": 1,
               "Ordinal": 21,
-              "Hits": 34250
+              "Hits": 34282
             },
             {
               "Line": 712,
@@ -55744,10 +55840,10 @@
             "795": 1,
             "796": 1,
             "797": 1,
-            "799": 606,
-            "801": 302,
-            "802": 302,
-            "803": 302,
+            "799": 624,
+            "801": 311,
+            "802": 311,
+            "803": 311,
             "806": 1
           },
           "Branches": [
@@ -55773,7 +55869,7 @@
               "EndOffset": 47,
               "Path": 1,
               "Ordinal": 5,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 802,
@@ -55781,7 +55877,7 @@
               "EndOffset": 82,
               "Path": 0,
               "Ordinal": 2,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 802,
@@ -55789,7 +55885,7 @@
               "EndOffset": 90,
               "Path": 1,
               "Ordinal": 3,
-              "Hits": 302
+              "Hits": 311
             },
             {
               "Line": 799,
@@ -55844,37 +55940,37 @@
         },
         "System.Collections.Generic.IEnumerable`1<System.String> Xunit.Runner.VisualStudio.VsTestRunner/DiscoveredTestCase::get_TraitNames()": {
           "Lines": {
-            "819": 302
+            "819": 311
           },
           "Branches": []
         },
         "Microsoft.VisualStudio.TestPlatform.ObjectModel.TestCase Xunit.Runner.VisualStudio.VsTestRunner/DiscoveredTestCase::get_VSTestCase()": {
           "Lines": {
-            "821": 906
+            "821": 933
           },
           "Branches": []
         },
         "Xunit.Abstractions.ITestCase Xunit.Runner.VisualStudio.VsTestRunner/DiscoveredTestCase::get_TestCase()": {
           "Lines": {
-            "823": 302
+            "823": 311
           },
           "Branches": []
         },
         "System.String Xunit.Runner.VisualStudio.VsTestRunner/DiscoveredTestCase::get_UniqueID()": {
           "Lines": {
-            "825": 302
+            "825": 311
           },
           "Branches": []
         },
         "System.Void Xunit.Runner.VisualStudio.VsTestRunner/DiscoveredTestCase::.ctor(System.String,Xunit.TestCaseDescriptor,Xunit.Abstractions.ITestCase,LoggerHelper,Xunit.Runner.VisualStudio.TestPlatformContext)": {
           "Lines": {
-            "827": 302,
-            "829": 302,
-            "830": 302,
-            "831": 302,
-            "832": 302,
-            "833": 302,
-            "834": 302
+            "827": 311,
+            "829": 311,
+            "830": 311,
+            "831": 311,
+            "832": 311,
+            "833": 311,
+            "834": 311
           },
           "Branches": []
         }

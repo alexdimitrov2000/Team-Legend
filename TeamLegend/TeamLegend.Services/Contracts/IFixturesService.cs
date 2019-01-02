@@ -9,5 +9,7 @@
         Task<Fixture> GetOrCreateAsync(int fixtureRound, string leagueId);
 
         Task<Fixture> GetByLeagueIdAndRoundAsync(string leagueId, int round);
+
+        Task<int> ValidateRoundAsync(string leagueId, int round);
     }
 }

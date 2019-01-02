@@ -24,6 +24,11 @@
 
         public async Task<IActionResult> Details(string leagueId, int round = 1)
         {
+            var validatedRound = await this.fixturesService.ValidateRoundAsync(leagueId, round);
+
+            if (round != validatedRound)
+                return this.RedirectToAction("Details", "Fixtures", new { area = "", leagueId, round = validatedRound });
+
             var fixture = await this.fixturesService.GetByLeagueIdAndRoundAsync(leagueId, round);
             var league = await this.leaguesService.GetByIdAsync(leagueId);
             var fixtures = league.Fixtures.Select(f => f.FixtureRound).OrderBy(f => f).ToArray();

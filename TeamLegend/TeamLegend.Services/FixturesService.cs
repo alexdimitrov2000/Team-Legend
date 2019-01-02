@@ -6,6 +6,8 @@
 
     using Microsoft.EntityFrameworkCore;
 
+    using System;
+    using System.Linq;
     using System.Threading.Tasks;
 
     public class FixturesService : IFixturesService
@@ -36,11 +38,27 @@
 
         public async Task<Fixture> GetByLeagueIdAndRoundAsync(string leagueId, int round)
         {
-            if (string.IsNullOrEmpty(leagueId) || string.IsNullOrWhiteSpace(leagueId) || round <= 0)
+            if (string.IsNullOrEmpty(leagueId) || string.IsNullOrWhiteSpace(leagueId))
                 return null;
 
             var fixture = await this.context.Fixtures.SingleOrDefaultAsync(f => f.LeagueId == leagueId && f.FixtureRound == round);
             return fixture;
+        }
+
+        public async Task<int> ValidateRoundAsync(string leagueId, int round)
+        {
+            if (string.IsNullOrEmpty(leagueId) || string.IsNullOrWhiteSpace(leagueId))
+                throw new ArgumentException("Invalid league id.");
+            
+            if (round <= 0)
+                return 1;
+
+            var lastRound = await this.context.Fixtures.Where(f => f.LeagueId == leagueId).OrderByDescending(f => f.FixtureRound).Select(f => f.FixtureRound).FirstOrDefaultAsync();
+
+            if (round > lastRound)
+                return lastRound;
+
+            return round;
         }
     }
 }

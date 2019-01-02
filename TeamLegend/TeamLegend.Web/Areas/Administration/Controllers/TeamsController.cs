@@ -27,13 +27,15 @@
         private readonly IStadiumsService stadiumsService;
         private readonly IPlayersService playersService;
         private readonly IManagersService managersService;
+        private readonly IMatchesService matchesService;
 
         public TeamsController(ILogger<TeamsController> logger,
                                IMapper mapper, ITeamsService teamsService,
                                ICloudinaryService cloudinaryService,
                                IStadiumsService stadiumsService,
                                IPlayersService playersService,
-                               IManagersService managersService)
+                               IManagersService managersService,
+                               IMatchesService matchesService)
         {
             this.logger = logger;
             this.mapper = mapper;
@@ -42,6 +44,7 @@
             this.stadiumsService = stadiumsService;
             this.playersService = playersService;
             this.managersService = managersService;
+            this.matchesService = matchesService;
         }
 
         public IActionResult Create()
@@ -119,6 +122,7 @@
 
             try
             {
+                await this.matchesService.DeleteTeamMatches(id);
                 await this.teamsService.DeleteAsync(team);
             }
             catch (DbUpdateException e)

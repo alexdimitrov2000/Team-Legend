@@ -454,18 +454,19 @@
             var matches = new List<Match>
             {
                 new Match{ HomeTeamId = teamId, AwayTeamId = "away" },
-                new Match{ HomeTeamId = "home", AwayTeamId = teamId }
+                new Match{ HomeTeamId = "home", AwayTeamId = teamId },
+                new Match{ HomeTeamId = "home", AwayTeamId = "away" }
             };
 
             await context.Matches.AddRangeAsync(matches);
             await context.SaveChangesAsync();
 
-            Assert.Equal(2, context.Matches.Count());
+            Assert.Equal(3, context.Matches.Count());
 
             var result = await matchesService.DeleteTeamMatchesAsync(teamId);
 
             Assert.True(result);
-            Assert.Equal(0, context.Matches.Count());
+            Assert.Equal(1, context.Matches.Count());
         }
     }
 }

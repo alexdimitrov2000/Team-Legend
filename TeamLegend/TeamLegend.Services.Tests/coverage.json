@@ -87,7 +87,7 @@
       "TeamLegend.Data.ApplicationDbContext": {
         "Microsoft.EntityFrameworkCore.DbSet`1<TeamLegend.Models.League> TeamLegend.Data.ApplicationDbContext::get_Leagues()": {
           "Lines": {
-            "17": 342
+            "17": 341
           },
           "Branches": []
         },
@@ -99,7 +99,7 @@
         },
         "Microsoft.EntityFrameworkCore.DbSet`1<TeamLegend.Models.Team> TeamLegend.Data.ApplicationDbContext::get_Teams()": {
           "Lines": {
-            "19": 469
+            "19": 470
           },
           "Branches": []
         },
@@ -111,7 +111,7 @@
         },
         "Microsoft.EntityFrameworkCore.DbSet`1<TeamLegend.Models.Fixture> TeamLegend.Data.ApplicationDbContext::get_Fixtures()": {
           "Lines": {
-            "21": 348
+            "21": 349
           },
           "Branches": []
         },
@@ -123,7 +123,7 @@
         },
         "Microsoft.EntityFrameworkCore.DbSet`1<TeamLegend.Models.Manager> TeamLegend.Data.ApplicationDbContext::get_Managers()": {
           "Lines": {
-            "23": 319
+            "23": 315
           },
           "Branches": []
         },
@@ -151,9 +151,9 @@
         },
         "System.Void TeamLegend.Data.ApplicationDbContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<TeamLegend.Data.ApplicationDbContext>)": {
           "Lines": {
-            "13": 282,
-            "14": 281,
-            "15": 281
+            "13": 283,
+            "14": 279,
+            "15": 279
           },
           "Branches": []
         }
@@ -10906,67 +10906,67 @@
       "TeamLegend.Models.Match": {
         "System.String TeamLegend.Models.Match::get_Id()": {
           "Lines": {
-            "9": 735
+            "9": 777
           },
           "Branches": []
         },
         "System.String TeamLegend.Models.Match::get_HomeTeamId()": {
           "Lines": {
-            "11": 566
+            "11": 599
           },
           "Branches": []
         },
         "TeamLegend.Models.Team TeamLegend.Models.Match::get_HomeTeam()": {
           "Lines": {
-            "13": 362
+            "13": 377
           },
           "Branches": []
         },
         "System.Int32 TeamLegend.Models.Match::get_HomeTeamGoals()": {
           "Lines": {
-            "15": 290
+            "15": 305
           },
           "Branches": []
         },
         "System.String TeamLegend.Models.Match::get_AwayTeamId()": {
           "Lines": {
-            "17": 563
+            "17": 596
           },
           "Branches": []
         },
         "TeamLegend.Models.Team TeamLegend.Models.Match::get_AwayTeam()": {
           "Lines": {
-            "19": 362
+            "19": 377
           },
           "Branches": []
         },
         "System.Int32 TeamLegend.Models.Match::get_AwayTeamGoals()": {
           "Lines": {
-            "21": 290
+            "21": 305
           },
           "Branches": []
         },
         "System.DateTime TeamLegend.Models.Match::get_Date()": {
           "Lines": {
-            "24": 266
+            "24": 281
           },
           "Branches": []
         },
         "System.Boolean TeamLegend.Models.Match::get_IsPlayed()": {
           "Lines": {
-            "26": 342
+            "26": 357
           },
           "Branches": []
         },
         "System.String TeamLegend.Models.Match::get_FixtureId()": {
           "Lines": {
-            "28": 467
+            "28": 494
           },
           "Branches": []
         },
         "TeamLegend.Models.Fixture TeamLegend.Models.Match::get_Fixture()": {
           "Lines": {
-            "29": 278
+            "29": 296
           },
           "Branches": []
         }
@@ -11139,7 +11139,7 @@
       "TeamLegend.Models.Team": {
         "System.String TeamLegend.Models.Team::get_Id()": {
           "Lines": {
-            "24": 1952
+            "24": 1953
           },
           "Branches": []
         },
@@ -11151,7 +11151,7 @@
         },
         "System.String TeamLegend.Models.Team::get_Nickname()": {
           "Lines": {
-            "33": 615
+            "33": 616
           },
           "Branches": []
         },
@@ -11211,7 +11211,7 @@
         },
         "TeamLegend.Models.League TeamLegend.Models.Team::get_League()": {
           "Lines": {
-            "53": 725
+            "53": 726
           },
           "Branches": []
         },
@@ -53216,7 +53216,7 @@
             "275": 317,
             "276": 317,
             "279": 317,
-            "280": 135,
+            "280": 128,
             "282": 317,
             "283": 0,
             "285": 317
@@ -53244,7 +53244,7 @@
               "EndOffset": 83,
               "Path": 0,
               "Ordinal": 2,
-              "Hits": 135
+              "Hits": 128
             },
             {
               "Line": 279,

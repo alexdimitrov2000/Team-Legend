@@ -100,6 +100,9 @@
 
         public async Task<bool> DeleteTeamMatchesAsync(string teamId)
         {
+            if (string.IsNullOrEmpty(teamId) || string.IsNullOrWhiteSpace(teamId))
+                return false;
+
             var matchesToRemove = this.context.Matches.Where(m => m.HomeTeamId == teamId || m.AwayTeamId == teamId).ToList();
 
             this.context.Matches.RemoveRange(matchesToRemove);

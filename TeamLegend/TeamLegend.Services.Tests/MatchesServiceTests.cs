@@ -425,5 +425,47 @@
             Assert.Equal(1, resultMatch.HomeTeam.TotalPoints);
             Assert.Equal(1, resultMatch.AwayTeam.TotalPoints);
         }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("   ")]
+        public async Task DeleteTeamMatchesAsyncAsync_WithInvalidTeamId_ReturnsFalse(string teamId)
+        {
+            var context = new ApplicationDbContext(this.Options);
+
+            var matchesService = new MatchesService(context);
+
+            var result = await matchesService.DeleteTeamMatchesAsync(teamId);
+
+            Assert.False(result);
+        }
+
+        [Theory]
+        [InlineData("1")]
+        [InlineData("asd")]
+        [InlineData("teamId")]
+        public async Task DeleteTeamMatchesAsyncAsync_WithExistingTeamMatches_RemovesMatchesAndReturnsTrue(string teamId)
+        {
+            var context = new ApplicationDbContext(this.Options);
+
+            var matchesService = new MatchesService(context);
+
+            var matches = new List<Match>
+            {
+                new Match{ HomeTeamId = teamId, AwayTeamId = "away" },
+                new Match{ HomeTeamId = "home", AwayTeamId = teamId }
+            };
+
+            await context.Matches.AddRangeAsync(matches);
+            await context.SaveChangesAsync();
+
+            Assert.Equal(2, context.Matches.Count());
+
+            var result = await matchesService.DeleteTeamMatchesAsync(teamId);
+
+            Assert.True(result);
+            Assert.Equal(0, context.Matches.Count());
+        }
     }
 }

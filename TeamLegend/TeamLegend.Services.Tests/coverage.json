@@ -12776,8 +12776,8 @@
           ]
         }
       },
-      "TeamLegend.Services.MatchesService/<DeleteTeamMatches>d__8": {
-        "System.Void TeamLegend.Services.MatchesService/<DeleteTeamMatches>d__8::MoveNext()": {
+      "TeamLegend.Services.MatchesService/<DeleteTeamMatchesAsync>d__8": {
+        "System.Void TeamLegend.Services.MatchesService/<DeleteTeamMatchesAsync>d__8::MoveNext()": {
           "Lines": {
             "102": 0,
             "103": 0,

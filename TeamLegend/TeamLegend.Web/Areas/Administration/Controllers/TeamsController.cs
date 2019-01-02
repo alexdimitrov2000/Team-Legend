@@ -122,7 +122,7 @@
 
             try
             {
-                await this.matchesService.DeleteTeamMatches(id);
+                await this.matchesService.DeleteTeamMatchesAsync(id);
                 await this.teamsService.DeleteAsync(team);
             }
             catch (DbUpdateException e)

@@ -98,7 +98,7 @@
             return match;
         }
 
-        public async Task<bool> DeleteTeamMatches(string teamId)
+        public async Task<bool> DeleteTeamMatchesAsync(string teamId)
         {
             var matchesToRemove = this.context.Matches.Where(m => m.HomeTeamId == teamId || m.AwayTeamId == teamId).ToList();
 

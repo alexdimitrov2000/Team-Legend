@@ -19,6 +19,6 @@
 
         Task<Match> UpdateTeamsGoalsAsync(Match match, int homeTeamGoals, int awayTeamGoals);
 
-        Task<bool> DeleteTeamMatches(string teamId);
+        Task<bool> DeleteTeamMatchesAsync(string teamId);
     }
 }

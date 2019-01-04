@@ -308,5 +308,21 @@
             Assert.NotEqual(round, resultRound);
             Assert.Equal(5, resultRound);
         }
+
+        [Theory]
+        [InlineData("1", 15)]
+        [InlineData("abc", 12)]
+        [InlineData("leagueId", 20)]
+        public async Task ValidateRoundAsync_WithNoExistingFixtures_ReturnsZero(string leagueId, int round)
+        {
+            var context = new ApplicationDbContext(this.Options);
+
+            var fixturesService = new FixturesService(context);
+
+            var resultRound = await fixturesService.ValidateRoundAsync(leagueId, round);
+
+            Assert.NotEqual(round, resultRound);
+            Assert.Equal(0, resultRound);
+        }
     }
 }

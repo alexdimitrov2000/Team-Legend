@@ -51,7 +51,7 @@
             return this.View(leagueAllViewModel);
         }
 
-        public async Task<IActionResult> Details(string id)
+        public async Task<IActionResult> Details(string id, string fixturesError = null)
         {
             var league = await this.leagueService.GetByIdAsync(id);
             if (league == null)
@@ -62,6 +62,8 @@
 
             if (this.TempData["Error"] != null)
                 this.TempData.Keep("Error");
+
+            this.ViewData["FixturesError"] = fixturesError;
 
             var matches = await this.matchesService.GetAllPlayedAsync();
 

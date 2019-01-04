@@ -11,6 +11,8 @@
 
     public class FixturesController : BaseController
     {
+        private const string FixturesErrorMessage = "There are no fixtures for this league.";
+
         private readonly IFixturesService fixturesService;
         private readonly IMapper mapper;
         private readonly ILeaguesService leaguesService;
@@ -25,6 +27,9 @@
         public async Task<IActionResult> Details(string leagueId, int round = 1)
         {
             var validatedRound = await this.fixturesService.ValidateRoundAsync(leagueId, round);
+
+            if (validatedRound == 0)
+                return this.RedirectToAction("Details", "Leagues", new { area = "", id = leagueId, fixturesError = FixturesErrorMessage });
 
             if (round != validatedRound)
                 return this.RedirectToAction("Details", "Fixtures", new { area = "", leagueId, round = validatedRound });

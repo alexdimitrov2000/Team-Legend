@@ -16,6 +16,10 @@
                 {
                     <h5 class="text-danger">@this.TempData["Error"]</h5>
                 }
+                @if (this.ViewData["FixturesError"] != null)
+                {
+                    <h5 class="text-danger">@this.ViewData["FixturesError"]</h5>
+                }
             </div>
             <div class="col-md-5 text-right">
                 <partial name="Leagues/_LeagueDetailsDropdownPartial" model="@Model.Id" />

@@ -32,5 +32,10 @@
 
         public const int MatchMinimumGoals = 0;
         public const int MatchMaximumGoals = 10;
+
+        public const int UserFirstNameMinLength = 2;
+        public const int UserFirstNameMaxLength = 100;
+        public const int UserLastNameMinLength = 2;
+        public const int UserLastNameMaxLength = 100;
     }
 }

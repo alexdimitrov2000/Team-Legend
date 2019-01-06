@@ -6,7 +6,6 @@
 
     using CloudinaryDotNet;
     using CloudinaryDotNet.Actions;
-    using Microsoft.Extensions.Configuration;
 
     using System;
     using System.IO;
@@ -14,15 +13,12 @@
 
     public class CloudinaryService : ICloudinaryService
     {
-        private const string CloudinaryCloudName = "Cloudinary:CloudName";
-        private const string CloudinaryApiKey = "Cloudinary:ApiKey";
-        private const string CloudinaryApiSecret = "Cloudinary:ApiSecret";
-
         private const string TeamBadgesFolder = "TeamBadges";
         private const string PlayerPicturesFolder = "PlayerPictures";
         private const string ProfilePicturesFolder = "ProfilePictures";
         private const string StadiumPicturesFolder = "StadiumPictures";
         private const string ManagerPicturesFolder = "ManagerPictures";
+
         private readonly Dictionary<Type, string> EntityFolders = new Dictionary<Type, string>
         {
             { typeof(Team), TeamBadgesFolder },
@@ -33,13 +29,13 @@
         };
         private readonly Cloudinary cloudinary;
 
-        public CloudinaryService(IConfiguration configuration)
+        public CloudinaryService()
         {
             this.cloudinary = new Cloudinary(
                 new Account(
-                    configuration[CloudinaryCloudName],
-                    configuration[CloudinaryApiKey],
-                    configuration[CloudinaryApiSecret]));
+                    CloudinaryDataConstants.Cloud,
+                    CloudinaryDataConstants.ApiKey,
+                    CloudinaryDataConstants.ApiSecret));
         }
 
         public ImageUploadResult UploadPicture(Type entityType, string pictureId, Stream fileStream)

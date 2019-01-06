@@ -1,13 +1,12 @@
 ﻿namespace TeamLegend.Services.Tests
 {
-    using TeamLegend.Services.Contracts;
+    using Contracts;
+    using TeamLegend.Models;
 
     using Xunit;
 
     using System;
     using System.IO;
-    using System.Threading.Tasks;
-    using TeamLegend.Models;
 
     public class CloudinaryServiceTests
     {

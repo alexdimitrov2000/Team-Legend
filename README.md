@@ -1,4 +1,4 @@
-![TeamLegend logo](teamlegend-logo.png)
+![TeamLegend logo](/logos/teamlegend-logo.png)
 ---
 ## What is Team Legend?
 Team Legend is a Football Competitions Information System. 
@@ -9,12 +9,12 @@ The goal of the application is to present data for different leagues, teams, pla
 - The Visual Studio IDE and the latest SDK can be downloaded from https://dot.net/core.
 
 Also you can run the project in Visual Studio Code (Windows, Linux or MacOS).
-To know more about how to setup your enviroment visit the [Microsoft .NET Download Guide](https://www.microsoft.com/net/download)
+To know more about how to setup your environment visit the [Microsoft .NET Download Guide](https://www.microsoft.com/net/download)
 
 ## Technologies used:
-- ASP .NET Core 2.1
-- ASP .NET MVC Core
-- ASP .NET Identity Core
+- ASP&#46;NET Core 2.1
+- ASP&#46;NET MVC Core
+- ASP&#46;NET Identity Core
 - Entity Framework Core
 - MS SQL
 - AutoMapper
@@ -24,11 +24,11 @@ To know more about how to setup your enviroment visit the [Microsoft .NET Downlo
 - Full architecture with responsibility separation concerns, SOLID and Clean Code
 - Client-Server
 - Database
-- Layers separation
+- Layer separation
 - Repository
 
 ## Description
-Team Legend is an application which gives its users the opportunity to follow information about how their favourite football team season is going. To use all the features users have to register in the system, so they can check all the data about the competitions, teams, players, matches, managers and stadiums. Authenticated users can edit their personal information. The first registered user in the system is automatically given the role of Administrator. Everyone with this role can add, update and delete data from the database.
+Team Legend is an application that gives its users the opportunity to follow information about how their favorite football team's season is going. To use all the features, users have to register in the system so they can check all the data about the competitions, teams, players, matches, managers and stadiums. Authenticated users can edit their personal information. The first registered user in the system is automatically given the role of Administrator. Everyone with this role can add, update and delete data from the database.
 
 ## How to Install:
 1. Clone this project running `git clone https://github.com/alexdimitrov2000/Team-Legend.git` in your terminal. If you haven't git installed can simply download it and unzip it.

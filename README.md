@@ -1,4 +1,5 @@
-![TeamLegend logo](/logos/teamlegend-logo.png)
+<img src="/logos/teamlegend-logo.png" width="1100" height="200" />
+
 ---
 ## What is Team Legend?
 Team Legend is a Football Competitions Information System. 
